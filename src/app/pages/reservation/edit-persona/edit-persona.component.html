@@ -1,0 +1,170 @@
+<div class="header bg-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Editar Persona</h3>
+        </div>
+       <div class="bg-secondary">
+        <div class="p-4">
+          <div class="row">
+            <div class="col-lg-6 col-xl-3">
+              <div class="form-group mt-1">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Documento</label>
+                <select class="form-select text-muted border" aria-label="Default select example" (change)="onTipoDocumentoSeleccionado($event)">
+                  <option selected>Seleccionar</option>
+                  <option value="1">DNI</option>
+                  <option value="2">Pasaporte</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6" *ngIf="mostrarDNI">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-number">DNI</label>
+                <input type="number" id="input-number" class="form-control border form-control-alternative" placeholder="Ingrese su DNI" (keypress)="limitarLongitud($event, 8)">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6" *ngIf="mostrarPasaporte">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-text">Pasaporte</label>
+                <input type="text" id="input-text" class="form-control border form-control-alternative" placeholder="Ingrese su pasaporte" maxlength="9">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-text">Nombres</label>
+                <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-text">Apellidos</label>
+                <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 mb-4">
+              <a class="btn btn-sm btn-primary" (click)="onEsNinoJovenClick()">Es niño / joven</a>
+            </div>
+          </div>
+          <div class="datos-apoderado" *ngIf="mostrarDatosApoderado">
+            <h3 class="mb-4">Datos de Padre / Apoderado</h3>
+            <div class="row">
+              <div class="col-lg-6 col-xl-3">
+                <div class="form-group mt-1">
+                  <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Documento</label>
+                  <select class="form-select text-muted border" aria-label="Default select example" (change)="onTipoDocumentoSeleccionado2($event)">
+                    <option selected>Seleccionar</option>
+                    <option value="1">DNI</option>
+                    <option value="2">Pasaporte</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6" *ngIf="mostrarDNI2">
+                <div class="form-group text-start">
+                  <label class="form-control-label" for="input-number">DNI</label>
+                  <input type="number" id="input-number" class="form-control border form-control-alternative" placeholder="Ingrese su DNI" (keypress)="limitarLongitud($event, 8)">
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6" *ngIf="mostrarPasaporte2">
+                <div class="form-group text-start">
+                  <label class="form-control-label" for="input-text">Pasaporte</label>
+                  <input type="text" id="input-text" class="form-control border form-control-alternative" placeholder="Ingrese su pasaporte" maxlength="9">
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="form-group text-start">
+                  <label class="form-control-label" for="input-text">Nombres</label>
+                  <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres">
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-6">
+                <div class="form-group text-start">
+                  <label class="form-control-label" for="input-text">Apellidos</label>
+                  <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" >
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr _ngcontent-c10="" class="my-4">
+        <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                <input type="email" id="input-email" class="form-control border form-control-alternative"  placeholder="Ingrese su correo electrónico" >
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-number">Teléfono</label>
+                <input type="number" id="input-number" class="form-control border form-control-alternative"  placeholder="Ingrese su teléfono" >
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-address">Dirección</label>
+                <input id="input-address" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" type="text">
+              </div>
+            </div>
+            <div class="col-lg-6 col-xl-3">
+              <div class="form-group mt-1">
+                  <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Vuelo</label>
+                  <select class="form-select text-muted border" aria-label="Default select example">
+                    <option selected>Selecionar</option>
+                    <option value="1">Fly-Black</option>
+                    <option value="2">Fly-Premium</option>
+                    <option value="3">Fly-Blue</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-country">Fecha</label>
+                <input type="date" id="input-country" class="border form-control form-control-alternative" placeholder="Ingrese el link del video">
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-country">Link de Video</label>
+                <input type="text" id="input-postal-code" class="border form-control form-control-alternative" placeholder="Ingrese el link del video" >
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label" for="input-country">Estado</label>
+                <input type="text" id="input-postal-code" class="border form-control form-control-alternative" value="Pendiente" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="mt-2 custom-control custom-control-alternative custom-checkbox">
+                <input class="custom-control-input border" id="customCheckLogin" type="checkbox">
+                <label class="custom-control-label" for="customCheckLogin">
+                  <span class="text-muted">Aceptar términos y condiciones</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <div class="d-flex justify-content-end mt-4">
+              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/crear-reservation']">Cancelar</a>
+              <a class="btn btn-primary mt-3 m-2">Editar</a>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dark table -->

@@ -1,0 +1,60 @@
+.logo2{
+    width: 60px;
+    height: 43px;
+}
+  
+.logo-m{
+    width: 265px;
+}
+
+.mt-n1 {
+    margin-top: -0.70rem !important;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #00afcc;
+    border-color: #00afcc;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #00afcc;
+    border-color: #00afcc;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik02LjU2NC43NWwtMy41OSAzLjYxMi0xLjUzOC0xLjU1TDAgNC4yNiAyLjk3NCA3LjI1IDggMi4xOTN6Ii8+PC9zdmc+);
+}
+
+.shadow-lg {
+    box-shadow: 0 0 3rem rgb(0 0 0 / 22%) !important;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+.no-select {
+    user-select: none;
+}
+
+/* Estilo para el checkbox cuando está activado */
+.custom-control-input:checked {
+    border-color: #00afcc; /* Cambia el color del borde cuando el checkbox está activado */
+    background-color: #00afcc; /* Cambia el color de fondo cuando el checkbox está activado */
+  }
+  
+  /* Estilo para el texto cuando el checkbox está activado */
+  .custom-control-input:checked + .custom-control-label::before {
+    border-color: #00afcc; /* Cambia el color del borde del checkbox cuando está activado */
+    background-color: #00afcc; /* Cambia el color de fondo del checkbox cuando está activado */
+  }
+  
+  /* Estilo opcional para cambiar el color del texto cuando el checkbox está activado */
+  .custom-control-input:checked + .custom-control-label .text-muted {
+    color: #00afcc; /* Cambia el color del texto cuando el checkbox está activado */
+  }
+  

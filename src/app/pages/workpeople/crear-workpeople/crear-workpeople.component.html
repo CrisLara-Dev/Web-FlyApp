@@ -1,0 +1,95 @@
+<div class="header bg-primary pb-8 pt-5 pt-lg-8 d-flex align-items-center" >
+  <!-- Mask -->
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-12 order-lg-2">
+            <div class="card-profile-image">
+              <img [src]="imagePath" class="rounded-circle img-profile">
+            </div>
+            <div class="mt-9 mb-3 d-flex justify-content-center">
+              <div class="file-upload-container">
+                <label class="file-upload-button" for="fileInput"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Subir foto</label>
+                <input id="fileInput" class="file-input" name="file" type="file" (change)="handleFileInput($event.target.files)" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Añadir trabajador</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Información Personal</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Nombres</label>
+                    <input type="text" id="input-text" class="form-control form-control-alternative border"  placeholder="Ingrese sus nombres">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Apellidos</label>
+                    <input type="text" id="input-text" class="form-control form-control-alternative border"  placeholder="Ingrese sus apellidos">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Dirección</label>
+                    <input id="input-address" class="form-control form-control-alternative border"  type="text"  placeholder="Ingrese su dirección">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-city">DNI</label>
+                    <input type="number" id="input-city" class="form-control form-control-alternative border"  placeholder="Ingrese su DNI">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Teléfono</label>
+                    <input type="number" id="input-country" class="form-control form-control-alternative border"  placeholder="Ingrese su teléfono">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="d-flex justify-content-end">
+                <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/workpeople']">Cancelar</a>
+                <a class="btn btn-primary mt-3 m-2">Añadir</a>
+              </div>
+            </div>
+            <!-- <hr class="my-4" /> -->
+            <!-- Description -->
+            <!-- <h6 class="heading-small text-muted mb-4">About me</h6>
+            <div class="pl-lg-4">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+              </div>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

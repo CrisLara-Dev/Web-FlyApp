@@ -1,0 +1,236 @@
+<div class="header bg-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <!-- <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total de trabajadores</h5>
+                  <span class="h2 font-weight-bold mb-0">5</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                    <i class="fa-solid fa-user-check"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Trabajadores</h3>
+        </div>
+       <div class="d-lg-flex justify-content-between">
+         <div>
+           <form class="form-inline ml-4 mb-3">
+             <div class="form-group mb-0 shadow border rounded" [ngClass]="{ 'focused': focus === true }">
+               <div class="input-group input-group-alternative">
+                 <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fas fa-search"></i></span>
+                 </div>
+                 <input class="form-control" placeholder="Buscar" type="text" (focus)="focus = true"
+                 (blur)="focus = false">
+               </div>
+             </div>
+           </form>
+         </div>
+         <div>
+           <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
+            <div><i class="fa-solid fa-filter"></i></div>
+            <div class="ml-3">
+              <select class="form-select text-muted" aria-label="Default select example">
+                <option selected>Filtrar por</option>
+                <option value="1">Activo</option>
+                <option value="2">Inactivo</option>
+              </select>
+            </div>
+            <div class="text-center ml-3">
+              <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-workpeople']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+            </div>
+           </div>
+         </div>
+       </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Admistrador</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Correo Electrónico</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Lesly Paredes</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  77554433
+                </td>
+                <td>
+                  Julio Cesar
+                </td>
+                <td>
+                  Baldi Herrera 
+                </td>
+                <td>
+                  987654321 
+                </td>
+                <td>
+                  julio@gmail.com
+                </td>
+                <td>
+                  <span class="badge badge-dot text-success">
+                    <i class="bg-success"></i> Activo
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/ver-workpeople']"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-workpeople']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Lesly Paredes</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  78945612
+                 </td>
+                <td>
+                 Mario Paredes
+                </td>
+                <td>
+                 Balvin Zavaleta
+                </td>
+                <td>
+                  987456321
+                </td>
+                <td>
+                  mario@gmail.com
+                </td>
+                <td>
+                  <span class="badge badge-dot text-success">
+                    <i class="bg-success"></i> Activo
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown  placement="bottom-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Lesly Paredes</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  78965412
+                </td>
+                <td>
+                  Cristian Andres
+                </td>
+                <td>
+                  Paredes Zavaleta
+                </td>
+                <td>
+                  987654321
+                </td>
+                <td>
+                  cristian@gmail.com
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4 text-success">
+                    <i class="bg-success"></i> Activo
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown  placement="top-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark table -->
+</div>

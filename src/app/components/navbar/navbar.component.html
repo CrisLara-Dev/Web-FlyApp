@@ -1,0 +1,114 @@
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" routerLinkActive="active" [routerLink]="['/dashboard']">{{getTitle()}}</a>
+    <!-- Form -->
+    <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+      <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+          </div>
+          <input class="form-control" placeholder="Buscar" type="text" (focus)="focus = true"
+          (blur)="focus = false">
+        </div>
+      </div>
+    </form>
+    <!-- User -->
+    <ul class="navbar-nav align-items-center d-none d-md-flex">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+          <div class="position-relative">
+            <i class="fa-solid fa-calendar-check fs-5"></i>
+            <div class="bg-danger rounded-circle position-absolute heartbeat" style="top: -8px; right: -10px; width: 10px; height: 10px;"></div>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right notification2" ngbDropdownMenu>
+          <div class="mx-4 my-2">
+            <h3>Asistencia</h3>
+          </div>
+          <a href="#">
+            <div class="row px-4 py-2 m-auto no-select">
+              <div class="">
+                <p class="h5">¡Presiona el botón para marcar tu 
+                  asistencia!</p>
+              </div>
+              <a class="btn btn-sm btn-primary my-2" >Marcar asistencia</a>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+          <div class="position-relative">
+            <i class="ni ni-bell-55 fs-5"></i>
+            <div class="bg-danger rounded-circle position-absolute heartbeat" style="top: -5px; right: -5px; width: 10px; height: 10px;"></div>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right notification" ngbDropdownMenu>
+          <div class="mx-4 my-2 title-noti">
+            <h3>Notificaciones</h3>
+          </div>
+          <a href="#" class="efecto-ho">
+            <div class="row px-3 py-2 m-auto no-select efecto-ho">
+              <div class="col-10">
+                <p class="h5">Se reservo un nuevo vuelo 
+                  (Cód: Fly-004)</p>
+                <p class="text-primary h5 mt-n2">20/12/2023<span> - </span> <span>10:00 AM</span></p> 
+              </div>
+              <div class="col-2 d-flex align-items-center justify-content-center">
+                <div class="bg-primary2 notificaciones rounded-circle"></div>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="efecto-ho">
+            <div class="row px-3 py-2 m-auto no-select efecto-ho">
+              <div class="col-10">
+                <p class="h5">Se reservo un nuevo vuelo
+                  express (Cód: Exp-002)</p>
+                <p class="text-primary h5 mt-n2">20/12/2023<span> - </span> <span>10:00 AM</span></p> 
+              </div>
+              <div class="col-2 d-flex align-items-center justify-content-center">
+                <div class="bg-primary2 notificaciones rounded-circle"></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+          <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
+            </span>
+            <div class="media-body ml-2 d-none d-lg-block">
+              <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0">¡Bienvenido!</h6>
+          </div>
+          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>Mi Perfil</span>
+          </a>
+          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-settings-gear-65"></i>
+            <span>Ajustes</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <span>Actividades</span>
+          </a> -->
+          <!-- <div class="dropdown-divider"></div> -->
+          <a href="#!" class="dropdown-item"  routerLinkActive="active" [routerLink]="['/login']">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Cerrar Sesión</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

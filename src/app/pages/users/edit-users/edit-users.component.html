@@ -1,0 +1,110 @@
+<div class="header bg-primary pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--9">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Editar Usuario</h3>
+        </div>
+       <div class="bg-secondary">
+        <div class="p-4">
+          <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">Trabajador</label>
+                <select class="form-select text-muted border" aria-label="Default select example">
+                  <option selected>Selecionar trabajador</option>
+                  <option value="1">Cristian Lara</option>
+                  <option value="2">Juan Carlos</option>
+                  <option value="3">Alarcón Llanos</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">Rol</label>
+                <select class="form-select text-muted border" aria-label="Default select example">
+                  <option selected>Selecionar rol</option>
+                  <option value="1">Agente</option>
+                  <option value="2">Administrador</option>
+                  <option value="2">Super Administrador</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
+                <select class="form-select text-muted border" aria-label="Default select example">
+                  <option selected>Selecionar estado</option>
+                  <option value="1">Activo</option>
+                  <option value="2">Inactivo</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start">
+                <label class="form-control-label d-flex justify-content-start" for="input-email">Correo Electrónico</label>
+                <input type="email" id="input-email" class="form-control form-control-alternative border" placeholder="Ingrese el correo" value="email@gmail.com">
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="form-group text-start mos-c">
+                <label class="form-control-label d-flex justify-content-start" for="input-password">Contraseña</label>
+                <input type="password" id="input-password" class="form-control form-control-alternative border" placeholder="Ingrese la contraseña" value="holamundo01" disabled>
+              </div>
+              <div class="d-flex justify-content-start text-right mt-2">
+                <a class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</a>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <div class="d-flex justify-content-end mt-4">
+              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/users']">Cancelar</a>
+              <a class="btn btn-primary mt-3 m-2">Editar usuario</a>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dark table -->
+
+
+  <div class="perfil-container">
+    <div *ngIf="modalOpen" class="modal-overlay">
+      <div class="bg-secondary modal-content col-sm-8 col-xl-3 col-md-5 m-3" (click)="stopPropagation($event)">
+        <div class="p-sm-4 p-2">
+          <div class="">
+            <h2 class="mb-4 font-weight-700">Cambiar Contraseña</h2>
+            <div class="">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-password">Contraseña actual</label>
+                <input type="password" id="input-password" class="form-control form-control-alternative border" placeholder="Ingrese su contraseña actual">
+              </div>
+            </div>
+            <div class="">
+              <div class="form-group text-start">
+                <label class="form-control-label d-flex justify-content-start" for="input-password">Nueva contraseña</label>
+                <input type="password" id="input-password" class="form-control form-control-alternative border" placeholder="Ingrese su nueva contraseña">
+              </div>
+            </div>
+            <div>
+              <a (click)="closeModal()" class="btn btn-secondary mt-3 mr-0 m-2">Cancelar</a>
+              <a (click)="closeModal()" class="btn btn-primary mt-3 m-2">Aceptar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
