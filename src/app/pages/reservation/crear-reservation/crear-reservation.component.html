@@ -24,7 +24,7 @@
                <h4 class="mt-n2">Precio Total</h4>
              </div>
               <div class="mt-5">
-                <div class="col-auto">
+                <!-- <div class="col-auto">
                   <div class="form-group row">
                     <div class="col-md-5 d-flex align-items-center">
                       <label class="form-control-label" for="input-text">Código</label>
@@ -33,7 +33,7 @@
                       <input type="text" id="input-text" class="form-control form-control-alternative border" value="XPF541" disabled>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-auto">
                   <div class="form-group row">
                     <div class="col-md-5 d-flex align-items-center">
@@ -52,20 +52,20 @@
                 <div class="col-auto">
                   <div class="form-group row">
                     <div class="col-md-5 d-flex align-items-center">
-                      <label class="form-control-label" for="input-text">Pago Incial</label>
+                      <label class="form-control-label" for="input-number">Pago Incial</label>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" id="input-text" class="form-control form-control-alternative border"  >
+                      <input type="number" id="input-number" class="form-control form-control-alternative border"  >
                     </div>
                   </div>
                 </div>
                 <div class="col-auto">
                   <div class="form-group row">
                     <div class="col-md-5 d-flex align-items-center">
-                      <label class="form-control-label" for="input-text">Por cobrar</label>
+                      <label class="form-control-label" for="input-number">Pago Faltante</label>
                     </div>
                     <div class="col-md-7">
-                      <input type="text" id="input-text" class="form-control form-control-alternative border"  >
+                      <input type="number" id="input-number" class="form-control form-control-alternative border"  >
                     </div>
                   </div>
                 </div>
@@ -76,28 +76,22 @@
                     </div>
                     <div class="col-md-7">
                       <select class="form-select text-muted border" aria-label="Default select example">
-                        <option selected>Selecionar</option>
-                        <option value="1">Efectivo</option>
-                        <option value="2">Yape</option>
-                        <option value="3">Plin</option>
-                        <option value="4">Tarjeta</option>
+                        <option selected>Seleccionar</option>
+                        <!-- Itera sobre los tipos de pago y genera las opciones dinámicamente -->
+                        <option *ngFor="let tipoPago of tiposDePago" [value]="tipoPago.id">{{ tipoPago.nombre }}</option>
                       </select>
                     </div>
                   </div>
-                </div>
+                </div>      
                 <div class="col-auto">
                   <div class="form-group row">
                     <div class="col-md-5 d-flex align-items-center">
-                      <label class="form-control-label d-flex justify-content-start" for="input-text">¿Donde nos conociero?</label>
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">¿Donde nos conocieron?</label>
                     </div>
                     <div class="col-md-7">
                       <select class="form-select text-muted border" aria-label="Default select example">
                         <option selected>Selecionar</option>
-                        <option value="1">Tiktok</option>
-                        <option value="2">Youtube</option>
-                        <option value="3">Facebook</option>
-                        <option value="4">Instagram</option>
-                        <option value="5">Twitter</option>
+                        <option *ngFor="let canalVenta of canalVenta" [value]="canalVenta.id">{{ canalVenta.nombre }}</option>
                       </select>
                     </div>
                   </div>
@@ -111,9 +105,9 @@
                       <i class="fas fa-plus"></i>
                     </div>
                   </div>
-                  <div class="file-upload-container">
+                  <div class="mt-3 file-upload-container">
                     <div *ngFor="let inputFile of inputFiles; let i = index" class="mt-2 file-upload-item">
-                      <div class="file-upload-input-wrapper" style="height: 41px;">
+                      <div class="file-upload-input-wrapper" style="height: 41px;width: 100%;">
                         <label class="custom-file-upload">
                           <i class="fas fa-file-upload"></i> {{ truncarNombreArchivo(fileNames[i]) || 'Subir Archivo' }}
                           <input type="file" class="file-upload-input" (change)="onFileSelected($event, i)">
@@ -121,10 +115,10 @@
                       </div>
                       <span class="file-name">{{ inputFile?.name }}</span>
                       <div class="file-actions">
-                        <button *ngIf="inputFile" class="ml-2 boton btn btn-success" (click)="descargarArchivo(inputFile)">
+                        <!-- <button *ngIf="inputFile" class="ml-1 boton btn btn-success" (click)="descargarArchivo(inputFile)">
                           <i class="fas fa-download"></i>
-                        </button>
-                        <button class="boton btn btn-danger ml-2" (click)="eliminarInput(i)">
+                        </button> -->
+                        <button class="boton btn btn-danger ml-4" (click)="eliminarInput(i)">
                           <i class="fas fa-times"></i>
                         </button>
                       </div>
@@ -133,7 +127,7 @@
                 </div>
                 <div class="m-3">
                   <div class="d-flex justify-content-center ">
-                    <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/users']">Cancelar</a>
+                    <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/reservation']">Cancelar</a>
                     <a class="btn btn-primary mt-3 m-2">Reservar</a>
                   </div>
                 </div>
@@ -160,12 +154,11 @@
                 <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Tipo de Persona</th>
-                      <th scope="col">Nombres</th>
-                      <th scope="col">Apellidos</th>
+                      <th scope="col"></th>
+                      <th scope="col">Nombres y Apellidos</th>
                       <th scope="col">Teléfono</th>
-                      <th scope="col">Correo Electrónico</th>
+                      <th scope="col">Enlace de Video</th>
+                      <th scope="col">Términos y Condiciones</th>
                       <th scope="col">Estado</th>
                       <th scope="col"></th>
                     </tr>
@@ -180,19 +173,17 @@
                         </div>
                       </th>
                       <td>
-                        Adulto
-                      </td>
-                      <td>
-                        Cristian Antony
-                      </td>
-                      <td>
-                        Lara Arcos
+                        Cristian Antony Lara Arcos
                       </td>
                       <td>
                         987654321 
                       </td>
                       <td>
-                        crisemail@gmail.com 
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
                       </td>
                       <td>
                         <span class="badge badge-dot text-danger">
@@ -220,19 +211,17 @@
                         </div>
                       </th>
                       <td>
-                        Adulto
-                      </td>
-                      <td>
-                        Cristian Antony
-                      </td>
-                      <td>
-                        Lara Arcos
+                        Cristian Antony Lara Arcos <span class="text-danger">(NIÑO)</span>
                       </td>
                       <td>
                         987654321 
                       </td>
                       <td>
-                        crisemail@gmail.com 
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
                       </td>
                       <td>
                         <span class="badge badge-dot text-success">
@@ -260,19 +249,17 @@
                         </div>
                       </th>
                       <td>
-                        Adulto
-                      </td>
-                      <td>
-                        Cristian Antony
-                      </td>
-                      <td>
-                        Lara Arcos
+                        Cristian Antony Lara Arcos
                       </td>
                       <td>
                         987654321 
                       </td>
                       <td>
-                        crisemail@gmail.com 
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
                       </td>
                       <td>
                         <span class="badge badge-dot mr-4 text-danger">
@@ -300,23 +287,21 @@
                         </div>
                       </th>
                       <td>
-                        Adulto
-                      </td>
-                      <td>
-                        Cristian Antony
-                      </td>
-                      <td>
-                        Lara Arcos
+                        Cristian Antony Lara Arcos
                       </td>
                       <td>
                         987654321 
                       </td>
                       <td>
-                        crisemail@gmail.com 
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
                       </td>
                       <td>
-                        <span class="badge badge-dot text-info">
-                          <i class="bg-info"></i> En proceso
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4 text-success">
+                          <i class="bg-success"></i> Realizado
                         </span>
                       </td>
                       <td class="text-right">
@@ -340,19 +325,17 @@
                         </div>
                       </th>
                       <td>
-                        Niño / Joven
-                      </td>
-                      <td>
-                        Cristian Antony
-                      </td>
-                      <td>
-                        Lara Arcos
+                        Cristian Antony Lara Arcos
                       </td>
                       <td>
                         987654321 
                       </td>
                       <td>
-                        crisemail@gmail.com 
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
                       </td>
                       <td>
                         <span class="badge badge-dot mr-4 text-success">

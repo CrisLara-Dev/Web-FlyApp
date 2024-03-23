@@ -28,12 +28,9 @@ export class DashboardComponent implements OnInit {
       [0, 20, 10, 30, 15, 40, 20, 60],
     ];
     this.data = this.datasets[0];
-
-
     var chartOrders = document.getElementById('chart-orders');
 
     parseOptions(Chart, chartOptions());
-
 
     var ordersChart = new Chart(chartOrders, {
       type: 'bar',
@@ -41,50 +38,42 @@ export class DashboardComponent implements OnInit {
       data: chartExample2.data
     });
 
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
-
     const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre','Noviembre', 'Diciembre'];
     const data = [10, 20, 15, 25, 30, 60, 15, 70, 30, 20, 15, 50];
 
-    // Configuración del gráfico lineal
-    const ctxLineal = document.getElementById('graficoLineal') as HTMLCanvasElement;
-    const graficoLineal = new Chart(ctxLineal, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Ventas Mensuales',
-          data: data,
-          fill: false,  // Para que sea una línea sin rellenar
-          borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 2
-        }]
+// Modifica la configuración del gráfico de barras
+const ctxBar = document.getElementById('graficoLineal') as HTMLCanvasElement;
+const graficoBar = new Chart(ctxBar, {
+  type: 'bar', // Cambia el tipo de gráfico a 'bar'
+  data: {
+    labels: labels,
+    datasets: [{
+      label: 'Ventas Mensuales',
+      data: data,
+      backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de fondo de las barras
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Meses'
+        }
       },
-      options: {
-        scales: {
-          x: {
-            display: true,
-            title: {
-              display: true,
-              text: 'Meses'
-            }
-          },
-          y: {
-            display: true,
-            title: {
-              display: true,
-              text: 'Ventas'
-            }
-          }
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Ventas'
         }
       }
-    });
+    }
+  }
+});
 
      // Gráfico Pastel
      const ctxPastel = document.getElementById('graficoPastel') as HTMLCanvasElement;
@@ -93,7 +82,7 @@ export class DashboardComponent implements OnInit {
        data: {
          labels: ['Efectivo', 'Tarjeta', 'Yape', 'Plin'],
          datasets: [{
-           data: [25, 25, 20,30],
+           data: [25, 20,30,25],
            backgroundColor: ['#fc466b', '#3f5efb', '#fcb045','#39d2c0']
          }]
        }

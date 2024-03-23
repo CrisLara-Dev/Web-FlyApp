@@ -13,10 +13,9 @@
     border-color:#00afcc;
 }
 
-
 .form-select {
     display: block;
-    width: 208px;
+    width: 100%;
     height: 44px;
     padding: 0.375rem 2.25rem 0.375rem 0.75rem;
     -moz-padding-start: calc(0.75rem - 3px);
@@ -67,29 +66,24 @@
     background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4IDgiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik02LjU2NC43NWwtMy41OSAzLjYxMi0xLjUzOC0xLjU1TDAgNC4yNiAyLjk3NCA3LjI1IDggMi4xOTN6Ii8+PC9zdmc+);
 }
 
-/* Estilo para el checkbox cuando está activado */
 .custom-control-input:checked {
-    border-color: #00afcc; /* Cambia el color del borde cuando el checkbox está activado */
-    background-color: #00afcc; /* Cambia el color de fondo cuando el checkbox está activado */
+    border-color: #00afcc;
+    background-color: #00afcc;
   }
   
-  /* Estilo para el texto cuando el checkbox está activado */
   .custom-control-input:checked + .custom-control-label::before {
-    border-color: #00afcc; /* Cambia el color del borde del checkbox cuando está activado */
-    background-color: #00afcc; /* Cambia el color de fondo del checkbox cuando está activado */
+    border-color: #00afcc;
+    background-color: #00afcc;
   }
   
-  /* Estilo opcional para cambiar el color del texto cuando el checkbox está activado */
   .custom-control-input:checked + .custom-control-label .text-muted {
-    color: #00afcc; /* Cambia el color del texto cuando el checkbox está activado */
+    color: #00afcc;
   }
   
-  /* perfil.component.css */
 .perfil-container {
     text-align: center;
     margin-top: 20px;
   }
-  
   
   .modal-overlay {
     position: fixed;
@@ -109,9 +103,7 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
-  
-  /* Agrega estilos adicionales según tus preferencias */
-  
+    
   .mos-c{
     margin-bottom: 12px !important;
   }

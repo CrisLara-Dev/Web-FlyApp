@@ -13,14 +13,6 @@ export class EditWorkpeopleComponent implements OnInit {
   ngOnInit() {
   }
 
-  openModal() {
-    this.modalOpen = true;
-  }
-
-  closeModal() {
-    this.modalOpen = false;
-  }
-
   stopPropagation(event: Event) {
     event.stopPropagation();
   }
@@ -39,14 +31,5 @@ export class EditWorkpeopleComponent implements OnInit {
     }
   }
 
-  colores: string[] = ['success', 'danger', 'yellow'];
-  mensajes: string[] = ['Puntual', 'Tarde', 'Falta'];
-  coloresText: string[] = ['white', 'black', 'white'];
-
-  indiceActual: number = 0;
-
-  onClick() {
-    this.indiceActual = (this.indiceActual + 1) % this.colores.length;
-  }
 
 }

@@ -2,49 +2,47 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
-      <div class="mb-4 d-lg-flex">
-        <div class="">
+     <!-- <div class="row mb-5">
+        <div class="col d-flex justify-content-lg-end">
+          <div class="d-flex">
+            <button type="button" class="btn btn-success w-55"><i class="fa-solid fa-file-export mr-2"></i>Excel</button>
+            <button type="button" class="btn btn-danger w-55"><i class="fa-solid fa-file-export mr-2"></i>PDF</button>
+          </div>
+        </div>
+     </div> -->
+      <div class="mb-4 row">
+        <div class="col-lg-4 col-xl-2 col-6">
           <select class="form-select text-muted border" aria-label="Default select example" (change)="onOpcionSeleccionada($event)">
-            <option selected>Seleccionar opción</option>
+            <option selected>Seleccionar</option>
             <option value="años">Años</option>
             <option value="meses">Meses</option>
           </select>
         </div>
-      
-        <div class="d-flex">
+        
+        <div class="col-lg-4 col-xl-2 col-6" *ngIf="seleccionOpcion === 'años'">
           <!-- Columna Desde -->
-          <div class=" mt-lg-0 mt-4 ml-lg-3 ml-0" *ngIf="seleccionOpcion === 'años'">
-            <div class="form-group">
               <select class="form-select text-muted border" aria-label="Default select example">
                 <option value="" disabled selected>Desde</option>
                 <option *ngFor="let anio of anios">{{ anio }}</option>
               </select>
-            </div>
-          </div>
+        </div>
           
           <!-- Columna Hasta -->
-          <div class=" mt-lg-0 mt-4 ml-3" *ngIf="seleccionOpcion === 'años'">
-            <div class="form-group">
-              <select class="form-select text-muted border" aria-label="Default select example">
-                <option value="" disabled selected>Hasta</option>
-                <option *ngFor="let anio of anios">{{ anio }}</option>
-              </select>
-            </div>
+          <div class="col-lg-4 col-xl-2 col-6 mt-3 mt-lg-0" *ngIf="seleccionOpcion === 'años'">
+                <select class="form-select text-muted border" aria-label="Default select example">
+                  <option value="" disabled selected>Hasta</option>
+                  <option *ngFor="let anio of anios">{{ anio }}</option>
+                </select>
           </div>
-        </div>
       
         <!-- Columna Año (para Meses) -->
-        <div class=" mt-lg-0 mt-4 ml-lg-3 ml-0 mb-5 mb-lg-0" *ngIf="seleccionOpcion === 'meses'">
-          <div class="form-group">
-            <select class="form-select text-muted border" aria-label="Default select example">
-              <option value="" disabled selected>Año</option>
-              <option *ngFor="let anio of anios">{{ anio }}</option>
-            </select>
-          </div>
+        <div class="col-lg-4 col-xl-2 col-6" *ngIf="seleccionOpcion === 'meses'">
+              <select class="form-select text-muted border" aria-label="Default select example">
+                <option value="" disabled selected>Año</option>
+                <option *ngFor="let anio of anios">{{ anio }}</option>
+              </select>
         </div>
       </div>
-      
-      
       <div class="row">
         <div class="col-xl-3 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
@@ -86,7 +84,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total de ganancias</h5>
-                  <span class="h2 font-weight-bold mb-0">S/1050</span>
+                  <span class="h2 font-weight-bold mb-0">S/ 1050</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -120,28 +118,21 @@
 </div>
 <div class="container-fluid mt--7">
   <div class="row">
-    <div class="col-xl-12 mb-5 mb-xl-0">
+    <div class="col-xl-12">
       <div class="card shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <!-- <h6 class="text-uppercase text-light ls-1 mb-1">Reservas</h6> -->
               <h2 class=" mb-0">Análisis de Vuelos</h2>
             </div>
           </div>
         </div>
+        <!-- Ajusta la altura del canvas con un estilo en línea -->
         <div class="p-4">
-          <canvas id="graficoLineal" width="400" height="200"></canvas>
-        </div>
-        <div class="card-body d-none">
-          <!-- Chart -->
-          <div class="chart">
-            <!-- Chart wrapper -->
-            <canvas id="chart-sales" class="chart-canvas"></canvas>
-          </div>
+          <canvas id="graficoLineal" width="400" height="200" style="height: 300px;"></canvas>
         </div>
       </div>
-    </div>
+    </div>     
   </div>
   <div class="row mt-5">
     <div class="col-xl-6 mb-5 mb-xl-0">
@@ -241,16 +232,16 @@
           <div class="col-sm-6 d-flex align-items-center mt-sm-0 mt-4 justify-content-center">
            <div>
              <div class="d-flex">
-              <span class="rounded-circle color-pago mr-3" style="background-color: #fc466b;"></span><h4 class="pago">Efectivo</h4><h4 class="ml-4">65%</h4>
+              <span class="rounded-circle color-pago mr-3" style="background-color: #fc466b;"></span><h4 class="pago normal">Efectivo</h4><h4 class="ml-4 normal">65%</h4>
              </div>
              <div class="d-flex">
-              <span class="rounded-circle color-pago mr-3" style="background-color: #3f5efb;"></span><h4 class="pago">Tarjeta</h4><h4 class="ml-4">45%</h4>
+              <span class="rounded-circle color-pago mr-3" style="background-color: #3f5efb;"></span><h4 class="pago normal">Tarjeta</h4><h4 class="ml-4 normal">45%</h4>
              </div>
              <div class="d-flex">
-              <span class="rounded-circle color-pago mr-3" style="background-color: #fcb045;"></span><h4 class="pago">Yape</h4><h4 class="ml-4">34%</h4>
+              <span class="rounded-circle color-pago mr-3" style="background-color: #fcb045;"></span><h4 class="pago normal">Yape</h4><h4 class="ml-4 normal">34%</h4>
              </div>
              <div class="d-flex">
-              <span class="rounded-circle color-pago mr-3" style="background-color:#39d2c0;"></span><h4 class="pago">Plin</h4><h4 class="ml-4">12%</h4>
+              <span class="rounded-circle color-pago mr-3" style="background-color:#39d2c0;"></span><h4 class="pago normal">Plin</h4><h4 class="ml-4 normal">12%</h4>
              </div>
            </div>
           </div>
@@ -260,7 +251,6 @@
           <div class="chart">
             <canvas id="chart-orders" class="chart-canvas"></canvas>
           </div>
-          
         </div>
       </div>
     </div>

@@ -66,27 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">En proceso</h5>
-                  <span class="h2 font-weight-bold mb-0">20</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <i class="fa-solid fa-spinner"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-info mr-2 font-weight-bold"><i class="fa-solid fa-list-check"></i> 200</span>
-                <span class="text-muted font-weight-400">Vuelos</span>
-              </p>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -119,10 +99,9 @@
             <div><i class="fa-solid fa-filter"></i></div>
             <div class="ml-3">
               <select class="form-select text-muted" aria-label="Default select example">
-                <option selected>Filtrar por</option>
+                <option selected>Filtrar por estado</option>
                 <option value="1">Realizados</option>
                 <option value="2">Pendientes</option>
-                <option value="3">En proceso</option>
               </select>
             </div>
             <div class="text-center ml-3">
@@ -176,7 +155,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center"  routerLinkActive="active" [routerLink]="['/edit-reservation']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
@@ -213,7 +192,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-reservation']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
@@ -250,7 +229,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-reservation']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
@@ -277,8 +256,8 @@
                   S/ 0
                 </td>
                 <td>
-                  <span class="badge badge-dot text-info">
-                    <i class="bg-info"></i> En proceso
+                  <span class="badge badge-dot mr-4 text-danger">
+                    <i class="bg-danger"></i> Pendiente
                   </span>
                 </td>
                 <td class="text-right">
@@ -287,7 +266,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-reservation']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
@@ -324,7 +303,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-reservation']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-crear-reservation',
@@ -11,10 +12,15 @@ export class CrearReservationComponent implements OnInit {
   inputFiles: File[] = [];
   fileNames: string[] = [];
   modalOpen: boolean = false;
-  
-  constructor() { }
 
-  ngOnInit() {
+  tiposDePago: any[] = [];
+  canalVenta: any[] = [];
+  
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.obtenerTiposDePago();
+    this.obtenerCanalVenta();
   }
 
   handleFileInput(files: FileList): void {
@@ -58,7 +64,7 @@ export class CrearReservationComponent implements OnInit {
 
   // Método para truncar el nombre del archivo
   truncarNombreArchivo(nombre: string): string {
-    const MAX_CARACTERES = 12;
+    const MAX_CARACTERES = 20;
     if (nombre.length > MAX_CARACTERES) {
       return nombre.substr(0, MAX_CARACTERES) + '...';
     }
@@ -73,4 +79,21 @@ export class CrearReservationComponent implements OnInit {
     this.modalOpen = false;
   }
 
+  obtenerTiposDePago() {
+    // realiza la solicitud HTTP a la API
+    this.http.get<any[]>('https://django-rest-starter-zyi6-production.up.railway.app/api/TipoPago/')
+      .subscribe(data => {
+        // asigna los datos obtenidos al arreglo de tiposDePago
+        this.tiposDePago = data;
+      });
+  }
+
+  obtenerCanalVenta() {
+    // realiza la solicitud HTTP a la API
+    this.http.get<any[]>('https://django-rest-starter-zyi6-production.up.railway.app/api/CanalVenta/')
+      .subscribe(data => {
+        // asigna los datos obtenidos al arreglo de canalVenta
+        this.canalVenta = data;
+      });
+  }
 }

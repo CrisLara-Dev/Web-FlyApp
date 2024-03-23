@@ -7,19 +7,24 @@ import { VuelosComponent } from 'src/app/pages/vuelos/vuelos.component';
 import { WorkpeopleComponent } from 'src/app/pages/workpeople/workpeople.component';
 import { UsersComponent } from 'src/app/pages/users/users.component';
 import { EditUserProfileComponent } from 'src/app/pages/user-profile/edit-user-profile/edit-user-profile.component';
-import { CrearTVueloComponent } from 'src/app/pages/vuelos/crear-t-vuelo/crear-t-vuelo.component';
-import { EditTVueloComponent } from 'src/app/pages/vuelos/edit-t-vuelo/edit-t-vuelo.component';
-import { EditPromocionesComponent } from 'src/app/pages/vuelos/edit-promociones/edit-promociones.component';
-import { CrearPromocionesComponent } from 'src/app/pages/vuelos/crear-promociones/crear-promociones.component';
+import { CrearTVueloComponent } from 'src/app/pages/configuracion/tipo-vuelo/crear-t-vuelo/crear-t-vuelo.component';
+import { EditTVueloComponent } from 'src/app/pages/configuracion/tipo-vuelo/edit-t-vuelo/edit-t-vuelo.component';
+import { EditPromocionesComponent } from 'src/app/pages/configuracion/promociones/edit-promociones/edit-promociones.component';
+import { CrearPromocionesComponent } from 'src/app/pages/configuracion/promociones/crear-promociones/crear-promociones.component';
 import { CrearWorkpeopleComponent } from 'src/app/pages/workpeople/crear-workpeople/crear-workpeople.component';
 import { EditWorkpeopleComponent } from 'src/app/pages/workpeople/edit-workpeople/edit-workpeople.component';
-import { VerWorkpeopleComponent } from 'src/app/pages/workpeople/ver-workpeople/ver-workpeople.component';
 import { EditUsersComponent } from 'src/app/pages/users/edit-users/edit-users.component';
 import { CrearUsersComponent } from 'src/app/pages/users/crear-users/crear-users.component';
-import { VerUsersComponent } from 'src/app/pages/users/ver-users/ver-users.component';
 import { CrearReservationComponent } from 'src/app/pages/reservation/crear-reservation/crear-reservation.component';
-import { CrearPersonaComponent } from 'src/app/pages/reservation/crear-persona/crear-persona.component';
-import { EditPersonaComponent } from 'src/app/pages/reservation/edit-persona/edit-persona.component';
+import { CrearPersonaComponent } from 'src/app/pages/reservation/personas/crear-persona/crear-persona.component';
+import { EditPersonaComponent } from 'src/app/pages/reservation/personas/edit-persona/edit-persona.component';
+import { CrearCanalComponent } from 'src/app/pages/configuracion/canales/crear-canal/crear-canal.component';
+import { EditCanalComponent } from 'src/app/pages/configuracion/canales/edit-canal/edit-canal.component';
+import { ConfiguracionComponent } from 'src/app/pages/configuracion/configuracion.component';
+import { CrearRedComponent } from 'src/app/pages/configuracion/redes/crear-red/crear-red.component';
+import { EditRedComponent } from 'src/app/pages/configuracion/redes/edit-red/edit-red.component';
+import { EditReservationComponent } from 'src/app/pages/reservation/edit-reservation/edit-reservation.component';
+import { AsistenciasComponent } from 'src/app/pages/users/asistencias/asistencias.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -28,18 +33,23 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vuelos',         component: VuelosComponent },
     { path: 'workpeople',     component: WorkpeopleComponent },
     { path: 'users',          component: UsersComponent },
-    { path: 'edit-users',     component: EditUserProfileComponent },
+    { path: 'edit-user-profile',     component: EditUserProfileComponent },
     { path: 'crear-t-vuelo',     component: CrearTVueloComponent },
     { path: 'edit-t-vuelo',     component: EditTVueloComponent },
     { path: 'crear-promociones',     component: CrearPromocionesComponent },
     { path: 'edit-promociones',     component: EditPromocionesComponent },
     { path: 'crear-workpeople',     component: CrearWorkpeopleComponent },
-    { path: 'ver-workpeople',     component: VerWorkpeopleComponent },
     { path: 'edit-workpeople',     component: EditWorkpeopleComponent },
     { path: 'edit-user-users',     component: EditUsersComponent },
     { path: 'crear-users',     component: CrearUsersComponent },
-    { path: 'ver-users',     component: VerUsersComponent },
     { path: 'crear-reservation',     component: CrearReservationComponent },
     { path: 'crear-persona',     component: CrearPersonaComponent },
     { path: 'edit-persona',     component: EditPersonaComponent },
+    { path: 'crear-canal',     component: CrearCanalComponent },
+    { path: 'edit-canal',     component: EditCanalComponent },
+    { path: 'config',     component: ConfiguracionComponent },
+    { path: 'crear-red',     component: CrearRedComponent },
+    { path: 'edit-red',     component: EditRedComponent },
+    { path: 'edit-reservation',     component: EditReservationComponent },
+    { path: 'asistencias',     component: AsistenciasComponent },
 ];

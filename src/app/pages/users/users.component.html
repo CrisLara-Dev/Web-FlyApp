@@ -2,98 +2,16 @@
   <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
-      <div class="row">
-        <!-- <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Usuarios</h5>
-                  <span class="h2 font-weight-bold mb-0">7</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                    <i class="fa-solid fa-user-lock"></i>
-                  </div>
-                </div>
-              </div>
+      <div class="row mb-5">
+            <div class="col d-flex justify-content-lg-end">
+              <button type="button" class="btn btn-success w-55" routerLinkActive="active" [routerLink]="['/asistencias']"><i class="fa-solid fa-list-check mr-2"></i>Ver Asistencias</button>
             </div>
-          </div>
-        </div> -->
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Administradores</h5>
-                  <span class="h2 font-weight-bold mb-0">2</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-primary2 text-white rounded-circle shadow">
-                    <i class="fa-solid fa-user-shield"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Agentes</h5>
-                  <span class="h2 font-weight-bold mb-0">2</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                    <i class="fa-solid fa-chalkboard-user"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Express</h5>
-                  <span class="h2 font-weight-bold mb-0">3</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fa-solid fa-file-signature"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Pilotos</h5>
-                  <span class="h2 font-weight-bold mb-0">2</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                    <i class="fa-solid fa-user-tie"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 <!-- Page content -->
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--9">
   <!-- Table -->
   <div class="row">
     <div class="col">
@@ -172,7 +90,6 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/ver-users']"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
                       <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
@@ -207,7 +124,40 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Lesly Paredes </span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  Luis Sivera 
+                </td>
+                <td>
+                  marcos@gmail.com
+                </td>
+                <td>
+                  Piloto
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4 text-danger">
+                    <i class="bg-danger"></i> Inactivo
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown  placement="top-right">
+                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
@@ -229,7 +179,7 @@
                   marcos@gmail.com
                 </td>
                 <td>
-                  Piloto
+                  Super Administrador
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4 text-danger">
@@ -242,7 +192,6 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-solid fa-eye icon-option"></i> Ver</a>
                       <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>

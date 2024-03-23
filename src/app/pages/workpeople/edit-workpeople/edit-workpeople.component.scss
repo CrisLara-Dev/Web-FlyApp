@@ -21,16 +21,13 @@
     object-fit: cover;
 }
 
-
-/* Estilo para el contenedor del botón de carga de archivo */
 .file-upload-container {
     position: relative;
     overflow: hidden;
     display: inline-block;
-    transition: background-color 0.3s; /* Agrega una transición suave al cambio de color de fondo */
+    transition: background-color 0.3s; 
   }
   
-  /* Estilo para el botón de carga de archivo */
   .file-upload-button {
     border: 2px solid #00afcc;
     color: #00afcc;
@@ -46,14 +43,12 @@
     white-space: nowrap;
   }
   
-  /* Efecto hover para el contenedor del botón de carga de archivo */
   .file-upload-container:hover .file-upload-button {
     background-color: #00afcc;
     color: #fff;
-    transition: all 0.3s; /* Agrega una transición suave a todos los cambios */
+    transition: all 0.3s; 
   }
   
-  /* Estilo para ocultar el input de tipo archivo */
   .file-input {
     position: absolute;
     top: 0;
@@ -65,18 +60,14 @@
     opacity: 0;
   }
   
-  /* Estilo opcional para mostrar el nombre del archivo seleccionado */
   .file-name {
     margin-left: 10px;
   }
   
-
-  /* perfil.component.css */
 .perfil-container {
     text-align: center;
     margin-top: 20px;
   }
-  
   
   .modal-overlay {
     position: fixed;
@@ -101,13 +92,10 @@
     margin-top: -27rem !important;
 }
   
-
-  /* perfil.component.css */
-  .perfil-container {
+.perfil-container {
     text-align: center;
     margin-top: 20px;
   }
-  
   
   .modal-overlay {
     position: fixed;
@@ -161,6 +149,6 @@
 }
 
 .table-container {
-  max-height: 556px; /* Ajusta la altura máxima según tus necesidades */
+  max-height: 556px;
   overflow-y: auto;
 }

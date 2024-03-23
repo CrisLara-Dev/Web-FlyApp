@@ -1,0 +1,468 @@
+<div class="header bg-primary pb-8 pt-5 pt-md-7 d-flex align-items-center" >
+  <!-- Mask -->
+  <!-- Header container -->
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-1 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-12 order-lg-2">
+            <!-- <div class="card-profile-image">
+              <img [src]="imagePath" class="rounded-circle img-profile">
+            </div>
+            <div class="mt-9 mb-3 d-flex justify-content-center">
+              <div class="file-upload-container">
+                <label class="file-upload-button" for="fileInput"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Subir </label>
+                <input id="fileInput" class="file-input" name="file" type="file" (change)="handleFileInput($event.target.files)" />
+              </div>
+            </div> -->
+            <div class="m-3 my-4 mb-5">
+             <div class="text-center">
+              <h3 class="mb-3">Editar Reserva</h3>
+               <h1 class="precio">S/ 1500</h1>
+               <h4 class="mt-n2">Precio Total</h4>
+             </div>
+              <div class="mt-5">
+                <!-- <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label" for="input-text">Código</label>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="text" id="input-text" class="form-control form-control-alternative border" value="XPF541" disabled>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">Código Promocional</label>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-select text-muted border" aria-label="Default select example">
+                        <option selected>Selecionar</option>
+                        <option value="1">Pro-200</option>
+                        <option value="2">Pro-2005</option>
+                        <option value="2">Pro-3005</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label" for="input-number">Pago Incial</label>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="number" id="input-number" class="form-control form-control-alternative border" value="1000">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label" for="input-number">Pago Faltante</label>
+                    </div>
+                    <div class="col-md-7">
+                      <input type="number" id="input-number" class="form-control form-control-alternative border" value="500">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Pago</label>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-select text-muted border" aria-label="Default select example">
+                        <option selected>Seleccionar</option>
+                        <!-- Itera sobre los tipos de pago y genera las opciones dinámicamente -->
+                        <option *ngFor="let tipoPago of tiposDePago" [value]="tipoPago.id">{{ tipoPago.nombre }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>      
+                <div class="col-auto">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">¿Donde nos conocieron?</label>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-select text-muted border" aria-label="Default select example">
+                        <option selected>Selecionar</option>
+                        <option *ngFor="let canalVenta of canalVenta" [value]="canalVenta.id">{{ canalVenta.nombre }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-3 mt-5">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <label class="form-control-label" for="input-text">Evidencia de Pago</label>
+                    </div>
+                    <div class="boton btn btn-primary" (click)="agregarInput()">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  </div>
+                  <div class="mt-3 file-upload-container">
+                    <div *ngFor="let inputFile of inputFiles; let i = index" class="mt-2 file-upload-item">
+                      <div class="file-upload-input-wrapper" style="height: 41px;width: 100%;">
+                        <label class="custom-file-upload">
+                          <i class="fas fa-file-upload"></i> {{ truncarNombreArchivo(fileNames[i]) || 'Subir Archivo' }}
+                          <input type="file" class="file-upload-input" (change)="onFileSelected($event, i)">
+                        </label>
+                      </div>
+                      <span class="file-name">{{ inputFile?.name }}</span>
+                      <div class="file-actions">
+                        <!-- <button *ngIf="inputFile" class="ml-1 boton btn btn-success" (click)="descargarArchivo(inputFile)">
+                          <i class="fas fa-download"></i>
+                        </button> -->
+                        <button class="boton btn btn-danger ml-4" (click)="eliminarInput(i)">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-3">
+                  <div class="d-flex justify-content-center ">
+                    <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/reservation']">Cancelar</a>
+                    <a class="btn btn-primary mt-3 m-2">Editar Reserva</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-2">
+      <div class="card bg-secondary shadow">
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0 d-flex justify-content-between">
+                <div>
+                  <h3 class="mb-0">Personas</h3>
+                </div>
+                <div class="text-center ml-3">
+                  <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-persona']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Nombres y Apellidos</th>
+                      <th scope="col">Teléfono</th>
+                      <th scope="col">Enlace de Video</th>
+                      <th scope="col">Términos y Condiciones</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">1</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        Cristian Antony Lara Arcos
+                      </td>
+                      <td>
+                        987654321 
+                      </td>
+                      <td>
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot text-danger">
+                          <i class="bg-danger"></i> Pendiente
+                        </span>
+                      </td>
+                      <td class="text-right">
+                        <div ngbDropdown placement="bottom-right">
+                          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                            <i class="fas fa-ellipsis-v"></i>
+                          </a>
+                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-persona']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">2</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        Cristian Antony Lara Arcos <span class="text-danger">(NIÑO)</span>
+                      </td>
+                      <td>
+                        987654321 
+                      </td>
+                      <td>
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot text-success">
+                          <i class="bg-success"></i> Realizado
+                        </span>
+                      </td>
+                      <td class="text-right">
+                        <div ngbDropdown  placement="bottom-right">
+                          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                            <i class="fas fa-ellipsis-v"></i>
+                          </a>
+                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">3</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        Cristian Antony Lara Arcos
+                      </td>
+                      <td>
+                        987654321 
+                      </td>
+                      <td>
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4 text-danger">
+                          <i class="bg-danger"></i> Pendiente
+                        </span>
+                      </td>
+                      <td class="text-right">
+                        <div ngbDropdown  placement="top-right">
+                          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                            <i class="fas fa-ellipsis-v"></i>
+                          </a>
+                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">4</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        Cristian Antony Lara Arcos
+                      </td>
+                      <td>
+                        987654321 
+                      </td>
+                      <td>
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4 text-success">
+                          <i class="bg-success"></i> Realizado
+                        </span>
+                      </td>
+                      <td class="text-right">
+                        <div ngbDropdown   placement="top-right">
+                          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                            <i class="fas fa-ellipsis-v"></i>
+                          </a>
+                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            <span class="mb-0 text-sm">5</span>
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        Cristian Antony Lara Arcos
+                      </td>
+                      <td>
+                        987654321 
+                      </td>
+                      <td>
+                        https://www.youtube.com/watch?v=Pny8BQG1iyQ
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-eye"></i></button>
+                        <button type="button" class="btn btn-dark"><i class="fa-solid fa-download"></i></button>
+                      </td>
+                      <td>
+                        <span class="badge badge-dot mr-4 text-success">
+                          <i class="bg-success"></i> Realizado
+                        </span>
+                      </td>
+                      <td class="text-right">
+                        <div ngbDropdown   placement="top-right">
+                          <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                            <i class="fas fa-ellipsis-v"></i>
+                          </a>
+                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                            <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="perfil-container">
+  <div *ngIf="modalOpen" class="modal-overlay">
+    <div class="bg-secondary modal-content col-sm-8 col-xl-3 col-md-5 m-3" (click)="stopPropagation($event)">
+      <div class="p-sm-4 p-2">
+        <div class="">
+          <h2 class="mb-4 font-weight-700">Añadir Persona</h2>
+          <div>
+            <div class="">
+              <div class="row">
+                <div class="col-auto">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-text">Nombres</label>
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-text">Apellidos</label>
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                    <input type="email" id="input-email" class="form-control border form-control-alternative"  placeholder="Ingrese su correo electrónico" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-number">Teléfono</label>
+                    <input type="number" id="input-number" class="form-control border form-control-alternative"  placeholder="Ingrese su teléfono" >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group text-start">
+                      <label class="form-control-label" for="input-address">Dirección</label>
+                      <input id="input-address" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Vuelo</label>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-select text-muted border" aria-label="Default select example">
+                        <option selected>Selecionar</option>
+                        <option value="1">Pro-200</option>
+                        <option value="2">Pro-2005</option>
+                        <option value="2">Pro-3005</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-country">Fecha</label>
+                    <input type="date" id="input-country" class="border form-control form-control-alternative">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group text-start">
+                    <label class="form-control-label" for="input-country">Link de Video</label>
+                    <input type="text" id="input-postal-code" class="border form-control form-control-alternative" value="Super Administrador"  disabled>
+                  </div>
+                </div>
+                <div class="mt-2 custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input border" id="customCheckLogin" type="checkbox" (change)="togglePasswordVisibility()">
+                  <label class="custom-control-label" for="customCheckLogin">
+                    <span class="text-muted">Mostrar contraseña</span>
+                  </label>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group row">
+                    <div class="col-md-5 d-flex align-items-center">
+                      <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
+                    </div>
+                    <div class="col-md-7">
+                      <select class="form-select text-muted border" aria-label="Default select example">
+                        <option selected>Selecionar</option>
+                        <option value="1">Realizado</option>
+                        <option value="2">Pendiente</option>
+                        <option value="2">En proceso</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a (click)="closeModal()" class="btn btn-secondary mt-3 mr-0 m-2">Cancelar</a>
+            <a (click)="closeModal()" class="btn btn-primary mt-3 m-2">Aceptar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

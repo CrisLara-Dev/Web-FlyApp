@@ -8,11 +8,11 @@
 <!-- Page content -->
 <div class="container-fluid mt--9">
   <!-- Table -->
-  <div class="row">
+  <div class="row mb-4">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Tipos de Vuelo</h3>
+          <h3 class="mb-0">Vuelos Realizados</h3>
         </div>
        <div class="d-lg-flex justify-content-between">
          <div>
@@ -28,32 +28,16 @@
              </div>
            </form>
          </div>
-         <div>
-           <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
-            <div><i class="fa-solid fa-filter"></i></div>
-            <div class="ml-3">
-              <select class="form-select text-muted" aria-label="Default select example">
-                <option selected>Filtrar por</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
-              </select>
-            </div>
-            <div class="text-center ml-3">
-              <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-t-vuelo']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
-            </div> 
-           </div>
-         </div>
        </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Admistrador</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Tiempo</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
+                <th scope="col">Persona</th>
+                <th scope="col">Fecha de Vuelo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Enlace del Video</th>
+                <th scope="col">Términos y Condiciones</th>
               </tr>
             </thead>
             <tbody>
@@ -61,176 +45,72 @@
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Blue</span>
+                      <span class="mb-0 text-sm">Cristian Antony Lara Arcos</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Lesly Paredes
+                  06/10/2023
                 </td>
                 <td>
-                  S/ 200
+                  992456987
                 </td>
                 <td>
-                  10 - 12 min
+                  <a type="button" class="btn btn-primary" (click)="openModal()"><i class="fa-solid fa-upload mr-2"></i>Subir</a>
                 </td>
                 <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-eye"></i></button>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-download"></i></button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Black</span>
+                      <span class="mb-0 text-sm">Cristian Antony Lara Arcos</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                 Lesly Paredes
+                  06/10/2023
                 </td>
                 <td>
-                  S/ 300
+                  992456987
                 </td>
                 <td>
-                  15 - 18 min
+                  <button type="button" class="btn btn-primary" (click)="openModal()"><i class="fa-solid fa-upload mr-2"></i>Subir</button>
                 </td>
                 <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-eye"></i></button>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-download"></i></button>
                 </td>
               </tr>
               <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Premium</span>
+                      <span class="mb-0 text-sm">Cristian Antony Lara Arcos</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Lesly Paredes 
+                  06/10/2023
                 </td>
                 <td>
-                  S/ 600
+                  992456987
                 </td>
                 <td>
-                  28 - 30 min
+                  <button type="button" class="btn btn-primary" (click)="openModal()"><i class="fa-solid fa-upload mr-2"></i>Subir</button>
                 </td>
                 <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Cumpleaños</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Luis Contreras   
-                </td>
-                <td>
-                  S/ 500
-                </td>
-                <td>
-                  10 - 12 min
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown   placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Especiales</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  José Montoya  
-                </td>
-                <td>
-                  S/ 500
-                </td>
-                <td>
-                 25 - 30 min
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown   placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-eye"></i></button>
+                  <button type="button" class="btn btn-outline-dark"><i class="fa-solid fa-download"></i></button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="card-footer py-4">
+        <!-- <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
               <li class="page-item disabled">
@@ -254,200 +134,30 @@
               </li>
             </ul>
           </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-5">
-    <div class="col">
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <h3 class="mb-0">Promociones</h3>
-        </div>
-       <div class="d-lg-flex justify-content-between">
-         <div>
-           <form class="form-inline ml-4 mb-3">
-             <div class="form-group mb-0 shadow border rounded" [ngClass]="{ 'focused': focus === true }">
-               <div class="input-group input-group-alternative">
-                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="fas fa-search"></i></span>
-                 </div>
-                 <input class="form-control" placeholder="Buscar" type="text" (focus)="focus = true"
-                 (blur)="focus = false">
-               </div>
-             </div>
-           </form>
-         </div>
-         <div>
-           <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
-            <div><i class="fa-solid fa-filter"></i></div>
-            <div class="ml-3">
-              <select class="form-select text-muted " aria-label="Default select example">
-                <option selected>Filtrar por</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
-              </select>
-            </div>
-            <div class="text-center ml-3">
-              <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-promociones']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
-            </div>
-           </div>
-         </div>
-       </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Código</th>
-                <th scope="col">Admistrador</th>
-                <th scope="col">Descuento</th>
-                <th scope="col">Fecha de Inicio</th>
-                <th scope="col">Fecha Fin</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-200</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Lesly Paredes
-                </td>
-                <td>
-                  40%
-                </td>
-                <td>
-                  20/10/2024
-                </td>
-                <td>
-                  20/11/2024
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-2005</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 Lesly Paredes
-                </td>
-                <td>
-                 12%
-                </td>
-                <td>
-                  10/10/2024
-                </td>
-                <td>
-                  10/11/2024
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-500</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Lesly Paredes 
-                </td>
-                <td>
-                  20%
-                </td>
-                <td>
-                  20/05/2024
-                </td>
-                <td>
-                  20/06/2024
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
   <!-- Dark table -->
+
+  <div class="perfil-container">
+    <div *ngIf="modalOpen" class="modal-overlay">
+      <div class="bg-secondary modal-content col-sm-8 col-xl-3 col-md-5 m-3" (click)="stopPropagation($event)">
+        <div class="p-sm-4 p-2">
+          <div class="">
+            <h2 class="mb-4 font-weight-700">Subir Video</h2>
+            <div class="">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-password">Enlace de Video</label>
+                <input type="password" id="input-password" class="border form-control form-control-alternative" placeholder="Ingrese el enlace del video">
+              </div>
+            </div>
+            <div>
+              <a (click)="closeModal()" class="btn btn-secondary mt-3 mr-0 m-2">Cancelar</a>
+              <a (click)="closeModal()" class="btn btn-primary mt-3 m-2">Aceptar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
