@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpEvent,
 } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable} from "rxjs";
 import { AuthService } from "../services/auth/auth.service";
 
 @Injectable()
@@ -16,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken(); // Método para obtener el token del servicio de autenticación
+    const token = this.authService.getToken();
     if (token) {
       request = request.clone({
         setHeaders: {

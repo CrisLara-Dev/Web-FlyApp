@@ -10,10 +10,16 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
-      return true;
+      const userRole = this.authService.getUserRole(); // Obtener el rol del usuario
+      if (userRole === "Administrador" || userRole === "Community Manager") {
+        return true; // Permitir acceso para roles Administrador y Community Manager
+      } else {
+        this.router.navigate(["/login"]);
+        return false; // Denegar acceso para otros roles
+      }
     } else {
       this.router.navigate(["/login"]);
-      return false;
+      return false; // Denegar acceso si no está autenticado
     }
   }
 }

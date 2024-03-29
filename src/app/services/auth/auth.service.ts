@@ -22,17 +22,22 @@ export class AuthService {
     return this.http.post(`${API_CONFIG.baseUrl}login/`, userData).pipe(
       map((response: any) => {
         this.setToken(response.token);
+        this.setUserRole(response.user.rol.nombre); // Almacenar el rol del usuario
+        console.log("Inicio de sesión exitoso"); // Mostrar mensaje en la consola
         return response;
       }),
       catchError((error) => {
         console.error("Error al iniciar sesión", error);
-        return error;
-      }),
-      finalize(() => {
-        this.router.navigate(["/dashboard"]);
+        throw error; // Re-lanzar el error para que el componente pueda manejarlo
       })
     );
   }
+
+  // Método para almacenar el rol del usuario
+  setUserRole(role: string): void {
+    localStorage.setItem(this.roleKey, role);
+  }
+  
   getUserData(): Observable<any> {
     const token = this.getToken();
     console.log(token);
@@ -65,6 +70,7 @@ export class AuthService {
         map((response: any) => {
           this.removeToken();
           this.removeUserRole();
+          console.log("Cierre de sesión exitoso");
           return response;
         }),
         catchError((error) => {

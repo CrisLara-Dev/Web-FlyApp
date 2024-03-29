@@ -1,29 +1,35 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Validators } from "@angular/forms";
-import { error } from "console";
-import { verify } from "crypto";
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth/auth.service";
+
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent {
   email: string;
   password: string;
   passwordType: string = "password";
-  constructor(private authService: AuthService) {}
+  errorMessage: string;
 
-  ngOnInit() {}
-  ngOnDestroy() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   togglePasswordVisibility(): void {
     this.passwordType = this.passwordType === "password" ? "text" : "password";
   }
+
   login(): void {
-    // Lógica de inicio de sesión
     this.authService
       .login(this.email, this.password)
-      .subscribe((Response) => {});
+      .subscribe(
+        (response) => {
+          // Éxito de inicio de sesión
+          this.router.navigate(["/dashboard"]); // Redirigir al dashboard
+        },
+        (error) => {
+          this.errorMessage = error; // Mostrar mensaje de error al usuario
+        }
+      );
   }
 }
