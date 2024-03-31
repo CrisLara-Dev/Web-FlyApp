@@ -106,4 +106,11 @@ export class AuthService {
   getUserRole(): string | null {
     return localStorage.getItem(this.roleKey);
   }
+  
+  isUserAdmin(): boolean {
+    const userRole = this.getUserRole();
+    // Verificar si el rol del usuario es administrador
+    return userRole === 'Administrador';
+  }
+  
 }

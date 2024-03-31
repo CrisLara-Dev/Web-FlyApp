@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service'; // Importa el servicio de autenticación
+import { AuthService } from '../../services/auth/auth.service'; // Importa el servicio de autenticación
 
 declare interface RouteInfo {
     path: string;

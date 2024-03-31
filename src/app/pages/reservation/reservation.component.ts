@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth/auth.service'; // Importa el servicio de autenticación
 
 @Component({
   selector: 'app-reservation',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationComponent implements OnInit {
   public focus;
-  constructor() { }
+  public isAdmin: boolean = false; // Variable para verificar si el usuario es administrador
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    // Obtener información del usuario al inicializar el componente
+    this.isAdmin = this.authService.isUserAdmin(); // Método para verificar si el usuario es administrador
   }
-
 }

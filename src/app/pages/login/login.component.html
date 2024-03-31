@@ -30,8 +30,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
               </div>
-              <input class="form-control" placeholder="Contraseña" type="password" name="password" [(ngModel)]="password" required #passwordField="ngModel">
-
+              <input class="form-control" placeholder="Contraseña"  [type]="passwordType" name="password" [(ngModel)]="password" required #passwordField="ngModel">
             </div>
             <div class="mt-2 custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input border" id="customCheckLogin" type="checkbox" (change)="togglePasswordVisibility()">

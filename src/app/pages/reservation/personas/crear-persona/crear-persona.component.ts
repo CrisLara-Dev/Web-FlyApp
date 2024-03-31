@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReservationService } from 'src/app/services/reservation/reservation.service';
+import { ConfService } from 'src/app/services/conf/conf.service';
 
 @Component({
   selector: 'app-crear-persona',
@@ -9,10 +11,31 @@ export class CrearPersonaComponent implements OnInit {
   public focus;
   passwordType: string = 'password';
   mostrarDatosApoderado: boolean = false;
+  fechaActual: string;
+  tiposDocumento: string[] = [];
+  tiposVuelo: string[] = [];
 
-  constructor() { }
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  email: string;
+  direccion: string;
+  documento_identidad: string;
+  dni_nino: string;
+  nombre_nino: string;
+  tipo_documento: number;
+
+  constructor(private reservationService: ReservationService, private confService: ConfService) { }
 
   ngOnInit() {
+    // Obtener la fecha actual y formatearla como 'yyyy-MM-dd' (formato requerido por el input date)
+    const fecha = new Date();
+    const year = fecha.getFullYear();
+    const month = ('0' + (fecha.getMonth() + 1)).slice(-2); // Agregar cero adelante si es necesario
+    const day = ('0' + fecha.getDate()).slice(-2); // Agregar cero adelante si es necesario
+    this.fechaActual = `${year}-${month}-${day}`;
+
+    this.listarTiposDocumento();
   }
 
   togglePasswordVisibility(): void {
@@ -51,4 +74,50 @@ export class CrearPersonaComponent implements OnInit {
     this.mostrarDatosApoderado = !this.mostrarDatosApoderado;
   }
 
+  crearPersona() {
+    // Aquí puedes acceder a los valores de las propiedades y enviarlos al servicio para guardarlos en la base de datos
+    const personaData = {
+      nombre: this.nombre,
+      apellido: this.apellido,
+      telefono: this.telefono,
+      email: this.email,
+      direccion: this.direccion,
+      documento_identidad: this.documento_identidad,
+      dni_nino: this.dni_nino,
+      nombre_nino: this.nombre_nino,
+      tipo_documento: this.tipo_documento,
+    };
+
+    // Llama al método en el servicio para crear la persona
+    this.reservationService.createPerson(personaData).subscribe(response => {
+      // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje de éxito o navegar a otra página
+      console.log("Persona creada exitosamente:", response);
+    }, error => {
+      // Manejo de errores
+      console.error("Error al crear persona:", error);
+    });
+  }
+
+
+  listarTiposDocumento() {
+    this.confService.listarTiposDocumento().subscribe(
+      (data: any[]) => {
+        this.tiposDocumento = data;
+      },
+      error => {
+        console.error('Error al obtener los tipos de documento:', error);
+      }
+    );
+  }
+
+  listarTiposVuelo() {
+    this.confService.listarTiposVuelo().subscribe(
+      (data: any[]) => {
+        this.tiposVuelo = data;
+      },
+      error => {
+        console.error('Error al obtener los tipos de Vuelo:', error);
+      }
+    );
+  }
 }

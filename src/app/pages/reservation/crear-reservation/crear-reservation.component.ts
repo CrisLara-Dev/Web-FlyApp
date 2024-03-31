@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ReservationService } from '../../../services/reservation/reservation.service';
 
 @Component({
   selector: 'app-crear-reservation',
@@ -16,7 +17,7 @@ export class CrearReservationComponent implements OnInit {
   tiposDePago: any[] = [];
   canalVenta: any[] = [];
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private reservationService: ReservationService) { }
 
   ngOnInit(): void {
     this.obtenerTiposDePago();
@@ -95,5 +96,46 @@ export class CrearReservationComponent implements OnInit {
         // asigna los datos obtenidos al arreglo de canalVenta
         this.canalVenta = data;
       });
+  }
+
+
+  // Método para crear una nueva reserva
+  crearReserva() {
+    // Construye el objeto de reserva con los datos necesarios
+    const nuevaReserva = {
+      // Define los datos de la reserva según la estructura del JSON
+    };
+
+    // Llama al método del servicio de reserva para crear la reserva
+    this.reservationService.createReservation(nuevaReserva).subscribe(
+      (response) => {
+        console.log('Reserva creada exitosamente:', response);
+        // Realiza cualquier acción adicional después de crear la reserva, como redireccionar al usuario, limpiar los campos, etc.
+      },
+      (error) => {
+        console.error('Error al crear la reserva:', error);
+        // Maneja el error de manera apropiada, como mostrar un mensaje al usuario
+      }
+    );
+  }
+
+  reservar(): void {
+    // Aquí puedes construir el objeto de datos de reserva según tus necesidades
+    const reservationData = {
+      // Datos de la reserva
+    };
+
+    // Llamar al método de servicio para crear una nueva reserva
+    this.reservationService.createReservation(reservationData).subscribe(
+      (response) => {
+        // Manejar la respuesta de la API si es necesario
+        console.log('Reserva creada exitosamente:', response);
+        // También puedes navegar a otra página o realizar alguna otra acción después de crear la reserva
+      },
+      (error) => {
+        // Manejar cualquier error que pueda ocurrir durante la creación de la reserva
+        console.error('Error al crear la reserva:', error);
+      }
+    );
   }
 }
