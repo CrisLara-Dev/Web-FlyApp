@@ -14,6 +14,7 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Añadir Persona</h3>
         </div>
+        
        <div class="bg-secondary">
         <div class="p-4">
           <div class="row">
@@ -47,13 +48,13 @@
             <div class="col-xl-3 col-lg-6">
               <div class="form-group text-start">
                 <label class="form-control-label" for="input-text">Apellidos</label>
-                <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" [(ngModel)]="apellido">
+                <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" [(ngModel)]="apellido" >
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-xl-3 col-lg-6 mb-4">
-              <a class="btn btn-sm btn-primary" (click)="onEsNinoJovenClick()">Es Niño</a>
+              <a class="btn btn-sm btn-primary" (click)="onEsNinoClick()">Es Niño</a>
             </div>
           </div>
           <div class="datos-apoderado" *ngIf="mostrarDatosApoderado">
@@ -118,9 +119,9 @@
             <div class="col-lg-6 col-xl-3">
               <div class="form-group mt-1">
                   <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Vuelo</label>
-                  <select class="form-select text-muted border" aria-label="Default select example">
+                  <select class="form-select text-muted border" aria-label="Default select example" >
                     <option selected>Selecionar</option>
-                    <option *ngFor="let tipoVuelo of tiposVuelo" [value]="Vuelo.id">{{ Vuelo.tipo }}</option>
+                    <option *ngFor="let vuelo of vuelos" [value]="vuelo.id">{{ vuelo.tipo }}</option>
                   </select>
               </div>
             </div>
@@ -134,7 +135,7 @@
           <div class="">
             <div class="d-flex justify-content-end mt-4">
               <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/crear-reservation']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2" (click)="crearPersona()">Añadir</a>
+              <a class="btn btn-primary mt-3 m-2" (click)="crearReserva()">Añadir</a>
             </div>
           </div>
         </div>

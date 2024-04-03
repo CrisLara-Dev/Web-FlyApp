@@ -11,8 +11,8 @@ export class ReservationService {
   constructor(private http: HttpClient) { }
 
   // Método para crear una nueva reserva
-  createReservation(reservationData: any) {
-    return this.http.post(`${API_CONFIG.baseUrl}Reserva/`, reservationData);
+  crearReserva(nuevaReserva: any) {
+    return this.http.post(`${API_CONFIG.baseUrl}Reserva/`, nuevaReserva);
   }
 
   // Método para crear una nueva persona

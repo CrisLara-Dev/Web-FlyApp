@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ReservationService } from '../../../services/reservation/reservation.service';
+import { ConfService } from 'src/app/services/conf/conf.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-reservation',
@@ -12,16 +13,14 @@ export class CrearReservationComponent implements OnInit {
   public focus;
   inputFiles: File[] = [];
   fileNames: string[] = [];
-  modalOpen: boolean = false;
+  tiposPago: string[] = [];
 
-  tiposDePago: any[] = [];
-  canalVenta: any[] = [];
-  
-  constructor(private http: HttpClient, private reservationService: ReservationService) { }
+  tipos_pago: string;
+
+  constructor(private reservationService: ReservationService,  private confService: ConfService, private router: Router) { }
 
   ngOnInit(): void {
-    this.obtenerTiposDePago();
-    this.obtenerCanalVenta();
+    this.listarTiposPago();
   }
 
   handleFileInput(files: FileList): void {
@@ -72,70 +71,35 @@ export class CrearReservationComponent implements OnInit {
     return nombre;
   }
 
-  openModal() {
-    this.modalOpen = true;
+
+  listarTiposPago() {
+    this.confService.listarTiposPago().subscribe(
+      (data: any[]) => {
+        // Filtrar los tipos de pago que tengan estado true
+        this.tiposPago = data.filter(tipoPago => tipoPago.estado === true);
+      },
+      error => {
+        console.error('Error al obtener los tipos de pago:', error);
+      }
+    );
   }
 
-  closeModal() {
-    this.modalOpen = false;
-  }
-
-  obtenerTiposDePago() {
-    // realiza la solicitud HTTP a la API
-    this.http.get<any[]>('https://django-rest-starter-zyi6-production.up.railway.app/api/TipoPago/')
-      .subscribe(data => {
-        // asigna los datos obtenidos al arreglo de tiposDePago
-        this.tiposDePago = data;
-      });
-  }
-
-  obtenerCanalVenta() {
-    // realiza la solicitud HTTP a la API
-    this.http.get<any[]>('https://django-rest-starter-zyi6-production.up.railway.app/api/CanalVenta/')
-      .subscribe(data => {
-        // asigna los datos obtenidos al arreglo de canalVenta
-        this.canalVenta = data;
-      });
-  }
-
-
-  // Método para crear una nueva reserva
   crearReserva() {
-    // Construye el objeto de reserva con los datos necesarios
     const nuevaReserva = {
-      // Define los datos de la reserva según la estructura del JSON
+      tipos_pago: this.tipos_pago
     };
 
-    // Llama al método del servicio de reserva para crear la reserva
-    this.reservationService.createReservation(nuevaReserva).subscribe(
-      (response) => {
-        console.log('Reserva creada exitosamente:', response);
-        // Realiza cualquier acción adicional después de crear la reserva, como redireccionar al usuario, limpiar los campos, etc.
-      },
-      (error) => {
-        console.error('Error al crear la reserva:', error);
-        // Maneja el error de manera apropiada, como mostrar un mensaje al usuario
-      }
-    );
+    this.reservationService.crearReserva(nuevaReserva)
+      .subscribe(
+        (response) => {
+          console.log('Reserva creada:', response);
+          // Redirigir al usuario a la página de reservas
+          this.router.navigate(['/reservation']);
+        },
+        (error) => {
+          console.error('Error al crear reserva:', error);
+        }
+      );
   }
 
-  reservar(): void {
-    // Aquí puedes construir el objeto de datos de reserva según tus necesidades
-    const reservationData = {
-      // Datos de la reserva
-    };
-
-    // Llamar al método de servicio para crear una nueva reserva
-    this.reservationService.createReservation(reservationData).subscribe(
-      (response) => {
-        // Manejar la respuesta de la API si es necesario
-        console.log('Reserva creada exitosamente:', response);
-        // También puedes navegar a otra página o realizar alguna otra acción después de crear la reserva
-      },
-      (error) => {
-        // Manejar cualquier error que pueda ocurrir durante la creación de la reserva
-        console.error('Error al crear la reserva:', error);
-      }
-    );
-  }
 }

@@ -15,7 +15,11 @@ export class ConfService {
     return this.http.get<any[]>(`${API_CONFIG.baseUrl}TipoDocumento/`);
   }
 
-  listarTiposVuelo(): Observable<any[]> {
+  listarTiposPago(): Observable<any[]> {
+    return this.http.get<any[]>(`${API_CONFIG.baseUrl}TipoPago/`);
+  }
+
+  listarVuelos(): Observable<any[]> {
     return this.http.get<any[]>(`${API_CONFIG.baseUrl}Vuelo/`);
   }
 }

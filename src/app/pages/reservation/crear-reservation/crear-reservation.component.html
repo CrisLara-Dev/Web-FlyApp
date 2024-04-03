@@ -75,10 +75,9 @@
                       <label class="form-control-label d-flex justify-content-start" for="input-text">Tipo de Pago</label>
                     </div>
                     <div class="col-md-7">
-                      <select class="form-select text-muted border" aria-label="Default select example">
+                      <select class="form-select text-muted border" aria-label="Default select example" [(ngModel)]="tipos_pago">
                         <option selected>Seleccionar</option>
-                        <!-- Itera sobre los tipos de pago y genera las opciones dinámicamente -->
-                        <option *ngFor="let tipoPago of tiposDePago" [value]="tipoPago.id">{{ tipoPago.nombre }}</option>
+                        <option *ngFor="let tipoPago of tiposPago" [value]="tipoPago.id">{{ tipoPago.nombre }}</option>
                       </select>
                     </div>
                   </div>
@@ -91,7 +90,8 @@
                     <div class="col-md-7">
                       <select class="form-select text-muted border" aria-label="Default select example">
                         <option selected>Selecionar</option>
-                        <option *ngFor="let canalVenta of canalVenta" [value]="canalVenta.id">{{ canalVenta.nombre }}</option>
+                        <option value="1">Facebook</option>
+                        <option value="2">Instagram</option>
                       </select>
                     </div>
                   </div>
@@ -128,7 +128,7 @@
                 <div class="m-3">
                   <div class="d-flex justify-content-center ">
                     <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/reservation']">Cancelar</a>
-                    <a class="btn btn-primary mt-3 m-2">Reservar</a>
+                    <a class="btn btn-primary mt-3 m-2" (click)="crearReserva()">Reservar</a>
                   </div>
                 </div>
               </div>

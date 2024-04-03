@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/services/reservation/reservation.service';
 import { ConfService } from 'src/app/services/conf/conf.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-persona',
@@ -13,7 +14,8 @@ export class CrearPersonaComponent implements OnInit {
   mostrarDatosApoderado: boolean = false;
   fechaActual: string;
   tiposDocumento: string[] = [];
-  tiposVuelo: string[] = [];
+  vuelos: string[] = [];
+  mostrarAviso: boolean = false;
 
   nombre: string;
   apellido: string;
@@ -25,7 +27,7 @@ export class CrearPersonaComponent implements OnInit {
   nombre_nino: string;
   tipo_documento: number;
 
-  constructor(private reservationService: ReservationService, private confService: ConfService) { }
+  constructor(private reservationService: ReservationService, private confService: ConfService, private router: Router) { }
 
   ngOnInit() {
     // Obtener la fecha actual y formatearla como 'yyyy-MM-dd' (formato requerido por el input date)
@@ -36,6 +38,7 @@ export class CrearPersonaComponent implements OnInit {
     this.fechaActual = `${year}-${month}-${day}`;
 
     this.listarTiposDocumento();
+    this.listarVuelos();
   }
 
   togglePasswordVisibility(): void {
@@ -70,11 +73,19 @@ export class CrearPersonaComponent implements OnInit {
     this.mostrarPasaporte2 = valorSeleccionado === '2';
   }
 
-  onEsNinoJovenClick() {
+  onEsNinoClick() {
     this.mostrarDatosApoderado = !this.mostrarDatosApoderado;
   }
+  
+  crearReserva() {
+    // Verifica si los campos obligatorios están llenos
+    if (!this.nombre || !this.apellido ) {
+      console.error("Por favor, complete todos los campos obligatorios.");
+      // Puedes mostrar un mensaje al usuario o realizar cualquier acción necesaria en caso de que los campos no estén llenos
+      return; // Detiene la ejecución del método si los campos no están llenos
+    }
+    this.mostrarAviso = false;
 
-  crearPersona() {
     // Aquí puedes acceder a los valores de las propiedades y enviarlos al servicio para guardarlos en la base de datos
     const personaData = {
       nombre: this.nombre,
@@ -92,17 +103,17 @@ export class CrearPersonaComponent implements OnInit {
     this.reservationService.createPerson(personaData).subscribe(response => {
       // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje de éxito o navegar a otra página
       console.log("Persona creada exitosamente:", response);
+      this.router.navigate(['/crear-reservation']);
     }, error => {
       // Manejo de errores
       console.error("Error al crear persona:", error);
     });
   }
 
-
   listarTiposDocumento() {
     this.confService.listarTiposDocumento().subscribe(
       (data: any[]) => {
-        this.tiposDocumento = data;
+        this.tiposDocumento = data.filter(tipoDocumento => tipoDocumento.estado === true);
       },
       error => {
         console.error('Error al obtener los tipos de documento:', error);
@@ -110,13 +121,13 @@ export class CrearPersonaComponent implements OnInit {
     );
   }
 
-  listarTiposVuelo() {
-    this.confService.listarTiposVuelo().subscribe(
+  listarVuelos() {
+    this.confService.listarVuelos().subscribe(
       (data: any[]) => {
-        this.tiposVuelo = data;
+        this.vuelos = data.filter(vuelo => vuelo.estado === true);
       },
       error => {
-        console.error('Error al obtener los tipos de Vuelo:', error);
+        console.error('Error al obtener los vuelos:', error);
       }
     );
   }
