@@ -57,26 +57,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr  *ngFor="let vuelo of vuelos">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Blue</span>
+                      <span class="mb-0 text-sm">{{ vuelo.tipo }}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Lesly Paredes
+                  <span class="mb-0 text-sm">{{ vuelo.tipo }}</span>
                 </td>
                 <td>
-                  S/ 200
+                  {{ vuelo.precio }}
                 </td>
                 <td>
-                  10 - 12 min
+                  {{ vuelo.tiempo }}
                 </td>
                 <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
+                  <span class="badge badge-dot {{ vuelo.estadoClase }}">
+                    <i class=" {{ vuelo.estadoIcono }}"></i> {{ vuelo.estadoTexto }}
                   </span>
                 </td>
                 <td class="text-right">
@@ -86,12 +86,12 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                      <a (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -226,7 +226,7 @@
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -308,29 +308,29 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let promocion of promociones" [value]="promocion.id">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-200</span>
+                      <span class="mb-0 text-sm">{{promocion.codigo}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  Lesly Paredes
+                  {{promocion.codigo}}
                 </td>
                 <td>
-                  40%
+                  {{promocion.porcentaje}}
                 </td>
                 <td>
-                  20/10/2024
+                  {{promocion.fecha_inicio}}
                 </td>
                 <td>
-                  20/11/2024
+                  {{promocion.fecha_fin}}
                 </td>
                 <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
+                  <span class="badge badge-dot {{ promocion.estadoClase }}">
+                    <i class=" {{ promocion.estadoIcono }}"></i> {{ promocion.estadoTexto }}
                   </span>
                 </td>
                 <td class="text-right">
@@ -340,12 +340,12 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                      <a (click)="eliminarPromociones(promocion.id)" class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -418,7 +418,7 @@
                     </div>
                   </div>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -450,7 +450,6 @@
       </div>
     </div>
   </div>
-  <!-- Dark table -->
 
   <div class="row mt-5">
     <div class="col">
@@ -498,17 +497,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let canal of canales" [value]="canal.id">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Zona</span>
+                      <span class="mb-0 text-sm">{{canal.nombre}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
+                  <span class="badge badge-dot {{ canal.estadoClase }}">
+                    <i class=" {{ canal.estadoIcono }}"></i> {{ canal.estadoTexto }}
                   </span>
                 </td>
                 <td class="text-right">
@@ -518,32 +517,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-canal']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Cortesía</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                      <a (click)="eliminarCanal(canal.id)" class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
                 </td>
