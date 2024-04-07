@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfService } from 'src/app/services/conf/conf.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-configuracion',
@@ -14,13 +15,14 @@ export class ConfiguracionComponent implements OnInit {
   promociones: any[] = [];
   canales: any[] = [];
   
-  constructor(private confService: ConfService) { }
+  constructor(private confService: ConfService, private route: ActivatedRoute, private router: Router,) { }
 
   ngOnInit() {
     this.listarVuelos()
     this.listarPromociones()
     this.listarCanal()
   }
+
   openModal() {
     this.modalOpen = true;
   }
@@ -62,7 +64,6 @@ export class ConfiguracionComponent implements OnInit {
       }
     );
   }
-
 
   //CRUD PROMOCIONES
   listarPromociones() {
@@ -121,4 +122,5 @@ export class ConfiguracionComponent implements OnInit {
       }
     );
   }
+  
 }

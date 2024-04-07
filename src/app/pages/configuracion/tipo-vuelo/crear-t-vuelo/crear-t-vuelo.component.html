@@ -20,26 +20,26 @@
             <div class="col-xl-4">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre">
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre"  [(ngModel)]="tipo">
               </div>
             </div>
             <div class="col-xl-4">
               <div class="form-group text-start">
                 <label class="form-control-label d-flex justify-content-start" for="input-number">Precio</label>
-                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el precio" value="S/ ">
+                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el precio" value="S/ "  [(ngModel)]="precio">
               </div>
             </div>
             <div class="col-xl-4">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Tiempo</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el tiempo">
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el tiempo"  [(ngModel)]="tiempo">
               </div>
             </div>
           </div>
           <div class="">
             <div class="d-flex justify-content-end">
-              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2">Añadir</a>
+              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLink="/config">Cancelar</a>
+              <a class="btn btn-primary mt-3 m-2" (click)="crearVuelo()">Añadir</a>
             </div>
           </div>
         </div>

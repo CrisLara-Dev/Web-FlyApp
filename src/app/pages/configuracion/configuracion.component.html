@@ -68,12 +68,8 @@
                 <td>
                   <span class="mb-0 text-sm">{{ vuelo.tipo }}</span>
                 </td>
-                <td>
-                  {{ vuelo.precio }}
-                </td>
-                <td>
-                  {{ vuelo.tiempo }}
-                </td>
+                <td>{{ vuelo.precio }}</td>
+                <td>{{ vuelo.tiempo }}</td>
                 <td>
                   <span class="badge badge-dot {{ vuelo.estadoClase }}">
                     <i class=" {{ vuelo.estadoIcono }}"></i> {{ vuelo.estadoTexto }}
@@ -85,148 +81,12 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a  class="dropdown-item d-flex align-items-center"[routerLink]="['/edit-t-vuelo', vuelo.id]" ><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <!-- <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Black</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 Lesly Paredes
-                </td>
-                <td>
-                  S/ 300
-                </td>
-                <td>
-                  15 - 18 min
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Premium</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Lesly Paredes 
-                </td>
-                <td>
-                  S/ 600
-                </td>
-                <td>
-                  28 - 30 min
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Cumpleaños</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Luis Contreras   
-                </td>
-                <td>
-                  S/ 500
-                </td>
-                <td>
-                  10 - 12 min
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown   placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Fly Especiales</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  José Montoya  
-                </td>
-                <td>
-                  S/ 500
-                </td>
-                <td>
-                 25 - 30 min
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown   placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-t-vuelo']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr> -->
             </tbody>
           </table>
         </div>
