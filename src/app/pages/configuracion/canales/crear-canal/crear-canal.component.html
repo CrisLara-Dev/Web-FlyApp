@@ -20,14 +20,14 @@
             <div class="col">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre">
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre" [(ngModel)]="nombre" (input)="verificarCamposLlenos()">
               </div>
             </div>
           </div>
           <div class="">
             <div class="d-flex justify-content-end">
               <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2">Añadir</a>
+              <button class="btn btn-primary mt-3 m-2" (click)="crearCanal()" [disabled]="!camposLlenos">Añadir</button>
             </div>
           </div>
         </div>

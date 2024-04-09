@@ -1,13 +1,11 @@
 <div class="header bg-primary pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
     </div>
   </div>
 </div>
-<!-- Page content -->
+
 <div class="container-fluid mt--9">
-  <!-- Table -->
   <div class="row">
     <div class="col">
       <div class="card shadow">
@@ -49,7 +47,6 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Nombre</th>
-                <th scope="col">Admistrador</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Tiempo</th>
                 <th scope="col">Estado</th>
@@ -65,10 +62,7 @@
                     </div>
                   </div>
                 </th>
-                <td>
-                  <span class="mb-0 text-sm">{{ vuelo.tipo }}</span>
-                </td>
-                <td>{{ vuelo.precio }}</td>
+                <td>{{ vuelo.precio.toLocaleString('es-PE', { style: 'currency', currency: 'PEN', minimumFractionDigits: 2 }) }}</td>
                 <td>{{ vuelo.tiempo }}</td>
                 <td>
                   <span class="badge badge-dot {{ vuelo.estadoClase }}">
@@ -118,6 +112,7 @@
       </div>
     </div>
   </div>
+  
   <div class="row mt-5">
     <div class="col">
       <div class="card shadow">
@@ -159,7 +154,6 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Código</th>
-                <th scope="col">Admistrador</th>
                 <th scope="col">Descuento</th>
                 <th scope="col">Fecha de Inicio</th>
                 <th scope="col">Fecha Fin</th>
@@ -177,10 +171,7 @@
                   </div>
                 </th>
                 <td>
-                  {{promocion.codigo}}
-                </td>
-                <td>
-                  {{promocion.porcentaje}}
+                  {{promocion.porcentaje}}%
                 </td>
                 <td>
                   {{promocion.fecha_inicio}}
@@ -205,80 +196,6 @@
                   </div>
                 </td>
               </tr>
-              <!-- <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-2005</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 Lesly Paredes
-                </td>
-                <td>
-                 12%
-                </td>
-                <td>
-                  10/10/2024
-                </td>
-                <td>
-                  10/11/2024
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Pro-500</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Lesly Paredes 
-                </td>
-                <td>
-                  20%
-                </td>
-                <td>
-                  20/05/2024
-                </td>
-                <td>
-                  20/06/2024
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr> -->
             </tbody>
           </table>
         </div>
@@ -414,7 +331,7 @@
     </div>
   </div>
 
-  <div class="row mt-5">
+  <!-- <div class="row mt-5">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
@@ -540,4 +457,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+</div>

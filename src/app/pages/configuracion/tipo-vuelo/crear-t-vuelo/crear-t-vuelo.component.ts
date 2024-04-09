@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
 
@@ -7,18 +7,22 @@ import { Router } from '@angular/router';
   templateUrl: './crear-t-vuelo.component.html',
   styleUrls: ['./crear-t-vuelo.component.scss']
 })
-export class CrearTVueloComponent implements OnInit {
-  public focus;
+export class CrearTVueloComponent {
   mostrarAviso: boolean = false;
 
   tipo: string;
   precio: number;
   tiempo: string;
   estado: boolean;
+  camposLlenos: boolean = false;
 
   constructor(private confService: ConfService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  verificarCamposLlenos() {
+    this.camposLlenos = !!(this.tipo && this.precio && this.tiempo);
   }
 
   crearVuelo() {
@@ -47,5 +51,5 @@ export class CrearTVueloComponent implements OnInit {
       // Manejo de errores
       console.error("Error al crear vuelo:", error);
     });
-  }
+  }  
 }

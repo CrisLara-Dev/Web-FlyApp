@@ -20,32 +20,32 @@
             <div class="col-xl-3 col-lg-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Código</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" value="Pro-001"  disabled>
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese código" [(ngModel)]="codigo" disabled>
               </div>
             </div>
             <div class="col-xl-3 col-lg-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-number">Descuento</label>
-                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el descuento">
+                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el % de descuento" [(ngModel)]="porcentaje">
               </div>
             </div>
             <div class="col-xl-3 col-lg-6">
               <div class="form-group text-start">
                 <label class="form-control-label d-flex justify-content-start" for="input-number">Fecha de Inicio</label>
-                <input type="date" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese la fecha de inicio" value="">
+                <input type="date" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese la fecha de inicio" [(ngModel)]="fecha_inicio">
               </div>
             </div>
             <div class="col-xl-3 col-lg-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Fecha Fin</label>
-                <input type="date" id="input-text" class="form-control form-control-alternative border" placeholder="Ingresa la fecha fin">
+                <input type="date" id="input-text" class="form-control form-control-alternative border" placeholder="Ingresa la fecha fin" [(ngModel)]="fecha_fin">
               </div>
             </div>
           </div>
           <div class="">
             <div class="d-flex justify-content-end">
               <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2">Añadir</a>
+              <a class="btn btn-primary mt-3 m-2" (click)="crearPromocion()">Añadir</a>
             </div>
           </div>
         </div>

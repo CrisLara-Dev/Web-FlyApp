@@ -28,13 +28,7 @@ export class EditTVueloComponent implements OnInit {
         this.tiempo = data.tiempo;
         this.estado = data.estado;
 
-        // Mostrar los datos del vuelo en la consola
-        console.log('Datos del vuelo:', {
-          tipo: this.tipo,
-          precio: this.precio,
-          tiempo: this.tiempo,
-          estado: this.estado
-        });
+        console.log("Datos del vuelo:", data);
       });
     });
   }
@@ -55,7 +49,7 @@ export class EditTVueloComponent implements OnInit {
       this.router.navigate(['/config']);
     }, error => {
       // Manejo de errores
-      console.error("Error al crear vuelo:", error);
+      console.error("Error al editar el vuelo:", error);
     });
   }
 }

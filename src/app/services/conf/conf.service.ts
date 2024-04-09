@@ -2,26 +2,11 @@ import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../..//config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'; // Agrega esta línea para importar Observable
-import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class ConfService {
-  encryptId(id: number): string {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const charactersLength = characters.length;
-    for (let i = 0; i < 10; i++) { // Genera una cadena de 10 caracteres
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
 
-  decryptId(encryptedId: string): number {
-    // En este ejemplo, no implementamos la función de desencriptación, ya que no necesitas desencriptar la cadena de letras y números
-    // Si necesitas la funcionalidad de desencriptación en el futuro, debes implementarla aquí
-    return 0;
-  }
   constructor(private http: HttpClient) { }
 
   // CRUD TIPO DOC
@@ -64,6 +49,18 @@ export class ConfService {
     return this.http.delete<any>(`${API_CONFIG.baseUrl}Descuento/${id}/`);
   }  
 
+  crearPromocion(descuentoData: any): Observable<any> {
+    return this.http.post(`${API_CONFIG.baseUrl}Descuento/`, descuentoData);
+  }
+
+  obtenerPromocion(id: number): Observable<any> {
+    return this.http.get(`${API_CONFIG.baseUrl}Descuento/${id}/`);
+  }
+
+  editarPromocion(id: number, datos: any): Observable<any> {
+    return this.http.put(`${API_CONFIG.baseUrl}Descuento/${id}/`, datos);
+  }
+
   //CRUD CANAL VENTA
   listarCanal(): Observable<any> {
     return this.http.get<any>(`${API_CONFIG.baseUrl}CanalVenta/`);
@@ -72,6 +69,18 @@ export class ConfService {
   eliminarCanal(id: number): Observable<any> {
     return this.http.delete<any>(`${API_CONFIG.baseUrl}CanalVenta/${id}/`);
   }  
+
+  crearCanal(canalData: any): Observable<any> {
+    return this.http.post(`${API_CONFIG.baseUrl}CanalVenta/`, canalData);
+  }
+
+  obtenerCanal(id: number): Observable<any> {
+    return this.http.get(`${API_CONFIG.baseUrl}CanalVenta/${id}/`);
+  }
+
+  editarCanal(id: number, datos: any): Observable<any> {
+    return this.http.put(`${API_CONFIG.baseUrl}CanalVenta/${id}/`, datos);
+  }
 
 }
 
