@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfService } from 'src/app/services/conf/conf.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from "../../services/auth/auth.service";
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -19,9 +19,9 @@ export class ConfiguracionComponent implements OnInit {
   constructor(private confService: ConfService, private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.listarVuelos()
     this.listarPromociones()
     this.listarCanal()
-    this.verificarAutenticacion()
   }
 
   openModal() {
@@ -34,16 +34,6 @@ export class ConfiguracionComponent implements OnInit {
 
   stopPropagation(event: Event) {
     event.stopPropagation();
-  }
-
-  verificarAutenticacion(): void {
-    if (!this.authService.isAuthenticated()) {
-      // Si el usuario no está autenticado, redirigirlo a la página de inicio de sesión
-      this.router.navigate(['/login']);
-    } else {
-      // Si el usuario está autenticado, cargar los vuelos
-      this.listarVuelos();
-    }
   }
 
   //CRUD TIPO VUELO

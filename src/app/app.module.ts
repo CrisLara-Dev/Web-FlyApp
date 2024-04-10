@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserModule,
   ],
   declarations: [
     AppComponent,
@@ -31,11 +33,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     AuthLayoutComponent
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    }
+
   ],
   bootstrap: [AppComponent]
 })

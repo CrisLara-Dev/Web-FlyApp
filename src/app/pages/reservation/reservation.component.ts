@@ -14,6 +14,5 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit() {
     // Obtener información del usuario al inicializar el componente
-    this.isAdmin = this.authService.isUserAdmin(); // Método para verificar si el usuario es administrador
   }
 }

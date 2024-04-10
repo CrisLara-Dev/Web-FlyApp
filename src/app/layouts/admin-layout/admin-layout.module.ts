@@ -72,13 +72,7 @@ import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
     EditRedComponent,
     EditReservationComponent,
     AsistenciasComponent
-  ], providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    }
-  ],
+  ]
 })
 
 export class AdminLayoutModule {}

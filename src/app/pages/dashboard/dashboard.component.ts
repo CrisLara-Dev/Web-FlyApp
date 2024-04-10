@@ -133,6 +133,7 @@ export class DashboardComponent implements OnInit {
       this.authService.logout();
     }
   }
+  
   logout() {
     this.authService.logout();
   }
