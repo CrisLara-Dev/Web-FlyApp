@@ -26,7 +26,6 @@ export class ConfService {
   //CRUD TIPO VUELO
   listarVuelos(): Observable<any> {
     const token = this.authService.getToken();
-    console.log(token);
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
