@@ -40,7 +40,7 @@ export class AuthService {
   
   getUserData(): Observable<any> {
     const token = this.getToken();
-  
+    console.log(token);
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
@@ -86,6 +86,7 @@ export class AuthService {
   removeToken() {
     localStorage.removeItem(this.tokenKey);
   }
+  
   removeUserRole() {
     localStorage.removeItem(this.roleKey);
   }

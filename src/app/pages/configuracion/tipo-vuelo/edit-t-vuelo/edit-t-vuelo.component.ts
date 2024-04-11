@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfService } from 'src/app/services/conf/conf.service';
+import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
 
 @Component({
   selector: 'app-edit-t-vuelo',
@@ -14,14 +15,14 @@ export class EditTVueloComponent implements OnInit {
   tiempo: string;
   estado: string;
   
-  constructor(private confService: ConfService, private router: Router, private route: ActivatedRoute,) { }
+  constructor(private confService: ConfService, private router: Router, private route: ActivatedRoute, private vuelosService: TiposvuelosService) { }
 
   ngOnInit(): void {
     // Obtener el ID del vuelo de los parámetros de la ruta
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('id'); // Convertir a number
       // Llamar al servicio para obtener los datos del vuelo
-      this.confService.obtenerVuelo(this.id).subscribe(data => {
+      this.vuelosService.obtenerVuelo(this.id).subscribe(data => {
         // Asignar los datos del vuelo a las variables
         this.tipo = data.tipo;
         this.precio = data.precio;
@@ -43,7 +44,7 @@ export class EditTVueloComponent implements OnInit {
     };
 
     // Llama al servicio para actualizar los datos del vuelo
-    this.confService.editarVuelo(this.id, vueloActualizado).subscribe(response => {
+    this.vuelosService.editarVuelo(this.id, vueloActualizado).subscribe(response => {
       // Redirige al usuario a la página de detalles del vuelo actualizado
       console.log("Vuelo editado exitosamente:", response);
       this.router.navigate(['/config']);

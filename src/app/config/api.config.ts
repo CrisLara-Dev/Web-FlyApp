@@ -3,4 +3,9 @@ export const API_CONFIG = {
 
   //Vuelo
   vuelo: "Vuelo/",
+  document: "TipoDocumento/",
+  pago: "Pago/",
+  promocion: "Descuento/",
+  canal: "CanalVenta/",
+
 };

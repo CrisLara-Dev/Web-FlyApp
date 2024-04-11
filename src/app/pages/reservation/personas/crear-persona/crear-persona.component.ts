@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/services/reservation/reservation.service';
 import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
+import { TiposdocumentoService } from 'src/app/services/configuracion/tiposdocumento/tiposdocumento.service';
+import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
 
 @Component({
   selector: 'app-crear-persona',
@@ -27,7 +29,12 @@ export class CrearPersonaComponent implements OnInit {
   nombre_nino: string;
   tipo_documento: number;
 
-  constructor(private reservationService: ReservationService, private confService: ConfService, private router: Router) { }
+  constructor(
+    private reservationService: ReservationService, 
+    private confService: ConfService, 
+    private router: Router, 
+    private documentService: TiposdocumentoService, 
+    private vuelosService: TiposvuelosService) { }
 
   ngOnInit() {
     // Obtener la fecha actual y formatearla como 'yyyy-MM-dd' (formato requerido por el input date)
@@ -111,7 +118,7 @@ export class CrearPersonaComponent implements OnInit {
   }
 
   listarTiposDocumento() {
-    this.confService.listarTiposDocumento().subscribe(
+    this.documentService.listarTiposDocumento().subscribe(
       (data: any[]) => {
         this.tiposDocumento = data.filter(tipoDocumento => tipoDocumento.estado === true);
       },
@@ -122,7 +129,7 @@ export class CrearPersonaComponent implements OnInit {
   }
 
   listarVuelos() {
-    this.confService.listarVuelos().subscribe(
+    this.vuelosService.listarVuelos().subscribe(
       (data: any[]) => {
         this.vuelos = data.filter(vuelo => vuelo.estado === true);
       },

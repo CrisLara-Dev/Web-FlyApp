@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ConfService } from 'src/app/services/conf/conf.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
+import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -16,7 +18,7 @@ export class ConfiguracionComponent implements OnInit {
   promociones: any[] = [];
   canales: any[] = [];
   
-  constructor(private confService: ConfService, private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
+  constructor(private confService: ConfService, private route: ActivatedRoute, private router: Router, private authService: AuthService, private promoService: PromocionService, private vuelosService: TiposvuelosService) { }
 
   ngOnInit() {
     this.listarVuelos()
@@ -38,7 +40,7 @@ export class ConfiguracionComponent implements OnInit {
 
   //CRUD TIPO VUELO
   listarVuelos() {
-    this.confService.listarVuelos().subscribe(
+    this.vuelosService.listarVuelos().subscribe(
       (data) => {
         // Transformar el estado de los vuelos
         this.vuelos = data.map((vuelo: any) => {
@@ -55,7 +57,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   eliminarVuelos(id: number) {
-    this.confService.eliminarVuelos(id).subscribe(
+    this.vuelosService.eliminarVuelos(id).subscribe(
       () => {
         // Eliminar el vuelo del arreglo vuelos
         this.vuelos = this.vuelos.filter(vuelo => vuelo.id !== id);
@@ -68,7 +70,7 @@ export class ConfiguracionComponent implements OnInit {
 
   //CRUD PROMOCIONES
   listarPromociones() {
-    this.confService.listarPromocion().subscribe(
+    this.promoService.listarPromocion().subscribe(
       (data) => {
         this.promociones = data.map((promocion: any) => {
           promocion.estadoTexto = promocion.estado ? 'Activo' : 'Inactivo';
@@ -84,7 +86,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   eliminarPromociones(id: number) {
-    this.confService.eliminarPromocion(id).subscribe(
+    this.promoService.eliminarPromocion(id).subscribe(
       () => {
         // Eliminar el vuelo del arreglo vuelos
         this.promociones = this.promociones.filter(promocion => promocion.id !== id);
