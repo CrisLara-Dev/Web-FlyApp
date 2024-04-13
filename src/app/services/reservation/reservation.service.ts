@@ -11,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ReservationService {
 
-  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.Reserva}`;
+  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.reserva}`;
 
   constructor(private http: HttpClient , private authService: AuthService) { }
 
