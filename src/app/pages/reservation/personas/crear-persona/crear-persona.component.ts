@@ -4,6 +4,9 @@ import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
 import { TiposdocumentoService } from 'src/app/services/configuracion/tiposdocumento/tiposdocumento.service';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
+import { Persona } from 'src/app/models/persona/persona.model';
+import { Reserva } from 'src/app/models/reserva/reserva.model';
+
 
 @Component({
   selector: 'app-crear-persona',

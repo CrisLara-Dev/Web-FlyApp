@@ -84,22 +84,6 @@ export class CrearReservationComponent implements OnInit {
     );
   }
 
-  crearReserva() {
-    const nuevaReserva = {
-      tipos_pago: this.tipos_pago
-    };
 
-    this.reservationService.crearReserva(nuevaReserva)
-      .subscribe(
-        (response) => {
-          console.log('Reserva creada:', response);
-          // Redirigir al usuario a la página de reservas
-          this.router.navigate(['/reservation']);
-        },
-        (error) => {
-          console.error('Error al crear reserva:', error);
-        }
-      );
-  }
 
 }

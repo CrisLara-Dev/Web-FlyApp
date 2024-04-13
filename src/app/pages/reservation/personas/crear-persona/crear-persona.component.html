@@ -12,7 +12,7 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Añadir Persona</h3>
+          <h3 class="mb-0">Agregar Persona</h3>
         </div>
         
        <div class="bg-secondary">
@@ -54,11 +54,11 @@
           </div>
           <div class="row">
             <div class="col-xl-3 col-lg-6 mb-4">
-              <a class="btn btn-sm btn-primary" (click)="onEsNinoClick()">Es Niño</a>
+              <a class="btn btn-sm btn-primary text-md-left" (click)="onEsNinoClick()">Seleccione aquí si es Menor de Edad</a>
             </div>
           </div>
           <div class="datos-apoderado" *ngIf="mostrarDatosApoderado">
-            <h3 class="mb-4">Datos del Niño</h3>
+            <h3 class="mb-4">Datos del Menor</h3>
             <div class="row">
               <div class="col-lg-6 col-xl-3">
                 <div class="form-group mt-1">
@@ -67,6 +67,7 @@
                     <option selected>Seleccionar</option>
                     <option value="1">DNI</option>
                     <option value="2">Pasaporte</option>
+                    <option value="3">Carnet Extr.</option>
                   </select>
                 </div>
               </div>
@@ -82,16 +83,10 @@
                   <input type="text" id="input-text" class="form-control border form-control-alternative" placeholder="Ingrese su pasaporte" maxlength="9">
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-6">
+              <div class="col-xl-3 col-lg-12">
                 <div class="form-group text-start">
-                  <label class="form-control-label" for="input-text">Nombres</label>
+                  <label class="form-control-label" for="input-text">Nombres y Apellidos</label>
                   <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres" [(ngModel)]="nombre_nino">
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-6">
-                <div class="form-group text-start">
-                  <label class="form-control-label" for="input-text">Apellidos</label>
-                  <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" [(ngModel)]="nombre">
                 </div>
               </div>
             </div>
