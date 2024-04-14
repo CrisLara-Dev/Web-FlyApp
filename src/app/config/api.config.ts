@@ -10,7 +10,15 @@ export const API_CONFIG = {
   reserva: "Reserva/",
   paquete: "Paquete/",
 
+  asistencia: "Asistencia/",
+  piloto: "Piloto/",
+
   userdetails: "UserDetails/",
   usuario: "Usuario/",
+  rol: "Rol/",
 
+  registrar: "register/",
+  iniciar: "login/",
+  cerrar: "logout/",
+  restablecerpass: "password-reset/",
 };

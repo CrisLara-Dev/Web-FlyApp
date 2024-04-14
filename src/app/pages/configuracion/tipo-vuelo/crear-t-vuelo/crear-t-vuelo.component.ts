@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
+import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-t-vuelo',
@@ -8,15 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./crear-t-vuelo.component.scss']
 })
 export class CrearTVueloComponent {
-  mostrarAviso: boolean = false;
 
   tipo: string;
   precio: number;
   tiempo: string;
   estado: boolean;
+
   camposLlenos: boolean = false;
 
-  constructor(private confService: ConfService, private router: Router) { }
+  constructor(
+    private router: Router,
+    private vuelosService: TiposvuelosService
+    ) { }
 
   ngOnInit() {
   }
@@ -26,30 +30,32 @@ export class CrearTVueloComponent {
   }
 
   crearVuelo() {
-    // Verifica si los campos obligatorios están llenos
     if (!this.tipo || !this.precio || !this.tiempo) {
       console.error("Por favor, complete todos los campos obligatorios.");
-      // Puedes mostrar un mensaje al usuario o realizar cualquier acción necesaria en caso de que los campos no estén llenos
-      return; // Detiene la ejecución del método si los campos no están llenos
+      return; 
     }
-    this.mostrarAviso = false;
-
-    // Aquí puedes acceder a los valores de las propiedades y enviarlos al servicio para guardarlos en la base de datos
+  
     const vueloData = {
       tipo: this.tipo,
       precio: this.precio,
       tiempo: this.tiempo,
       estado: this.estado,
     };
-
-    // Llama al método en el servicio para crear el vuelo
-    this.confService.crearVuelo(vueloData).subscribe(response => {
-      // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje de éxito o navegar a otra página
-      console.log("Vuelo creado exitosamente:", response);
+  
+    this.vuelosService.crearVuelo(vueloData).subscribe(response => {
+      // Navegar a la página de configuración
       this.router.navigate(['/config']);
+  
+      // Mostrar la alerta de éxito
+      Swal.fire({
+        icon: 'success',
+        title: 'Vuelo añadido con éxito',
+        showConfirmButton: true,
+        // timer: 2500
+      });
     }, error => {
-      // Manejo de errores
       console.error("Error al crear vuelo:", error);
     });
-  }  
+  }
+  
 }

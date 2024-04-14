@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfService } from 'src/app/services/conf/conf.service';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
 
 @Component({
@@ -9,13 +8,25 @@ import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/t
   styleUrls: ['./edit-t-vuelo.component.scss']
 })
 export class EditTVueloComponent implements OnInit {
-  id: number; // ID del vuelo a editar
+  id: number; 
+
+  tipoOriginal: string;
+  precioOriginal: number;
+  tiempoOriginal: string;
+  estadoOriginal: string;
+
   tipo: string;
   precio: number;
   tiempo: string;
   estado: string;
-  
-  constructor(private confService: ConfService, private router: Router, private route: ActivatedRoute, private vuelosService: TiposvuelosService) { }
+
+  edicionActiva: boolean = false;
+
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private vuelosService: TiposvuelosService
+  ) { }
 
   ngOnInit(): void {
     // Obtener el ID del vuelo de los parámetros de la ruta
@@ -23,15 +34,32 @@ export class EditTVueloComponent implements OnInit {
       this.id = +params.get('id'); // Convertir a number
       // Llamar al servicio para obtener los datos del vuelo
       this.vuelosService.obtenerVuelo(this.id).subscribe(data => {
-        // Asignar los datos del vuelo a las variables
-        this.tipo = data.tipo;
-        this.precio = data.precio;
-        this.tiempo = data.tiempo;
-        this.estado = data.estado;
+        // Almacenar los datos originales
+        this.tipoOriginal = data.tipo;
+        this.precioOriginal = data.precio;
+        this.tiempoOriginal = data.tiempo;
+        this.estadoOriginal = data.estado;
 
-        console.log("Datos del vuelo:", data);
+        // Asignar los datos del vuelo a las variables
+        this.tipo = this.tipoOriginal;
+        this.precio = this.precioOriginal;
+        this.tiempo = this.tiempoOriginal;
+        this.estado = this.estadoOriginal;
       });
     });
+  }
+
+  verificarCambios(): void {
+    if (
+      this.tipo !== this.tipoOriginal ||
+      this.precio !== this.precioOriginal ||
+      this.tiempo !== this.tiempoOriginal ||
+      this.estado !== this.estadoOriginal
+    ) {
+      this.edicionActiva = true;
+    } else {
+      this.edicionActiva = false;
+    }
   }
 
   editarVuelo(): void {
@@ -45,7 +73,6 @@ export class EditTVueloComponent implements OnInit {
 
     // Llama al servicio para actualizar los datos del vuelo
     this.vuelosService.editarVuelo(this.id, vueloActualizado).subscribe(response => {
-      // Redirige al usuario a la página de detalles del vuelo actualizado
       console.log("Vuelo editado exitosamente:", response);
       this.router.navigate(['/config']);
     }, error => {

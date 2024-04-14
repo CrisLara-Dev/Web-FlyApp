@@ -20,8 +20,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-search"></i></span>
                  </div>
-                 <input class="form-control" placeholder="Buscar" type="text" (focus)="focus = true"
-                 (blur)="focus = false">
+                 <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
                </div>
              </div>
            </form>
@@ -30,11 +29,12 @@
            <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
             <div><i class="fa-solid fa-filter"></i></div>
             <div class="ml-3">
-              <select class="form-select text-muted" aria-label="Default select example">
-                <option selected>Filtrar por</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
+              <select class="form-select text-muted" aria-label="Default select example" [(ngModel)]="filtroEstado" >
+                <option value="todos">Todos</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
               </select>
+              
             </div>
             <div class="text-center ml-3">
               <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-t-vuelo']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
@@ -43,18 +43,23 @@
          </div>
        </div>
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
+          
+          <table class="table align-items-center table-flush" >
             <thead class="thead-light">
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Tiempo</th>
-                <th scope="col">Estado</th>
-                <th scope="col"></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Tiempo</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col"></th>
               </tr>
-            </thead>
-            <tbody>
-              <tr  *ngFor="let vuelo of vuelos">
+          </thead>
+          <tbody *ngIf="!cargandoDatos">
+            <!-- Iterar sobre los vuelos -->
+            <ng-container *ngFor="let vuelo of obtenerVuelosPaginaActual(); let i = index">
+              <tr>
+                <td>{{ i + 1 + (paginaActual * vuelosPorPagina) }}</td>
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
@@ -71,36 +76,60 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <a class="btn btn-sm btn-icon-only text-light" ngbDropdownToggle>
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a  class="dropdown-item d-flex align-items-center"[routerLink]="['/edit-t-vuelo', vuelo.id]" ><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                      <a class="dropdown-item d-flex align-items-center" [routerLink]="['/edit-t-vuelo', vuelo.id]">
+                        <i class="fa-regular fa-pen-to-square icon-option"></i> Editar
+                      </a>
+                      <a (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger">
+                        <i class="fa-solid fa-trash-can icon-option"></i> Eliminar
+                      </a>
                     </div>
                   </div>
                 </td>
               </tr>
-            </tbody>
+            </ng-container>
+            
+            <!-- Alerta "No se encontraron resultados" -->
+            <tr *ngIf="sinResultados">
+              <td colspan="6">
+                <div class="alert text-center" role="alert">
+                  No se encontraron resultados
+                </div>
+              </td>
+            </tr>
+
+            <!-- Alerta "No hay vuelos con el estado seleccionado" -->
+            <tr *ngIf="sinVuelosConEstado && !cargandoDatos">
+              <td colspan="6">
+                <div class="alert text-center" role="alert">
+                  No hay vuelos con el estado seleccionado
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          
           </table>
+          <div *ngIf="cargandoDatos" class="text-center mt-5">
+            <div class="lds-ripple"><div></div><div></div></div>            
+            <h5 class="mt-2">Cargando datos...</h5>
+          </div>  
         </div>
         <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
+              <li class="page-item" (click)="irPaginaAnterior()" [class.disabled]="paginaActual === 0">
                 <a class="page-link" href="javascript:void(0)" tabindex="-1">
                   <i class="fas fa-angle-left"></i>
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
+              <li class="page-item" *ngFor="let pagina of paginasTotales" [class.active]="pagina === paginaActual">
+                <a class="page-link" href="javascript:void(0)" (click)="irAPagina(pagina)">{{ pagina + 1 }}</a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
+              <li class="page-item" (click)="irPaginaSiguiente()" [class.disabled]="paginaActual === calcularTotalPaginas() - 1">
                 <a class="page-link" href="javascript:void(0)">
                   <i class="fas fa-angle-right"></i>
                   <span class="sr-only">Next</span>
@@ -137,7 +166,7 @@
            <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
             <div><i class="fa-solid fa-filter"></i></div>
             <div class="ml-3">
-              <select class="form-select text-muted " aria-label="Default select example">
+              <select class="form-select text-muted" aria-label="Default select example">
                 <option selected>Filtrar por</option>
                 <option value="1">Activo</option>
                 <option value="2">Inactivo</option>
@@ -190,7 +219,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones', promociones.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
                       <a (click)="eliminarPromociones(promocion.id)" class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                     </div>
                   </div>

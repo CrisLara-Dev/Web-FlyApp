@@ -9,41 +9,103 @@ import { Observable, catchError, map } from 'rxjs';
 })
 export class CanalventaService {
 
-  constructor(private http: HttpClient , private authService: AuthService) { }
+  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.canal}`;
+
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) { }
 
   listarCanal(): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${API_CONFIG.baseUrl}${API_CONFIG.canal}` , { headers })
+    return this.http.get<any>(this.apiUrl , { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos del canal", error);
         return error;
       })
     );
   }
 
-
   eliminarCanal(id: number): Observable<any> {
-    return this.http.delete<any>(`${API_CONFIG.baseUrl}CanalVenta/${id}/`);
-  }  
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `token ${token}`,
+    });
+    return this.http.delete<any>(`${this.apiUrl}${id}/` , { headers })
+    .pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      }),
+      catchError((error) => {
+        console.error("Error al obtener los datos del canal", error);
+        return error;
+      })
+    );
+  }
 
+  
   crearCanal(canalData: any): Observable<any> {
-    return this.http.post(`${API_CONFIG.baseUrl}CanalVenta/`, canalData);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `token ${token}`,
+    });
+    return this.http.post<any>(this.apiUrl , canalData,{ headers })
+    .pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      }),
+      catchError((error) => {
+        console.error("Error al obtener los datos del canal", error);
+        return error;
+      })
+    );
   }
 
   obtenerCanal(id: number): Observable<any> {
-    return this.http.get(`${API_CONFIG.baseUrl}CanalVenta/${id}/`);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `token ${token}`,
+    });
+    return this.http.get<any>(`${this.apiUrl}${id}/` , { headers })
+    .pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      }),
+      catchError((error) => {
+        console.error("Error al obtener los datos del canal", error);
+        return error;
+      })
+    );
   }
 
   editarCanal(id: number, datos: any): Observable<any> {
-    return this.http.put(`${API_CONFIG.baseUrl}CanalVenta/${id}/`, datos);
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `token ${token}`,
+    });
+    return this.http.put<any>(`${this.apiUrl}${id}/` , datos, { headers })
+    .pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      }),
+      catchError((error) => {
+        console.error("Error al obtener los datos del canal", error);
+        return error;
+      })
+    );
   }
+
 
 }

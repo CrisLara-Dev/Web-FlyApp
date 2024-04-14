@@ -37,7 +37,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'crear-t-vuelo',     component: CrearTVueloComponent },
     { path: 'edit-t-vuelo/:id',     component: EditTVueloComponent },
     { path: 'crear-promociones',     component: CrearPromocionesComponent },
-    { path: 'edit-promociones',     component: EditPromocionesComponent },
+    { path: 'edit-promociones/:id',     component: EditPromocionesComponent },
     { path: 'crear-workpeople',     component: CrearWorkpeopleComponent },
     { path: 'edit-workpeople',     component: EditWorkpeopleComponent },
     { path: 'edit-user-users',     component: EditUsersComponent },

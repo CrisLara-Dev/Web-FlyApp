@@ -72,14 +72,14 @@
 .custom-control-input:checked {
     border-color: #00afcc;
     background-color: #00afcc; 
-  }
+}
   
-  .custom-control-input:checked + .custom-control-label::before {
+.custom-control-input:checked + .custom-control-label::before {
     border-color: #00afcc;
     background-color: #00afcc;
-  }
+}
   
-  .custom-control-input:checked + .custom-control-label .text-muted {
+.custom-control-input:checked + .custom-control-label .text-muted {
     color: #00afcc;
-  }
+}
   

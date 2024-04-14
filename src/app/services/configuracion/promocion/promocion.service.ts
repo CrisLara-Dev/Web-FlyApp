@@ -9,21 +9,26 @@ import { API_CONFIG } from 'src/app/config/api.config';
 })
 export class PromocionService {
 
-  constructor(private http: HttpClient , private authService: AuthService) { }
+  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.promocion}`;
+
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) { }
 
   listarPromocion(): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${API_CONFIG.baseUrl}${API_CONFIG.promocion}` , { headers })
+    return this.http.get<any>(this.apiUrl , { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos de la promocion", error);
         return error;
       })
     );
@@ -34,33 +39,32 @@ export class PromocionService {
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.delete<any>(`${API_CONFIG.baseUrl}${API_CONFIG.promocion}${id}/` , { headers })
+    return this.http.delete<any>(`${this.apiUrl}${id}/` , { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos de la promocion", error);
         return error;
       })
     );
   }
-
 
   crearPromocion(descuentoData: any): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.post<any>(`${API_CONFIG.baseUrl}${API_CONFIG.promocion}` , descuentoData, { headers })
+    return this.http.post<any>(this.apiUrl, descuentoData, { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos de la promocion", error);
         return error;
       })
     );
@@ -71,14 +75,14 @@ export class PromocionService {
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${API_CONFIG.baseUrl}${API_CONFIG.promocion}${id}/` , { headers })
+    return this.http.get<any>(`${this.apiUrl}${id}/` , { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos de la promocion", error);
         return error;
       })
     );
@@ -89,14 +93,14 @@ export class PromocionService {
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.put<any>(`${API_CONFIG.baseUrl}${API_CONFIG.promocion}${id}/` , datos, { headers })
+    return this.http.put<any>(`${this.apiUrl}${id}/` , datos, { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos de la promocion", error);
         return error;
       })
     );

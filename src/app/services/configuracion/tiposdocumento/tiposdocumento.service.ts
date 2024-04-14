@@ -9,21 +9,26 @@ import { Observable, catchError, map } from 'rxjs';
 })
 export class TiposdocumentoService {
 
-  constructor(private http: HttpClient , private authService: AuthService) { }
+  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.document}`;
+
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) { }
 
   listarTiposDocumento(): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${API_CONFIG.baseUrl}${API_CONFIG.document}` , { headers })
+    return this.http.get<any>(this.apiUrl , { headers })
     .pipe(
       map((response: any) => {
         console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del usuario", error);
+        console.error("Error al obtener los datos del tipo de documento", error);
         return error;
       })
     );
