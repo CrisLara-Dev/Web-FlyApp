@@ -48,8 +48,9 @@ export class CrearTVueloComponent {
   
       // Mostrar la alerta de éxito
       Swal.fire({
-        icon: 'success',
-        title: 'Vuelo añadido con éxito',
+        icon: "success",
+        title: "¡Muy bien!",
+        text: "Vuelo añadido con éxito",
         showConfirmButton: true,
         // timer: 2500
       });
