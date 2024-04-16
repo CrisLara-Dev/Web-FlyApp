@@ -4,6 +4,7 @@ import { Observable, catchError, finalize, map, throwError } from "rxjs";
 import { API_CONFIG } from "src/app/config/api.config";
 import { Router, RouterOutlet } from "@angular/router";
 import { Token } from "@angular/compiler";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -24,10 +25,24 @@ export class AuthService {
         this.setToken(response.token);
         this.setUserRole(response.user.rol.nombre); // Almacenar el rol del usuario
         console.log("Inicio de sesión exitoso"); // Mostrar mensaje en la consola
+        Swal.fire({
+          icon: "success",
+          title: "¡Bienvenido!",
+          text: "Vuelo añadido con éxito",
+          showConfirmButton: false,
+          timer: 2000
+        });
         return response;
       }),
       catchError((error) => {
         console.error("Error al iniciar sesión", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "¡Algo salio mal!",
+          showConfirmButton: false,
+          timer: 2000
+        });
         throw error; // Re-lanzar el error para que el componente pueda manejarlo
       })
     );
@@ -57,6 +72,7 @@ export class AuthService {
         })
       );
   }
+  
   logout(): Observable<any> {
     const token = this.getToken();
     const headers = new HttpHeaders({

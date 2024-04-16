@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../../../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { map, catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -37,24 +38,57 @@ export class TiposvuelosService {
 
   }
 
-  eliminarVuelos(id: number): Observable<any>{
-    const token = this.authService.getToken();
-    const headers = new HttpHeaders({
-      Authorization: `token ${token}`,
+  eliminarVuelos(id: number): Observable<any> {
+    return new Observable(observer => {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminarlo"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const token = this.authService.getToken();
+          const headers = new HttpHeaders({
+            Authorization: `token ${token}`,
+          });
+  
+          this.http.delete<any>(`${this.apiUrl}${id}/`, { headers })
+            .pipe(
+              map((response: any) => {
+                Swal.fire({
+                  icon: "success",
+                  title: "¡Muy bien!",
+                  text: "Vuelo eliminado con éxito",
+                  showConfirmButton: false,
+                  timer: 2500
+                });
+                return response;
+              }),
+              catchError((error) => {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Ocurrió un error al eliminar el vuelo.",
+                  showConfirmButton: false,
+                  timer: 2500
+                });
+                return throwError(error);
+              })
+            )
+            .subscribe(() => {
+              observer.next();
+              observer.complete();
+            });
+        } else {
+          observer.complete();
+        }
+      });
     });
-    return this.http.delete<any>(`${this.apiUrl}${id}/`, { headers })
-    .pipe(
-      map((response: any) => {
-        console.log(response);
-        return response;
-      }),
-      catchError((error) => {
-        console.error("Error al obtener los datos del vuelo", error);
-        return error;
-      })
-    );
-
   }
+  
 
   crearVuelo(vueloData: any): Observable<any> {
     const token = this.authService.getToken();
@@ -64,11 +98,23 @@ export class TiposvuelosService {
     return this.http.post<any>(this.apiUrl, vueloData, { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
+        Swal.fire({
+          icon: "success",
+          title: "¡Muy bien!",
+          text: "Vuelo añadido con éxito",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del vuelo", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ocurrió un error al añadir el vuelo.",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return error;
       })
     );
@@ -101,11 +147,23 @@ export class TiposvuelosService {
     return this.http.put<any>(`${this.apiUrl}${id}/`,  datos, { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
+        Swal.fire({
+          icon: "success",
+          title: "¡Muy bien!",
+          text: "Vuelo editado con éxito",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del vuelo", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ocurrió un error al editar el vuelo.",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return error;
       })
     );

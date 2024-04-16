@@ -1,13 +1,11 @@
 <div class="header bg-primary pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
     </div>
   </div>
 </div>
-<!-- Page content -->
+
 <div class="container-fluid mt--9">
-  <!-- Table -->
   <div class="row">
     <div class="col-lg-5">
       <div class="card shadow">
@@ -26,8 +24,8 @@
           </div>
           <div class="">
             <div class="d-flex justify-content-end">
-              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</a>
-              <button class="btn btn-primary mt-3 m-2" (click)="crearCanal()" [disabled]="!camposLlenos">Añadir</button>
+              <button type="button" class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</button>
+              <button type="button" class="btn btn-primary mt-3 m-2" (click)="crearCanal()" [disabled]="!camposLlenos">Añadir</button>
             </div>
           </div>
         </div>
@@ -35,4 +33,4 @@
       </div>
     </div>
   </div>
-  <!-- Dark table -->
+</div>

@@ -1,13 +1,11 @@
 <div class="header bg-primary pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <!-- Card stats -->
     </div>
   </div>
 </div>
-<!-- Page content -->
+
 <div class="container-fluid mt--9">
-  <!-- Table -->
   <div class="row">
     <div class="col-lg-7">
       <div class="card shadow">
@@ -20,16 +18,15 @@
             <div class="col-xl-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre" value="Fly Black">
+                <input type="text" id="input-text" class="form-control form-control-alternative border"  name="nombre" [(ngModel)]="nombre" (ngModelChange)="verificarCambios()">
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
-                <select class="form-select text-muted border" aria-label="Default select example" value="Activo">
-                  <option selected>Selecionar estado</option>
-                  <option value="1">Activo</option>
-                  <option value="2">Inactivo</option>
+                <select class="form-select text-muted border" aria-label="Default select example"  name="estado" [(ngModel)]="estado" (ngModelChange)="verificarCambios()">
+                  <option [ngValue]="true">Activo</option>
+                  <option [ngValue]="false">Inactivo</option>
                 </select>
               </div>
             </div>
@@ -37,8 +34,8 @@
           </div>
           <div class="">
             <div class="d-flex justify-content-end">
-              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2">Editar</a>
+              <button type="button" class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/config']">Cancelar</button>
+              <button type="button" class="btn btn-primary mt-3 m-2"  [disabled]="!edicionActiva" (click)="editarCanal()">Editar</button>
             </div>
           </div>
         </div>
@@ -46,4 +43,4 @@
       </div>
     </div>
   </div>
-  <!-- Dark table -->
+</div>

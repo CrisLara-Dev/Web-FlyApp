@@ -71,13 +71,9 @@ export class EditTVueloComponent implements OnInit {
       estado: this.estado
     };
 
-    // Llama al servicio para actualizar los datos del vuelo
     this.vuelosService.editarVuelo(this.id, vueloActualizado).subscribe(response => {
       console.log("Vuelo editado exitosamente:", response);
       this.router.navigate(['/config']);
-    }, error => {
-      // Manejo de errores
-      console.error("Error al editar el vuelo:", error);
     });
   }
 }

@@ -46,7 +46,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'crear-persona',     component: CrearPersonaComponent },
     { path: 'edit-persona',     component: EditPersonaComponent },
     { path: 'crear-canal',     component: CrearCanalComponent },
-    { path: 'edit-canal',     component: EditCanalComponent },
+    { path: 'edit-canal/:id',     component: EditCanalComponent },
     { path: 'config',     component: ConfiguracionComponent },
     { path: 'crear-red',     component: CrearRedComponent },
     { path: 'edit-red',     component: EditRedComponent },

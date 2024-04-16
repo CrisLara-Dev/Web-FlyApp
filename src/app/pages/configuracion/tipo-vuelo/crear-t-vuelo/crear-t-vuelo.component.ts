@@ -43,20 +43,7 @@ export class CrearTVueloComponent {
     };
   
     this.vuelosService.crearVuelo(vueloData).subscribe(response => {
-      // Navegar a la página de configuración
       this.router.navigate(['/config']);
-  
-      // Mostrar la alerta de éxito
-      Swal.fire({
-        icon: "success",
-        title: "¡Muy bien!",
-        text: "Vuelo añadido con éxito",
-        showConfirmButton: true,
-        // timer: 2500
-      });
-    }, error => {
-      console.error("Error al crear vuelo:", error);
     });
   }
-  
 }

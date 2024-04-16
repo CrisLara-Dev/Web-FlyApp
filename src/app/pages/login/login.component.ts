@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth/auth.service";
-import Swal from "sweetalert2";
 
 @Component({
   selector: "app-login",
@@ -27,17 +26,9 @@ export class LoginComponent {
         (response) => {
           // Éxito de inicio de sesión
           this.router.navigate(["/dashboard"]); // Redirigir al dashboard
-          Swal.fire({
-            icon: "success",
-            title: "¡Bienvenido!",
-            text: "Vuelo añadido con éxito",
-            showConfirmButton: false,
-            timer: 2500
-          });
         },
         (error) => {
           this.errorMessage = error; // Mostrar mensaje de error al usuario
-          
         }
       );
   }
