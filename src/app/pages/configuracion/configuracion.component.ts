@@ -297,20 +297,19 @@ export class ConfiguracionComponent implements OnInit {
     this.canalService.eliminarCanal(id).subscribe(
       () => {
         this.canales = this.canales.filter(canal => canal.id !== id);
-        this.totalCanales = this.canales.length; // Actualizar el número total de vuelos
-        this.paginasTotalesCanal = this.generarPaginasCanal(); // Generar números de página disponibles
+        this.totalCanales = this.canales.length; 
+        this.paginasTotalesCanal = this.generarPaginasCanal(); 
         
-        // Verificar si la página actual está fuera de rango después de eliminar un vuelo
         const totalPaginas = this.calcularTotalPaginasCanal();
         if (this.paginaActualCanal >= totalPaginas) {
-          this.paginaActualCanal = Math.max(0, totalPaginas - 1); // Retroceder una página si está fuera de rango
+          this.paginaActualCanal = Math.max(0, totalPaginas - 1); 
         }
       },
     );
   }
 
   obtenerCanalesPaginaActual() {
-    const startIndex = this.paginaActualPromo * this.canalesPorPagina;
+    const startIndex = this.paginaActualCanal * this.canalesPorPagina;
     const endIndex = startIndex + this.canalesPorPagina;
   
     // Aplicar el filtro por estado

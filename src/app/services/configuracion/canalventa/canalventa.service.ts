@@ -25,7 +25,6 @@ export class CanalventaService {
     return this.http.get<any>(this.apiUrl , { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
         return response;
       }),
       catchError((error) => {
@@ -58,7 +57,7 @@ export class CanalventaService {
                 Swal.fire({
                   icon: "success",
                   title: "¡Muy bien!",
-                  text: "Promoción eliminado con éxito",
+                  text: "Canal eliminado con éxito",
                   showConfirmButton: false,
                   timer: 2500
                 });
@@ -68,7 +67,7 @@ export class CanalventaService {
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
-                  text: "Ocurrió un error al eliminar la promoción.",
+                  text: "Ocurrió un error al eliminar la canal",
                   showConfirmButton: false,
                   timer: 2500
                 });
@@ -97,7 +96,7 @@ export class CanalventaService {
         Swal.fire({
           icon: "success",
           title: "¡Muy bien!",
-          text: "Vuelo añadido con éxito",
+          text: "Canal añadido con éxito",
           showConfirmButton: false,
           timer: 2500
         });
@@ -107,7 +106,7 @@ export class CanalventaService {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Ocurrió un error al añadir el vuelo.",
+          text: "Ocurrió un error al añadir el canal",
           showConfirmButton: false,
           timer: 2500
         });
@@ -124,11 +123,16 @@ export class CanalventaService {
     return this.http.get<any>(`${this.apiUrl}${id}/` , { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del canal", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ocurrió un error al obtener los datos del canal",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return error;
       })
     );
@@ -145,7 +149,7 @@ export class CanalventaService {
         Swal.fire({
           icon: "success",
           title: "¡Muy bien!",
-          text: "Vuelo editado con éxito",
+          text: "Canal editado con éxito",
           showConfirmButton: false,
           timer: 2500
         });
@@ -155,7 +159,7 @@ export class CanalventaService {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Ocurrió un error al editar el vuelo.",
+          text: "Ocurrió un error al editar el canal",
           showConfirmButton: false,
           timer: 2500
         });

@@ -54,7 +54,6 @@
               </tr>
           </thead>
           <tbody *ngIf="!cargandoDatos">
-            <!-- Iterar sobre los vuelos -->
             <ng-container *ngFor="let vuelo of obtenerVuelosPaginaActual(); let i = index">
               <tr>
                 <td>{{ i + 1 + (paginaActual * vuelosPorPagina) }}</td>
@@ -312,10 +311,10 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!cargandoDatos">
               <ng-container *ngFor="let canal of obtenerCanalesPaginaActual(); let i = index">
                 <tr>
-                  <td>{{ i + 1 + (paginaActualPromo * promocionesPorPagina) }}</td>
+                  <td>{{ i + 1 + (paginaActualCanal * canalesPorPagina) }}</td>
                   <th scope="row">
                     <div class="media align-items-center">
                       <div class="media-body">

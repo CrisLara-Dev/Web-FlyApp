@@ -27,11 +27,10 @@ export class TiposvuelosService {
     return this.http.get<any>(this.apiUrl , { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del vuelo", error);
+        console.error("Error al obtener los datos del tipo de vuelo", error);
         return error;
       })
     );
@@ -61,7 +60,7 @@ export class TiposvuelosService {
                 Swal.fire({
                   icon: "success",
                   title: "¡Muy bien!",
-                  text: "Vuelo eliminado con éxito",
+                  text: "Tipo de Vuelo eliminado con éxito",
                   showConfirmButton: false,
                   timer: 2500
                 });
@@ -71,7 +70,7 @@ export class TiposvuelosService {
                 Swal.fire({
                   icon: "error",
                   title: "Oops...",
-                  text: "Ocurrió un error al eliminar el vuelo.",
+                  text: "Ocurrió un error al eliminar el tipo de vuelo",
                   showConfirmButton: false,
                   timer: 2500
                 });
@@ -101,7 +100,7 @@ export class TiposvuelosService {
         Swal.fire({
           icon: "success",
           title: "¡Muy bien!",
-          text: "Vuelo añadido con éxito",
+          text: "Tipo de Vuelo añadido con éxito",
           showConfirmButton: false,
           timer: 2500
         });
@@ -111,7 +110,7 @@ export class TiposvuelosService {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Ocurrió un error al añadir el vuelo.",
+          text: "Ocurrió un error al añadir el tipo de vuelo",
           showConfirmButton: false,
           timer: 2500
         });
@@ -129,11 +128,16 @@ export class TiposvuelosService {
     return this.http.get<any>(`${this.apiUrl}${id}/`, { headers })
     .pipe(
       map((response: any) => {
-        console.log(response);
         return response;
       }),
       catchError((error) => {
-        console.error("Error al obtener los datos del vuelo", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Ocurrió un error al obtener los datos del tipo de vuelo",
+          showConfirmButton: false,
+          timer: 2500
+        });
         return error;
       })
     );
@@ -160,7 +164,7 @@ export class TiposvuelosService {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Ocurrió un error al editar el vuelo.",
+          text: "Ocurrió un error al editar el tipo de vuelo",
           showConfirmButton: false,
           timer: 2500
         });
