@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from '../../../services/reservation/reservation.service';
-import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
-
+import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
+import { TipospagoService } from 'src/app/services/configuracion/tipospago/tipospago.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Reserva } from 'src/app/models/reserva/reserva.model';
 @Component({
   selector: 'app-crear-reservation',
   templateUrl: './crear-reservation.component.html',
@@ -14,13 +16,33 @@ export class CrearReservationComponent implements OnInit {
   inputFiles: File[] = [];
   fileNames: string[] = [];
   tiposPago: string[] = [];
-
+  descuento: string[] = [];
+  reservas: Reserva[] = [];
+  cargandoDatos: boolean = true;
   tipos_pago: string;
+  promocion: string;
+  userId: any;
 
-  constructor(private reservationService: ReservationService,  private confService: ConfService, private router: Router) { }
+
+  constructor(private reservationService: ReservationService,  
+    private router: Router, 
+    private promocionService: PromocionService,
+    private tipopagosService: TipospagoService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.listarTiposPago();
+    this.listarDescuentos();
+
+    this.authService.getUserData().subscribe(
+      (data: any) => {
+        this.userId = data.id;
+        this.listarReservas();
+      },
+      error => {
+        console.error('Error al obtener los datos del usuario:', error);
+      }
+    );
   }
 
   handleFileInput(files: FileList): void {
@@ -73,13 +95,37 @@ export class CrearReservationComponent implements OnInit {
 
 
   listarTiposPago() {
-    this.confService.listarTiposPago().subscribe(
+    this.tipopagosService.listarTiposPago().subscribe(
       (data: any[]) => {
         // Filtrar los tipos de pago que tengan estado true
         this.tiposPago = data.filter(tipoPago => tipoPago.estado === true);
       },
       error => {
         console.error('Error al obtener los tipos de pago:', error);
+      }
+    );
+  }
+
+  listarDescuentos() {
+    this.promocionService.listarPromocion().subscribe(
+      (data: any[]) => {
+        // Filtrar los descuentos que tengan estado true
+        this.descuento = data.filter(descuento => descuento.estado === true);
+      },
+      error => {
+        console.error('Error al obtener los descuentos:', error);
+      }
+    );
+  }
+
+
+  listarReservas() {
+    this.reservationService.getFilteredReservas(this.userId).subscribe(
+      (data: Reserva[]) => {
+        this.reservas = data;
+      },
+      error => {
+        console.error('Error al obtener las reservas:', error);
       }
     );
   }

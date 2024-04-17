@@ -9,7 +9,7 @@ import { API_CONFIG } from 'src/app/config/api.config';
 })
 export class TipospagoService {
 
-  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.pago}`;
+  private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.TipoPago}`;
 
   constructor(
     private http: HttpClient, 
