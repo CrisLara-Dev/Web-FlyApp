@@ -131,4 +131,22 @@ export class ReservationService {
     );
   }
 
+  // PATCH para cambiar el estado de la reserva a true
+  updateEstadoReserva(reserva: Reserva): Observable<Reserva> {
+    const token = this.authService.getToken();
+    const headers = {
+      Authorization: `token ${token}`,
+    };
+    return this.http.patch<Reserva>(`${this.apiUrl}${reserva.id}/`, reserva , { headers }).pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      }),
+      catchError((error) => {
+        console.error("Error al obtener los datos Reserva", error);
+        return error;
+      })
+    );
+  }
+
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { API_CONFIG } from 'src/app/config/api.config';
 import Swal from 'sweetalert2';
@@ -27,9 +27,9 @@ export class PromocionService {
       map((response: any) => {
         return response;
       }),
-      catchError((error) => {
+      catchError((error) => { 
         console.error("Error al obtener los datos de la promocion", error);
-        return error;
+        return of([]); // Return the error
       })
     );
   }

@@ -16,6 +16,11 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 
 
+//FIREBASE
+
+
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,

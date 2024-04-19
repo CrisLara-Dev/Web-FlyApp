@@ -24,4 +24,7 @@ export const API_CONFIG = {
 
   // Tipo de Pago
   TipoPago: "TipoPago/",
+
+  // Tipo de Banco
+  TipoBanco: "Banco/",
 };
