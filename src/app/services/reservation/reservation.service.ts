@@ -13,9 +13,10 @@ export class ReservationService {
 
   private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.reserva}`;
 
-  constructor(private http: HttpClient , private authService: AuthService) { }
-
-  // Método para crear una nueva reserva
+  constructor(
+    private http: HttpClient , 
+    private authService: AuthService
+  ) { }
 
   getAllReservas(): Observable<Reserva[]> {
     const token = this.authService.getToken();
@@ -31,7 +32,6 @@ export class ReservationService {
         console.error("Error al obtener los datos Reserva", error);
         return error;
       })
-    
     );
   }
 
@@ -148,5 +148,4 @@ export class ReservationService {
       })
     );
   }
-
 }

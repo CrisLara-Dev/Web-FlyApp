@@ -22,9 +22,6 @@ export const API_CONFIG = {
   cerrar: "logout/",
   restablecerpass: "password-reset/",
 
-  // Tipo de Pago
   TipoPago: "TipoPago/",
-
-  // Tipo de Banco
   TipoBanco: "Banco/",
 };

@@ -1,11 +1,9 @@
 <nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
   <div class="container-fluid">
-    <!-- Toggler -->
     <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
        aria-controls="sidenav-collapse-main">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- Brand -->
     <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
       <div class="text-center text-muted">
         <small class="d-flex">
@@ -23,7 +21,6 @@
         </small>
       </div>
     </a>
-    <!-- User -->
     <ul class="nav align-items-center d-md-none">
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
@@ -78,15 +75,6 @@
             <i class="ni ni-single-02"></i>
             <span>Mi Perfil</span>
           </a>
-          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-settings-gear-65"></i>
-            <span>Ajustes</span>
-          </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Actividades</span>
-          </a> -->
-          <!-- <div class="dropdown-divider"></div> -->
           <a routerLinkActive="active" [routerLink]="['/login']" class="dropdown-item">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Cerrar Sesión</span>
@@ -94,9 +82,7 @@
         </div>
       </li>
     </ul>
-    <!-- Collapse -->
     <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
-      <!-- Collapse header -->
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-8 collapse-brand">
@@ -126,8 +112,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Navigation -->
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
               <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link font-weight-400">
@@ -136,29 +120,6 @@
               </a>
           </li>
       </ul>
-
-      <!-- Divider -->
-      <!-- <hr class="my-3"> -->
-      <!-- Heading -->
-      <!-- <h6 class="navbar-heading text-muted">Ajustes</h6> -->
-      <!-- Navigation -->
-      <!-- <ul class="navbar-nav mb-md-3">
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial">
-            <i class="ni ni-spaceship"></i> Trabajadores
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
-            <i class="ni ni-palette"></i> Usuarios
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
-            <i class="ni ni-ui-04"></i> Perfil
-          </a>
-        </li>
-      </ul> -->
     </div>
   </div>
 </nav>

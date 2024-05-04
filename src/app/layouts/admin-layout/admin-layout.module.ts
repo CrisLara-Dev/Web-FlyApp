@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
@@ -32,8 +32,8 @@ import { CrearRedComponent } from 'src/app/pages/configuracion/redes/crear-red/c
 import { EditRedComponent } from 'src/app/pages/configuracion/redes/edit-red/edit-red.component';
 import { EditReservationComponent } from 'src/app/pages/reservation/edit-reservation/edit-reservation.component';
 import { AsistenciasComponent } from 'src/app/pages/users/asistencias/asistencias.component';
+import { PromocionesComponent } from 'src/app/pages/configuracion/promociones/promociones.component';
 import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -43,7 +43,6 @@ import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    
   ],
   declarations: [
     DashboardComponent,
@@ -71,7 +70,8 @@ import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
     CrearRedComponent,
     EditRedComponent,
     EditReservationComponent,
-    AsistenciasComponent
+    AsistenciasComponent,
+    PromocionesComponent
   ]
 })
 

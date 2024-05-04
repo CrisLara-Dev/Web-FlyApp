@@ -4,16 +4,21 @@ import { Observable, catchError, finalize, map, throwError } from "rxjs";
 import { API_CONFIG } from "src/app/config/api.config";
 import { Router, RouterOutlet } from "@angular/router";
 import { Token } from "@angular/compiler";
-import Swal from "sweetalert2";
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: "root",
 })
+
 export class AuthService {
   private readonly tokenKey = "Token";
   private readonly roleKey = "userRole";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private toastr: ToastrService 
+  ) {}
 
   login(email: string, password: string): Observable<any> {
     const userData = {
@@ -22,28 +27,20 @@ export class AuthService {
     };
     return this.http.post(`${API_CONFIG.baseUrl}login/`, userData).pipe(
       map((response: any) => {
-        this.setToken(response.token);
-        this.setUserRole(response.user.rol.nombre); // Almacenar el rol del usuario
-        console.log("Inicio de sesión exitoso"); // Mostrar mensaje en la consola
-        Swal.fire({
-          icon: "success",
-          title: "¡Bienvenido!",
-          text: "Vuelo añadido con éxito",
-          showConfirmButton: false,
-          timer: 2000
-        });
-        return response;
+        const userRole = response.user.rol.nombre;
+        if (userRole === "Administrador" || userRole === "Community Manager") {
+          this.setToken(response.token);
+          this.setUserRole(userRole); 
+          this.toastr.success('¡Bienvenido!', 'Inicio de sesión exitoso'); 
+          return response;
+        } else {
+          this.toastr.warning('¡Rol no permitido!', 'Oops...'); 
+          this.router.navigate(["/login"]);
+        }
       }),
       catchError((error) => {
-        console.error("Error al iniciar sesión", error);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "¡Algo salio mal!",
-          showConfirmButton: false,
-          timer: 2000
-        });
-        throw error; // Re-lanzar el error para que el componente pueda manejarlo
+        this.toastr.error('¡Algo salió mal!', 'Oops...'); 
+        throw error; 
       })
     );
   }
@@ -129,5 +126,4 @@ export class AuthService {
     // Verificar si el rol del usuario es administrador
     return userRole === 'Administrador';
   }
-  
 }

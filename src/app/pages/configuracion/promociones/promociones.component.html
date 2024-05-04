@@ -1,0 +1,131 @@
+<div class="row mt-5">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0">Promociones</h3>
+      </div>
+     <div class="d-lg-flex justify-content-between">
+       <div>
+         <form class="form-inline ml-4 mb-3">
+          <div class="form-group mb-0 shadow border rounded" [ngClass]="{ 'focused': focus === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+              <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusquedaPromo">
+            </div>
+          </div>
+         </form>
+       </div>
+       <div>
+         <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
+          <div><i class="fa-solid fa-filter"></i></div>
+          <div class="ml-3">
+            <select class="form-select text-muted" aria-label="Default select example" [(ngModel)]="filtroEstadoPromo" >
+              <option value="todos">Todos</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <div class="text-center ml-3">
+            <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-promociones']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+          </div>
+         </div>
+       </div>
+     </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Código</th>
+              <th scope="col">Descuento</th>
+              <th scope="col">Fecha de Inicio</th>
+              <th scope="col">Fecha Fin</th>
+              <th scope="col">Estado</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="!cargandoDatos">
+          <ng-container *ngFor="let promocion of obtenerPromocionesPaginaActual(); let i = index">
+             <tr>
+              <td>{{ i + 1 + (paginaActualPromo * promocionesPorPagina) }}</td>
+               <th scope="row">
+                 <div class="media align-items-center">
+                   <div class="media-body">
+                     <span class="mb-0 text-sm">{{promocion.codigo}}</span>
+                   </div>
+                 </div>
+               </th>
+               <td>
+                 {{promocion.porcentaje}}%
+               </td>
+               <td>
+                 {{promocion.fecha_inicio}}
+               </td>
+               <td>
+                 {{promocion.fecha_fin}}
+               </td>
+               <td>
+                 <span class="badge badge-dot {{ promocion.estadoClase }}">
+                   <i class=" {{ promocion.estadoIcono }}"></i> {{ promocion.estadoTexto }}
+                 </span>
+               </td>
+               <td class="text-right">
+                 <div ngbDropdown placement="bottom-right">
+                   <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                     <i class="fas fa-ellipsis-v"></i>
+                   </a>
+                   <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                     <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-promociones', promocion.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                     <a (click)="eliminarPromociones(promocion.id)" class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                   </div>
+                 </div>
+               </td>
+             </tr>
+           </ng-container>
+           <tr *ngIf="sinResultadosPromo">
+            <td colspan="6">
+              <div class="alert text-center" role="alert">
+                No se encontraron resultados
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="sinPromocionesConEstado && !cargandoDatos">
+            <td colspan="6">
+              <div class="alert text-center" role="alert">
+                No hay promociones con el estado seleccionado
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="cargandoDatos" class="text-center mt-5">
+          <div class="lds-ripple"><div></div><div></div></div>            
+          <h5 class="mt-2">Cargando datos...</h5>
+        </div>  
+      </div>
+      <div class="card-footer py-4">
+        <nav aria-label="...">
+          <ul class="pagination justify-content-end mb-0">
+            <li class="page-item" (click)="irPaginaAnteriorPromo()" [class.disabled]="paginaActualPromo === 0">
+              <a class="page-link" tabindex="-1">
+                <i class="fas fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item" *ngFor="let pagina of paginasTotalesPromo" [class.active]="pagina === paginaActualPromo">
+              <a class="page-link" (click)="irAPaginaPromo(pagina)">{{ pagina + 1 }}</a>
+            </li>
+            <li class="page-item" (click)="irPaginaSiguientePromo()" [class.disabled]="paginaActualPromo === calcularTotalPaginasPromo() - 1">
+              <a class="page-link">
+                <i class="fas fa-angle-right"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

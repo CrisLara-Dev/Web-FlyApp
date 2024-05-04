@@ -9,13 +9,16 @@ import { API_RENIEC } from 'src/app/config/api-reniec.config';
 })
 export class ApiReniecService {
 
-constructor( private http: HttpClient, private router: Router) { }
+  constructor( 
+    private http: HttpClient, 
+    private router: Router
+  ) { }
 
-getDni(dni: string) {
-  return this.http.get(`${API_RENIEC.baseUrl}?numero=${dni}`, {
-    headers: {
-      Authorization: `Bearer ${API_RENIEC.authtoken}`
-    }
-  });
-}
+  getDni(dni: string) {
+    return this.http.get(`${API_RENIEC.baseUrl}?numero=${dni}`, {
+      headers: {
+        Authorization: `Bearer ${API_RENIEC.authtoken}`
+      }
+    });
+  }
 }

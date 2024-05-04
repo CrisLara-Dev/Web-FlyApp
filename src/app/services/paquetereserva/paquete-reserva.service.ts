@@ -11,7 +11,11 @@ import { Paquete } from 'src/app/models/paquetereserva/Paquete';
 export class PaqueteReservaService {
 
   private apiUrl = `${API_CONFIG.baseUrl}${API_CONFIG.paquete}`;
-  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  constructor(
+    private http: HttpClient, 
+    private authService: AuthService
+  ) { }
 
   getAllPaquetes(): Observable<Paquete[]> {
     const token = this.authService.getToken();
@@ -44,7 +48,6 @@ export class PaqueteReservaService {
         console.error("Error al obtener los datos del Paquete", error);
         return error;
       })
-    
     );
   }
 

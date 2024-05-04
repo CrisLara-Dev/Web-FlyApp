@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/services/reservation/reservation.service';
-import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
 import { TiposdocumentoService } from 'src/app/services/configuracion/tiposdocumento/tiposdocumento.service';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
@@ -78,7 +77,6 @@ export class CrearPersonaComponent implements OnInit {
   constructor(
     private reservationService: ReservationService, 
     private authService: AuthService,
-    private confService: ConfService, 
     private router: Router, 
     private documentService: TiposdocumentoService, 
     private vuelosService: TiposvuelosService,

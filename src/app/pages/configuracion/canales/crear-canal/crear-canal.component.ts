@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfService } from 'src/app/services/conf/conf.service';
 import { Router } from '@angular/router';
 import { CanalventaService } from 'src/app/services/configuracion/canalventa/canalventa.service';
 

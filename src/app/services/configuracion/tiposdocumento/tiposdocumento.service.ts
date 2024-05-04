@@ -32,6 +32,5 @@ export class TiposdocumentoService {
         return error;
       })
     );
-
   }
 }

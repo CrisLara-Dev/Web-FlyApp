@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service'; // Importa el servicio de autenticación
+import { AuthService } from '../../services/auth/auth.service';
 
 declare interface RouteInfo {
     path: string;
     title: string;
     icon: string;
     class: string;
-    allowedRoles?: string[]; // Agrega la propiedad allowedRoles opcional
+    allowedRoles?: string[]; 
 }
+
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Inicio',  icon: 'ni-tv-2 text-black', class: '', allowedRoles: ['Administrador'] },
     { path: '/reservation', title: 'Reservas',  icon:'fa-solid fa-bars-staggered text-black', class: '', allowedRoles: ['Administrador', 'Community Manager'] },
@@ -25,11 +26,15 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
   modalOpen: boolean = false;
   public menuItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router, private authService: AuthService) { } // Inyecta el servicio de autenticación
+  constructor(
+    private router: Router, 
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => {

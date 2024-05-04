@@ -32,6 +32,5 @@ export class TipospagoService {
         return error;
       })
     );
-
   }
 }

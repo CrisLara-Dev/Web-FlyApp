@@ -34,7 +34,6 @@ export class TiposvuelosService {
         return error;
       })
     );
-
   }
 
   eliminarVuelos(id: number): Observable<any> {
@@ -88,7 +87,6 @@ export class TiposvuelosService {
     });
   }
   
-
   crearVuelo(vueloData: any): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
@@ -118,7 +116,6 @@ export class TiposvuelosService {
       })
     );
   }
-
 
   obtenerVuelo(id: number): Observable<any> {
     const token = this.authService.getToken();
