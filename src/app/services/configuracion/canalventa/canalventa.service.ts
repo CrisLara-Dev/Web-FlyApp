@@ -43,14 +43,14 @@ export class CanalventaService {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sí, eliminarlo"
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar" 
       }).then((result) => {
         if (result.isConfirmed) {
           const token = this.authService.getToken();
           const headers = new HttpHeaders({
             Authorization: `token ${token}`,
           });
-  
           return this.http.delete<any>(`${this.apiUrl}${id}/` , { headers })
           .pipe(
               map((response: any) => {

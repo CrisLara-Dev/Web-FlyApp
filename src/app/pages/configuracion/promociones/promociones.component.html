@@ -27,6 +27,13 @@
               <option value="inactivo">Inactivo</option>
             </select>
           </div>
+          <!-- <div class="mx-3">
+            <select class="form-select filas text-muted border" aria-label="Default select example" (change)="cambiarFilas($event)">
+              <option value="2">2</option>
+              <option value="5" selected>5</option>
+              <option value="8">8</option>
+            </select>
+          </div> -->
           <div class="text-center ml-3">
             <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-promociones']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
           </div>
@@ -102,7 +109,7 @@
         </table>
         <div *ngIf="cargandoDatos" class="text-center mt-5">
           <div class="lds-ripple"><div></div><div></div></div>            
-          <h5 class="mt-2">Cargando datos...</h5>
+          <div class="mt-2 alert">Cargando datos...</div>
         </div>  
       </div>
       <div class="card-footer py-4">

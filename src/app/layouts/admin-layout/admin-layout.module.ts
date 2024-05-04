@@ -34,6 +34,8 @@ import { EditReservationComponent } from 'src/app/pages/reservation/edit-reserva
 import { AsistenciasComponent } from 'src/app/pages/users/asistencias/asistencias.component';
 import { PromocionesComponent } from 'src/app/pages/configuracion/promociones/promociones.component';
 import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
+import { CanalesComponent } from 'src/app/pages/configuracion/canales/canales.component';
+import { TipoVueloComponent } from 'src/app/pages/configuracion/tipo-vuelo/tipo-vuelo.component';
 
 @NgModule({
   imports: [
@@ -71,7 +73,9 @@ import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
     EditRedComponent,
     EditReservationComponent,
     AsistenciasComponent,
-    PromocionesComponent
+    PromocionesComponent,
+    CanalesComponent,
+    TipoVueloComponent,
   ]
 })
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-promociones',
@@ -22,12 +23,15 @@ export class EditPromocionesComponent implements OnInit {
   porcentaje: number;
   estado: string;
 
+  fechaMinima: string; // Fecha mínima permitida
   edicionActiva: boolean = false;
 
   constructor(
     private router: Router, 
     private route: ActivatedRoute, 
-    private promoService: PromocionService
+    private promoService: PromocionService,
+    private toastr: ToastrService 
+
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +49,8 @@ export class EditPromocionesComponent implements OnInit {
         this.fecha_fin = this.fecha_finOriginal;
         this.porcentaje = this.porcentajeOriginal;
         this.estado = this.estadoOriginal;
+
+        this.fechaMinima = new Date().toISOString().substring(0, 10); // Establecer la fecha actual como fecha mínima
       });
     });
   }
@@ -62,8 +68,22 @@ export class EditPromocionesComponent implements OnInit {
       this.edicionActiva = false;
     }
   }
-
+  
   editarPromocion(): void {
+    const fechaActual = new Date().toISOString().substring(0, 10);
+
+    if (this.fecha_inicio < fechaActual) {
+      // console.error("La fecha de inicio no puede ser anterior a la fecha actual.");
+      this.toastr.error('¡Algo salió mal!', 'Oops...'); 
+      return;
+    }
+
+    if (this.fecha_fin < this.fecha_inicio) {
+      // console.error("La fecha de fin no puede ser anterior a la fecha de inicio.");
+      this.toastr.error('¡Algo salió mal!', 'Oops...'); 
+      return;
+    }
+
     const promoActualizado = {
       codigo: this.codigo,
       fecha_inicio: this.fecha_inicio,
