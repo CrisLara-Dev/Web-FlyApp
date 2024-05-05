@@ -52,7 +52,8 @@ export class CrearReservationComponent implements OnInit {
   };
 
 
-  constructor(private reservationService: ReservationService,  
+  constructor(
+    private reservationService: ReservationService,  
     private router: Router, 
     private promocionService: PromocionService,
     private tipobancoService: TipobancoService,
@@ -60,7 +61,8 @@ export class CrearReservationComponent implements OnInit {
     private tipopagosService: TipospagoService,
     private paqueteReservaService: PaqueteReservaService,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.listarTiposPago();

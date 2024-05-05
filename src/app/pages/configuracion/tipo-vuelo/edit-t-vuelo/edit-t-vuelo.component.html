@@ -18,25 +18,25 @@
               <div class="col-xl-3 col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                  <input type="text" id="input-text" class="form-control form-control-alternative border" name="tipo" [(ngModel)]="tipo" (ngModelChange)="verificarCambios()">
+                  <input type="text" id="input-text" class="form-control form-control-alternative border" name="tipo" [(ngModel)]="vueloEditado.tipo" (ngModelChange)="verificarCambios()">
                 </div>
               </div>
               <div class="col-xl-3 col-lg-6">
                 <div class="form-group text-start">
                   <label class="form-control-label d-flex justify-content-start" for="input-number">Precio</label>
-                  <input type="number" id="input-number" class="form-control form-control-alternative border"  name="precio" [(ngModel)]="precio" (ngModelChange)="verificarCambios()">
+                  <input type="number" id="input-number" class="form-control form-control-alternative border"  name="precio" [(ngModel)]="vueloEditado.precio" (ngModelChange)="verificarCambios()">
                 </div>
               </div>
               <div class="col-xl-3 col-lg-6">
                 <div class="form-group">
-                  <label class="form-control-label d-flex justify-content-start" for="input-number">Tiempo (minutos)</label>
-                  <input type="number" id="input-number" class="form-control form-control-alternative border"  name="tiempo" [(ngModel)]="tiempo" (ngModelChange)="verificarCambios()">
+                  <label class="form-control-label d-flex justify-content-start" for="input-text">Tiempo (minutos)</label>
+                  <input type="text" id="input-text" class="form-control form-control-alternative border"  name="tiempo" [(ngModel)]="vueloEditado.tiempo" (ngModelChange)="verificarCambios()">
                 </div>
               </div>
               <div class="col-xl-3 col-lg-6">
                 <div class="form-group">
                   <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
-                  <select class="form-select text-muted border" aria-label="Default select example" name="estado" [(ngModel)]="estado" (ngModelChange)="verificarCambios()">
+                  <select class="form-select text-muted border" aria-label="Default select example" name="estado" [(ngModel)]="vueloEditado.estado" (ngModelChange)="verificarCambios()">
                     <option [ngValue]="true">Activo</option>
                     <option [ngValue]="false">Inactivo</option>
                   </select>

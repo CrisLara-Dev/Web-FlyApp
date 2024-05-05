@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
+import { Promociones } from 'src/app/models';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,11 +11,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearPromocionesComponent implements OnInit {
   
-  codigo: string;
-  fecha_inicio: string = new Date().toISOString().substring(0, 10); // Establecer la fecha actual como valor predeterminado
-  fecha_fin: string;
-  porcentaje: number;
-  estado: boolean;
+  promocion: Promociones = {
+    codigo: '',
+    fecha_inicio: new Date().toISOString().substring(0, 10),
+    fecha_fin: '',
+    porcentaje: null,
+    estado: true,
+  };
 
   fechaMinima: string;
   camposLlenos: boolean = false;
@@ -25,40 +28,45 @@ export class CrearPromocionesComponent implements OnInit {
     private toastr: ToastrService 
   ) { }
 
-
   ngOnInit() {
     this.generarCodigo();
-    this.fechaMinima = this.fecha_inicio; // Establecer la fecha mínima como la fecha actual
+    this.fechaMinima = this.promocion.fecha_inicio;
   }
 
   verificarCamposLlenos() {
-    this.camposLlenos = !!(this.codigo && this.fecha_inicio && this.fecha_fin && this.porcentaje);
+    this.camposLlenos = !!(this.promocion.codigo && this.promocion.fecha_inicio && this.promocion.fecha_fin && this.promocion.porcentaje);
   }
 
   crearPromocion() {
-    if (!this.codigo || !this.fecha_inicio || !this.fecha_fin || !this.porcentaje) {
+    if (!this.promocion.codigo || !this.promocion.fecha_inicio || !this.promocion.fecha_fin || !this.promocion.porcentaje) {
       console.error("Por favor, complete todos los campos obligatorios.");
       return; 
     }
 
     const fechaActual = new Date().toISOString().substring(0, 10);
-    if (this.fecha_inicio < fechaActual) {
+    if (this.promocion.fecha_inicio < fechaActual) {
       this.toastr.error('¡Algo salió mal!', 'Oops...'); 
       return;
     }
-  
-    const descuentoData = {
-      codigo: this.codigo,
-      fecha_inicio: this.fecha_inicio,
-      fecha_fin: this.fecha_fin,
-      porcentaje: this.porcentaje,
-      estado: this.estado,
-    };
-  
-    this.promoService.crearPromocion(descuentoData).subscribe(response => {
-      this.router.navigate(['/config']);
+
+    if (this.promocion.fecha_fin < this.promocion.fecha_inicio) {
+      this.toastr.error('¡Algo salió mal!', 'Oops...'); 
+      return;
+    }
+
+    // Verificar si el código promocional ya existe
+    this.promoService.listarPromocion().subscribe((promociones: Promociones[]) => {
+      const codigoExistente = promociones.find(promo => promo.codigo === this.promocion.codigo);
+      if (codigoExistente) {
+        this.toastr.error(`El código promocional '${codigoExistente.codigo}' ya está en uso.`, '¡Error!', { positionClass: 'toast-bottom-right' });
+      } else {
+        this.promoService.crearPromocion(this.promocion).subscribe(response => {
+          this.router.navigate(['/config']);
+        });
+      }
     });
   }
+
 
   generarCodigo() {
     const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -66,6 +74,6 @@ export class CrearPromocionesComponent implements OnInit {
     for (let i = 0; i < 5; i++) {
       codigoAleatorio += letras.charAt(Math.floor(Math.random() * letras.length));
     }
-    this.codigo = codigoAleatorio;
+    this.promocion.codigo = codigoAleatorio;
   }
 }

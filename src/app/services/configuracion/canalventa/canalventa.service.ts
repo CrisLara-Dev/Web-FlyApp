@@ -4,6 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { API_CONFIG } from 'src/app/config/api.config';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
+import { Canales } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +18,21 @@ export class CanalventaService {
     private authService: AuthService
   ) { }
 
-  listarCanal(): Observable<any> {
+  listarCanal(): Observable<Canales[]> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(this.apiUrl , { headers })
+    return this.http.get<Canales[]>(this.apiUrl , { headers })
     .pipe(
-      map((response: any) => {
-        return response;
-      }),
       catchError((error) => {
         console.error("Error al obtener los datos del canal", error);
-        return error;
+        return throwError(error);
       })
     );
   }
 
-  eliminarCanal(id: number): Observable<any> {
+  eliminarCanal(id: number): Observable<void> {
     return new Observable(observer => {
       Swal.fire({
         title: "¿Estás seguro?",
@@ -51,20 +49,10 @@ export class CanalventaService {
           const headers = new HttpHeaders({
             Authorization: `token ${token}`,
           });
-          return this.http.delete<any>(`${this.apiUrl}${id}/` , { headers })
+          return this.http.delete<void>(`${this.apiUrl}${id}/` , { headers })
           .pipe(
-              map((response: any) => {
-                Swal.fire({
-                  icon: "success",
-                  title: "¡Muy bien!",
-                  text: "Canal eliminado con éxito",
-                  showConfirmButton: false,
-                  timer: 2500
-                });
-                return response;
-              }),
-              catchError((error) => {
-                Swal.fire({
+            catchError(error => {
+              Swal.fire({
                   icon: "error",
                   title: "Oops...",
                   text: "Ocurrió un error al eliminar la canal",
@@ -72,12 +60,18 @@ export class CanalventaService {
                   timer: 2500
                 });
                 return throwError(error);
-              })
-            )
-            .subscribe(() => {
-              observer.next();
-              observer.complete();
-            });
+              }),
+            ).subscribe(() => {
+              Swal.fire({
+                  icon: "success",
+                  title: "¡Muy bien!",
+                  text: "Canal eliminado con éxito",
+                  showConfirmButton: false,
+                  timer: 2500
+                });
+                observer.next();
+                observer.complete();
+              });
         } else {
           observer.complete();
         }
@@ -85,12 +79,12 @@ export class CanalventaService {
     });
   }
 
-  crearCanal(canalData: any): Observable<any> {
+  crearCanal(canalData: Canales): Observable<Canales> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.post<any>(this.apiUrl , canalData,{ headers })
+    return this.http.post<Canales>(this.apiUrl , canalData,{ headers })
     .pipe(
       map((response: any) => {
         Swal.fire({
@@ -115,16 +109,13 @@ export class CanalventaService {
     );
   }
 
-  obtenerCanal(id: number): Observable<any> {
+  obtenerCanal(id: number): Observable<Canales> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${this.apiUrl}${id}/` , { headers })
+    return this.http.get<Canales>(`${this.apiUrl}${id}/` , { headers })
     .pipe(
-      map((response: any) => {
-        return response;
-      }),
       catchError((error) => {
         Swal.fire({
           icon: "error",
@@ -133,17 +124,17 @@ export class CanalventaService {
           showConfirmButton: false,
           timer: 2500
         });
-        return error;
+        return throwError(error);
       })
     );
   }
 
-  editarCanal(id: number, datos: any): Observable<any> {
+  editarCanal(id: number, datos: Canales): Observable<Canales> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.put<any>(`${this.apiUrl}${id}/` , datos, { headers })
+    return this.http.put<Canales>(`${this.apiUrl}${id}/` , datos, { headers })
     .pipe(
       map((response: any) => {
         Swal.fire({

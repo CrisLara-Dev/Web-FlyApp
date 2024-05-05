@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Promociones } from 'src/app/models';
 import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
 
 @Component({
@@ -10,13 +11,13 @@ export class PromocionesComponent implements OnInit {
 
   public focus;
 
-  promociones: any[] = [];
+  promociones: Promociones[] = [];
   totalPromociones: number;
   promocionesPorPagina: number = 5; 
   paginaActualPromo: number = 0;
   paginasTotalesPromo: number[] = []; 
   filtroEstadoPromo: string = 'todos'; 
-  promocionesFiltrados: any[] = []; 
+  promocionesFiltrados: Promociones[] = []; 
   terminoBusquedaPromo: string = '';
   sinResultadosPromo: boolean = false;
   sinPromocionesConEstado: boolean = false;

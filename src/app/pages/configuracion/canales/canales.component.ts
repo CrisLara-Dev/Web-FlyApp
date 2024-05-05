@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CanalventaService } from 'src/app/services/configuracion/canalventa/canalventa.service';
+import { Canales } from 'src/app/models';
 
 @Component({
   selector: 'app-canales',
@@ -10,13 +11,13 @@ export class CanalesComponent implements OnInit {
 
   public focus;
 
-  canales: any[] = [];
+  canales: Canales[] = [];
   totalCanales: number;
   canalesPorPagina: number = 5;
   paginaActualCanal: number = 0;
   paginasTotalesCanal: number[] = []; 
   filtroEstadoCanal: string = 'todos'; 
-  canalesFiltrados: any[] = []; 
+  canalesFiltrados: Canales[] = []; 
   terminoBusquedaCanal: string = '';
   sinResultadosCanal: boolean = false;
   sinCanalesConEstado: boolean = false;

@@ -18,13 +18,13 @@
             <div class="col-xl-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border"  name="nombre" [(ngModel)]="nombre" (ngModelChange)="verificarCambios()">
+                <input type="text" id="input-text" class="form-control form-control-alternative border"  name="nombre" [(ngModel)]="canalEditado.nombre" (ngModelChange)="verificarCambios()">
               </div>
             </div>
             <div class="col-xl-6">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
-                <select class="form-select text-muted border" aria-label="Default select example"  name="estado" [(ngModel)]="estado" (ngModelChange)="verificarCambios()">
+                <select class="form-select text-muted border" aria-label="Default select example"  name="estado" [(ngModel)]="canalEditado.estado" (ngModelChange)="verificarCambios()">
                   <option [ngValue]="true">Activo</option>
                   <option [ngValue]="false">Inactivo</option>
                 </select>

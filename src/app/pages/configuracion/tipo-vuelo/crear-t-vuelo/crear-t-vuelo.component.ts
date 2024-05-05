@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
-import Swal from 'sweetalert2';
+import { Tipovuelos } from 'src/app/models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-crear-t-vuelo',
@@ -10,40 +11,44 @@ import Swal from 'sweetalert2';
 })
 export class CrearTVueloComponent {
 
-  tipo: string;
-  precio: number;
-  tiempo: string;
-  estado: boolean;
+  nuevoVuelo: Tipovuelos = {
+    tipo: '',
+    precio: null,
+    tiempo: '',
+    estado: true,
+  };
 
   camposLlenos: boolean = false;
 
   constructor(
     private router: Router,
-    private vuelosService: TiposvuelosService
-    ) { }
+    private vuelosService: TiposvuelosService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
   }
 
   verificarCamposLlenos() {
-    this.camposLlenos = !!(this.tipo && this.precio && this.tiempo);
+    this.camposLlenos = !!(this.nuevoVuelo.tipo && this.nuevoVuelo.precio && this.nuevoVuelo.tiempo);
   }
 
   crearVuelo() {
-    if (!this.tipo || !this.precio || !this.tiempo) {
+    if (!this.nuevoVuelo.tipo || !this.nuevoVuelo.precio || !this.nuevoVuelo.tiempo) {
       console.error("Por favor, complete todos los campos obligatorios.");
       return; 
     }
-  
-    const vueloData = {
-      tipo: this.tipo,
-      precio: this.precio,
-      tiempo: this.tiempo,
-      estado: this.estado,
-    };
-  
-    this.vuelosService.crearVuelo(vueloData).subscribe(response => {
-      this.router.navigate(['/config']);
+    
+    // Verificar si el tipo de vuelo ya existe
+    this.vuelosService.listarVuelos().subscribe((tiposVuelos: Tipovuelos[]) => {
+      const tipoExistente = tiposVuelos.find(tipo => tipo.tipo === this.nuevoVuelo.tipo);
+      if (tipoExistente) {
+        this.toastr.error(`El tipo de vuelo '${tipoExistente.tipo}' ya está en uso.`, '¡Error!',{ positionClass: 'toast-bottom-right' });
+      } else {
+        this.vuelosService.crearVuelo(this.nuevoVuelo).subscribe(response => {
+          this.router.navigate(['/config']);
+        });
+      }
     });
   }
 }

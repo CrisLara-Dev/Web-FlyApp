@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tipovuelos } from 'src/app/models';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
 
 @Component({
@@ -10,13 +11,13 @@ export class TipoVueloComponent implements OnInit {
 
   public focus;
 
-  vuelos: any[] = [];
+  vuelos: Tipovuelos[] = []; // Cambiar el tipo de datos a TipoVuelo[]
   totalVuelos: number;
   vuelosPorPagina: number = 5; // Cambiar el número de vuelos por página a 5
   paginaActual: number = 0; // Página actual, comenzando desde 0
   paginasTotales: number[] = []; // Arreglo para almacenar los números de página disponibles
   filtroEstado: string = 'todos'; // Estado seleccionado inicialmente
-  vuelosFiltrados: any[] = []; // Arreglo para almacenar los vuelos filtrados
+  vuelosFiltrados: Tipovuelos[] = []; // Cambiar el tipo de datos a TipoVuelo[]
   terminoBusqueda: string = '';
   sinResultados: boolean = false;
   sinVuelosConEstado: boolean = false;

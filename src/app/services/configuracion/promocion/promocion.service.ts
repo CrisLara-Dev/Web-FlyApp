@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, throwError } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { API_CONFIG } from 'src/app/config/api.config';
 import Swal from 'sweetalert2';
+import { Promociones } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,25 +18,22 @@ export class PromocionService {
     private authService: AuthService
   ) { }
 
-  listarPromocion(): Observable<any> {
+  listarPromocion(): Observable<Promociones[]> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(this.apiUrl , { headers })
+    return this.http.get<Promociones[]>(this.apiUrl , { headers })
     .pipe(
-      map((response: any) => {
-        return response;
-      }),
       catchError((error) => { 
         console.error("Error al obtener los datos de la promocion", error);
-        return of([]); // Return the error
+        return throwError(error);
       })
     );
   }
 
-  eliminarPromocion(id: number): Observable<any> {
-    return new Observable(observer => {
+  eliminarPromocion(id: number): Observable<void> {
+    return new Observable<void>(observer => {
       Swal.fire({
         title: "¿Estás seguro?",
         text: "¡No podrás revertir esto!",
@@ -51,20 +49,10 @@ export class PromocionService {
           const headers = new HttpHeaders({
             Authorization: `token ${token}`,
           });
-          return this.http.delete<any>(`${this.apiUrl}${id}/` , { headers })
+          return this.http.delete<void>(`${this.apiUrl}${id}/` , { headers })
           .pipe(
-              map((response: any) => {
-                Swal.fire({
-                  icon: "success",
-                  title: "¡Muy bien!",
-                  text: "Promoción eliminado con éxito",
-                  showConfirmButton: false,
-                  timer: 2500
-                });
-                return response;
-              }),
-              catchError((error) => {
-                Swal.fire({
+            catchError(error => {
+              Swal.fire({
                   icon: "error",
                   title: "Oops...",
                   text: "Ocurrió un error al eliminar la promoción",
@@ -72,9 +60,15 @@ export class PromocionService {
                   timer: 2500
                 });
                 return throwError(error);
-              })
-            )
-            .subscribe(() => {
+              }),
+            ).subscribe(() => {
+                Swal.fire({
+                  icon: "success",
+                  title: "¡Muy bien!",
+                  text: "Promoción eliminado con éxito",
+                  showConfirmButton: false,
+                  timer: 2500
+                });
               observer.next();
               observer.complete();
             });
@@ -85,12 +79,12 @@ export class PromocionService {
     });
   }
 
-  crearPromocion(descuentoData: any): Observable<any> {
+  crearPromocion(descuentoData: Promociones): Observable<Promociones> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.post<any>(this.apiUrl, descuentoData, { headers })
+    return this.http.post<Promociones>(this.apiUrl, descuentoData, { headers })
     .pipe(
       map((response: any) => {
         Swal.fire({
@@ -115,16 +109,14 @@ export class PromocionService {
     );
   }
 
-  obtenerPromocion(id: number): Observable<any> {
+  
+  obtenerPromocion(id: number): Observable<Promociones> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.get<any>(`${this.apiUrl}${id}/` , { headers })
+    return this.http.get<Promociones>(`${this.apiUrl}${id}/` , { headers })
     .pipe(
-      map((response: any) => {
-        return response;
-      }),
       catchError((error) => {
         Swal.fire({
           icon: "error",
@@ -133,17 +125,17 @@ export class PromocionService {
           showConfirmButton: false,
           timer: 2500
         });
-        return error;
+        return throwError(error);
       })
     );
   }
 
-  editarPromocion(id: number, datos: any): Observable<any> {
+  editarPromocion(id: number, datos: Promociones): Observable<Promociones> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `token ${token}`,
     });
-    return this.http.put<any>(`${this.apiUrl}${id}/` , datos, { headers })
+    return this.http.put<Promociones>(`${this.apiUrl}${id}/` , datos, { headers })
     .pipe(
       map((response: any) => {
         Swal.fire({

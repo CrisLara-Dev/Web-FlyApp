@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PromocionService } from 'src/app/services/configuracion/promocion/promocion.service';
 import { ToastrService } from 'ngx-toastr';
+import { Promociones } from '../../../../models/index';
 
 @Component({
   selector: 'app-edit-promociones',
@@ -11,17 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class EditPromocionesComponent implements OnInit {
   id: number; 
   
-  codigoOriginal: string;
-  fecha_inicioOriginal: string;
-  fecha_finOriginal: string;
-  porcentajeOriginal: number;
-  estadoOriginal: string;
-
-  codigo: string;
-  fecha_inicio: string;
-  fecha_fin: string;
-  porcentaje: number;
-  estado: string;
+  promocionOriginal: Promociones;
+  promocionEditada: Promociones;
 
   fechaMinima: string; // Fecha mínima permitida
   edicionActiva: boolean = false;
@@ -31,69 +23,59 @@ export class EditPromocionesComponent implements OnInit {
     private route: ActivatedRoute, 
     private promoService: PromocionService,
     private toastr: ToastrService 
-
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('id'); 
       this.promoService.obtenerPromocion(this.id).subscribe(data => {
-        this.codigoOriginal = data.codigo;
-        this.fecha_inicioOriginal = data.fecha_inicio;
-        this.fecha_finOriginal = data.fecha_fin;
-        this.porcentajeOriginal = data.porcentaje;
-        this.estadoOriginal = data.estado;
-
-        this.codigo = this.codigoOriginal;
-        this.fecha_inicio = this.fecha_inicioOriginal;
-        this.fecha_fin = this.fecha_finOriginal;
-        this.porcentaje = this.porcentajeOriginal;
-        this.estado = this.estadoOriginal;
+        this.promocionOriginal = data;
+        this.promocionEditada = { ...this.promocionOriginal };
 
         this.fechaMinima = new Date().toISOString().substring(0, 10); // Establecer la fecha actual como fecha mínima
+        this.verificarCambios();
       });
     });
   }
 
   verificarCambios(): void {
-    if (
-      this.codigo !== this.codigoOriginal ||
-      this.fecha_inicio !== this.fecha_inicioOriginal ||
-      this.fecha_fin !== this.fecha_finOriginal ||
-      this.porcentaje !== this.porcentajeOriginal ||
-      this.estado !== this.estadoOriginal
-    ) {
-      this.edicionActiva = true;
-    } else {
-      this.edicionActiva = false;
-    }
+    // Verificar si hay cambios en los campos
+    const cambiosCodigo = this.promocionEditada.codigo !== this.promocionOriginal.codigo;
+    const cambiosFechaFin = this.promocionEditada.fecha_fin !== this.promocionOriginal.fecha_fin;
+    const cambiosFechaInicio = this.promocionEditada.fecha_inicio !== this.promocionOriginal.fecha_inicio;
+    const cambiosPorcentaje = this.promocionEditada.porcentaje !== this.promocionOriginal.porcentaje;
+    const cambiosEstado = this.promocionEditada.estado !== this.promocionOriginal.estado;
+
+    // Activar la edición si hay algún cambio y todos los campos están llenos
+    this.edicionActiva = (cambiosCodigo || cambiosFechaFin || cambiosFechaInicio || cambiosPorcentaje || cambiosEstado) && 
+                    !!(this.promocionEditada.codigo && this.promocionEditada.fecha_fin && this.promocionEditada.fecha_inicio && this.promocionEditada.porcentaje );
   }
   
   editarPromocion(): void {
     const fechaActual = new Date().toISOString().substring(0, 10);
 
-    if (this.fecha_inicio < fechaActual) {
-      // console.error("La fecha de inicio no puede ser anterior a la fecha actual.");
-      this.toastr.error('¡Algo salió mal!', 'Oops...'); 
-      return;
+    if (this.promocionEditada.fecha_inicio < fechaActual) {
+        this.toastr.error('La fecha de inicio no puede ser anterior a la fecha actual.', '¡Algo salió mal!',{ positionClass: 'toast-bottom-right' }); 
+        return;
     }
 
-    if (this.fecha_fin < this.fecha_inicio) {
-      // console.error("La fecha de fin no puede ser anterior a la fecha de inicio.");
-      this.toastr.error('¡Algo salió mal!', 'Oops...'); 
-      return;
+    if (this.promocionEditada.fecha_fin < this.promocionEditada.fecha_inicio) {
+        this.toastr.error('La fecha de fin no puede ser anterior a la fecha de inicio.', '¡Algo salió mal!',{ positionClass: 'toast-bottom-right' }); 
+        return;
     }
 
-    const promoActualizado = {
-      codigo: this.codigo,
-      fecha_inicio: this.fecha_inicio,
-      fecha_fin: this.fecha_fin,
-      porcentaje: this.porcentaje,
-      estado: this.estado
-    };
-
-    this.promoService.editarPromocion(this.id, promoActualizado).subscribe(response => {
-      this.router.navigate(['/config']);
+    // Verificar si el código promocional ya existe
+    this.promoService.listarPromocion().subscribe(promociones => {
+        const promocionConMismoCodigo = promociones.find(promo => promo.codigo === this.promocionEditada.codigo && promo.id !== this.id);
+        if (promocionConMismoCodigo) {
+            this.toastr.error(`El código promocional '${promocionConMismoCodigo.codigo}' ya está en uso.`, '¡Error!', { positionClass: 'toast-bottom-right' });
+        } else {
+            // Si el código no existe, realizar la edición
+            this.promoService.editarPromocion(this.id, this.promocionEditada).subscribe(response => {
+                console.log("Promoción editada exitosamente:", response);
+                this.router.navigate(['/config']);
+            });
+        }
     });
   }
 }

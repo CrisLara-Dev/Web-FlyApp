@@ -18,19 +18,19 @@
             <div class="col-xl-4">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
-                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre" [(ngModel)]="tipo" (input)="verificarCamposLlenos()">
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el nombre" [(ngModel)]="nuevoVuelo.tipo" (input)="verificarCamposLlenos()">
               </div>
             </div>
             <div class="col-xl-4">
               <div class="form-group text-start">
                 <label class="form-control-label d-flex justify-content-start" for="input-number">Precio</label>
-                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el precio" [(ngModel)]="precio" (input)="verificarCamposLlenos()">
+                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el precio" [(ngModel)]="nuevoVuelo.precio" (input)="verificarCamposLlenos()">
               </div>
             </div>
             <div class="col-xl-4">
               <div class="form-group">
-                <label class="form-control-label d-flex justify-content-start" for="input-number">Tiempo (minutos)</label>
-                <input type="number" id="input-number" class="form-control form-control-alternative border" placeholder="Ingrese el tiempo" [(ngModel)]="tiempo" (input)="verificarCamposLlenos()">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">Tiempo (minutos)</label>
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el tiempo" [(ngModel)]="nuevoVuelo.tiempo" (input)="verificarCamposLlenos()">
               </div>
             </div>
           </div>
