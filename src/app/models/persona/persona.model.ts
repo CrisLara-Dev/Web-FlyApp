@@ -1,4 +1,5 @@
 export interface Persona {
+    id?: number;
     nombre: string;
     apellido: string;
     foto_url?: string;
@@ -11,4 +12,5 @@ export interface Persona {
     dni_nino?: string;
     nombre_nino?: string;
     tipo_documento: number;
+    numeroFila?: number; // Agregar la propiedad numeroFila
 }

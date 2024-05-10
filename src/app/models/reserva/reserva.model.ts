@@ -1,4 +1,4 @@
-import { Persona } from '../persona/persona.model';
+import { Persona } from '../Persona/persona.model';
 
 export interface Reserva {
     id?: number;

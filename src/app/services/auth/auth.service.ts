@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, catchError, finalize, map, throwError } from "rxjs";
+import { BehaviorSubject, Observable, catchError, finalize, map, throwError } from "rxjs";
 import { API_CONFIG } from "src/app/config/api.config";
 import { Router, RouterOutlet } from "@angular/router";
 import { Token } from "@angular/compiler";
@@ -13,13 +13,17 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   private readonly tokenKey = "Token";
   private readonly roleKey = "userRole";
+  private userDetailsSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public userDetails$: Observable<any> = this.userDetailsSubject.asObservable();
 
   constructor(
     private http: HttpClient, 
     private router: Router,
     private toastr: ToastrService 
   ) {}
-
+  setUserDetails(userDetails: any): void {
+    this.userDetailsSubject.next(userDetails);
+  }
   login(email: string, password: string): Observable<any> {
     const userData = {
       email,
@@ -126,4 +130,5 @@ export class AuthService {
     // Verificar si el rol del usuario es administrador
     return userRole === 'Administrador';
   }
+
 }

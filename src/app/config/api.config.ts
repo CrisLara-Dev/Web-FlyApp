@@ -24,4 +24,6 @@ export const API_CONFIG = {
 
   TipoPago: "TipoPago/",
   TipoBanco: "Banco/",
+
+  persona: "Persona/",
 };

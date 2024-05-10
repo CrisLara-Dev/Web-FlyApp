@@ -1,45 +1,36 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(https://flyuniversal.pe/cdn/shop/collections/1_4_1.jpg?v=1676600553); background-size: cover; background-position: center top;">
-  <!-- Mask -->
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 400px; background-image: url(https://flyuniversal.pe/cdn/shop/collections/1_4_1.jpg?v=1676600553); background-size: cover; background-position: center top;">
   <span class="mask bg-primary opacity-7"></span>
-  <!-- Header container -->
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Editar Perfil</h1>
-        <p class="text-white mt-0 mb-5 font-weight-400">Aquí podrás ver tus credenciales y datos de la cuenta. Además, el progreso de tus asistencias.</p>
-        <a class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</a>
-        <a  class="btn btn-primary">Guardar cambios</a>
-      </div>
-    </div>
-  </div>
 </div>
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--10">
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
         <div class="row justify-content-center">
           <div class="col-12 order-lg-2">
             <div class="card-profile-image">
-              <img [src]="imagePath" class="rounded-circle img-profile">
+              <img  [src]="personaEditado.foto_url" class="rounded-circle img-profile">
             </div>
             <div class="mt-9 d-flex justify-content-center">
-              <div class="file-upload-container">
+              <div class="mb-5 file-upload-container">
                 <label class="file-upload-button" for="fileInput"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Subir foto</label>
                 <input id="fileInput" class="file-input" name="file" type="file" (change)="handleFileInput($event.target.files)" />
               </div>
             </div>
           </div>
         </div>
-        <div class="card-body pt-0 pt-md-2">
+        <!-- <div class="card-body pt-0 pt-md-2">
           <div class="text-center">
             <h3>
-              Jessica Jones
+              {{personaEditado.nombre}}
             </h3>
             <div class="h5 font-weight-400">
-              <i class="ni location_pin"></i> Super Administrador
+              <i class="ni location_pin"></i>{{personaEditado.nombre}}
+            </div>
+            <div class="my-5">
+              <a class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-xl-8 order-xl-1">
@@ -53,82 +44,61 @@
         </div>
         <div class="card-body bg-secondary">
           <form>
-            <h6 class="heading-small text-muted mb-4">Información del Usuario</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" placeholder="Ingrese su correo electrónico"  value="lucky.jesse@gmail.com">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="">
-                    <label class="form-control-label" for="input-password">Contraseña</label>
-                    <input type="password" id="input-password" class="form-control form-control-alternative" value="lucky.jesse" disabled>
-                  </div>
-                  <div class="d-flex justify-content-start text-right mt-2">
-                    <a class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4" />
-            <!-- Address -->
-            <h6 class="heading-small text-muted mb-4">Información Personal</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Nombres</label>
-                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres" value="Jessica Daylin">
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres" name="nombre" [(ngModel)]="personaEditado.nombre" (ngModelChange)="verificarCambios()" disabled>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Apellidos</label>
-                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" value="Jones Balvin">
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" name="apellido" [(ngModel)]="personaEditado.apellido" (ngModelChange)="verificarCambios()" disabled>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-5">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-address">Dirección</label>
-                    <input id="input-address" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" placeholder="Ingrese su correo electrónico" name="email" [(ngModel)]="personaEditado.email" (ngModelChange)="verificarCambios()" disabled>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Dirección</label>
+                    <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()"></textarea> -->
+                    <input id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-city">DNI</label>
-                    <input type="number" id="input-city" class="border form-control form-control-alternative" value="78965412"  placeholder="Ingrese su DNI">
+                    <label class="form-control-label" for="input-text">DNI</label>
+                    <input type="text" id="input-text" class="border form-control form-control-alternative"  placeholder="Ingrese su DNI" name="documento_identidad" (keypress)="limitarLongitud($event, 8)" [(ngModel)]="personaEditado.documento_identidad" (ngModelChange)="verificarCambios()" disabled>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Teléfono</label>
-                    <input type="number" id="input-country" class="border form-control form-control-alternative" value="987456324"  placeholder="Ingrese su teléfono">
+                    <label class="form-control-label" for="input-text">Teléfono</label>
+                    <input type="text" id="input-text" class="border form-control form-control-alternative" value="987456324"  placeholder="Ingrese su teléfono" name="telefono" (keypress)="limitarLongitud($event, 9)" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Rol</label>
                     <input type="text" id="input-postal-code" class="border form-control form-control-alternative" value="Super Administrador"  disabled>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
-            <!-- <hr class="my-4" /> -->
-            <!-- Description -->
-            <!-- <h6 class="heading-small text-muted mb-4">About me</h6>
-            <div class="pl-lg-4">
-              <div class="form-group">
-                <label>About Me</label>
-                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-              </div>
-            </div> -->
+            <div class="mt-2 d-flex justify-content-end">
+              <a class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</a>
+              <button  class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
+            </div>
           </form>
         </div>
       </div>
@@ -136,7 +106,7 @@
   </div>
 </div>
 
-<div class="perfil-container">
+<!-- <div class="perfil-container">
   <div *ngIf="modalOpen" class="modal-overlay">
     <div class="bg-secondary modal-content col-sm-8 col-xl-3 col-md-5 m-3" (click)="stopPropagation($event)">
       <div class="p-sm-4 p-2">
@@ -162,4 +132,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

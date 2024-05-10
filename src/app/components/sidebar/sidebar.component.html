@@ -62,9 +62,7 @@
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
-            <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
-            </span>
+            <img class="avatar avatar-sm rounded-circle" [src]="userDetails.foto_url" alt="foto">
           </div>
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
@@ -75,7 +73,7 @@
             <i class="ni ni-single-02"></i>
             <span>Mi Perfil</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['/login']" class="dropdown-item">
+          <a href="#!" class="dropdown-item"  routerLinkActive="active" (click)="logout()">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Cerrar Sesión</span>
           </a>

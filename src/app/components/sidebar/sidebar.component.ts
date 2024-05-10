@@ -27,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
-  modalOpen: boolean = false;
+  public userDetails: any;
   public menuItems: any[];
   public isCollapsed = true;
 
@@ -48,5 +48,23 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+   this.getUserDetails();
   }  
+
+  logout() {
+    this.authService.logout().subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  getUserDetails() {
+    this.authService.getUserData().subscribe(
+      (response: any) => {
+        this.userDetails = response; // Asignar los detalles del usuario a la variable userDetails
+      },
+      (error) => {
+        console.error('Error al obtener los detalles del usuario:', error);
+      }
+    );
+  }
 }

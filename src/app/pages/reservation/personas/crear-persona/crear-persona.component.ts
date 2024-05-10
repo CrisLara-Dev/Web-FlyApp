@@ -3,7 +3,7 @@ import { ReservationService } from 'src/app/services/reservation/reservation.ser
 import { Router } from '@angular/router';
 import { TiposdocumentoService } from 'src/app/services/configuracion/tiposdocumento/tiposdocumento.service';
 import { TiposvuelosService } from 'src/app/services/configuracion/tiposvuelos/tiposvuelos.service';
-import { Persona } from 'src/app/models/persona/persona.model';
+import { Persona } from 'src/app/models/Persona/persona.model';
 import { Reserva } from 'src/app/models/reserva/reserva.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';

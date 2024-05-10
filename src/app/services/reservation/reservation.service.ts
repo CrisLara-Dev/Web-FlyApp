@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs'; // Agrega esta línea para importar Observable
 import { API_CONFIG } from '../..//config/api.config';
 import { Reserva } from 'src/app/models/reserva/reserva.model';
-import { Persona } from 'src/app/models/persona/persona.model';
+import { Persona } from 'src/app/models/Persona/persona.model';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({

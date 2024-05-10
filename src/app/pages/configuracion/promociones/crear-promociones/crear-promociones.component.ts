@@ -29,7 +29,7 @@ export class CrearPromocionesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.generarCodigo();
+    // this.generarCodigo();
     this.fechaMinima = this.promocion.fecha_inicio;
   }
 
@@ -68,12 +68,12 @@ export class CrearPromocionesComponent implements OnInit {
   }
 
 
-  generarCodigo() {
-    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let codigoAleatorio = 'FLY-';
-    for (let i = 0; i < 5; i++) {
-      codigoAleatorio += letras.charAt(Math.floor(Math.random() * letras.length));
-    }
-    this.promocion.codigo = codigoAleatorio;
-  }
+  // generarCodigo() {
+  //   const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //   let codigoAleatorio = 'FLY-';
+  //   for (let i = 0; i < 5; i++) {
+  //     codigoAleatorio += letras.charAt(Math.floor(Math.random() * letras.length));
+  //   }
+  //   this.promocion.codigo = codigoAleatorio;
+  // }
 }

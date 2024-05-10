@@ -38,11 +38,11 @@
                 <span class="text-muted">Mostrar contraseña</span>
               </label>
             </div>
+            <p *ngIf="errorMessage" class="h5 text-center text-danger mt-3">{{ errorMessage }}</p>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4 mt-5" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+              <button type="submit" class="btn btn-primary mb-4 mt-5" [disabled]="loginForm.invalid">Iniciar Sesión</button>
             </div>
           </form>
-
           <div class="text-center mb-4 mb-xl-3">
             <a routerLinkActive="active" [routerLink]="['/reset-password']" class="text-muted"><small>¿Has olvidado tu contraseña?</small></a>
           </div>

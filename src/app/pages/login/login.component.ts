@@ -11,24 +11,28 @@ export class LoginComponent {
   email: string;
   password: string;
   passwordType: string = "password";
-  errorMessage: string;
+  errorMessage: string = "";
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ) {}
 
   togglePasswordVisibility(): void {
     this.passwordType = this.passwordType === "password" ? "text" : "password";
   }
 
   login(): void {
+    this.errorMessage = ""; // Restablecer el mensaje de error
+
     this.authService
       .login(this.email, this.password)
       .subscribe(
         (response) => {
-          // Éxito de inicio de sesión
-          this.router.navigate(["/dashboard"]); // Redirigir al dashboard
+          this.router.navigate(["/dashboard"]);
         },
         (error) => {
-          this.errorMessage = error; // Mostrar mensaje de error al usuario
+          this.errorMessage = "Por favor, verifica tu correo electrónico y contraseña."; 
         }
       );
   }

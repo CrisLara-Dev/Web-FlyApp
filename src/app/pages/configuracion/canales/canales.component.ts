@@ -88,7 +88,7 @@ export class CanalesComponent implements OnInit {
         return canal.estado === (this.filtroEstadoCanal === 'activo');
       }
     });
-  
+
     const canalesFiltradosPorBusqueda = this.terminoBusquedaCanal ?
       canalesFiltrados.filter(canal => canal.nombre.toLowerCase().includes(this.terminoBusquedaCanal.toLowerCase())) :
       canalesFiltrados;
