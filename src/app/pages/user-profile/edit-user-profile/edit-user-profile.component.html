@@ -13,7 +13,8 @@
             <div class="mt-9 d-flex justify-content-center">
               <div class="mb-5 file-upload-container">
                 <label class="file-upload-button" for="fileInput"><i class="fa-solid fa-cloud-arrow-up mr-2"></i>Subir foto</label>
-                <input id="fileInput" class="file-input" name="file" type="file" (change)="handleFileInput($event.target.files)" />
+                <input id="fileInput" class="file-input" type="file" (change)="handleFileInput($event.target.files)" name="foto_url"  >
+                  <!-- <input id="fileInput" class="file-input" type="file" (change)="handleFileInput($event.target.files)" name="foto_url"  [(ngModel)]="personaEditado.foto_url" (ngModelChange)="verificarCambios()"> -->
               </div>
             </div>
           </div>
@@ -87,6 +88,7 @@
                     <input type="text" id="input-text" class="border form-control form-control-alternative" value="987456324"  placeholder="Ingrese su teléfono" name="telefono" (keypress)="limitarLongitud($event, 9)" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
+                
                 <!-- <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Rol</label>
@@ -94,8 +96,16 @@
                   </div>
                 </div> -->
               </div>
+              <!-- <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Foto</label>
+                    <input type="text" id="input-text" class="border form-control form-control-alternative"  placeholder="Ingrese su DNI" name="foto_url"  [(ngModel)]="personaEditado.foto_url" (ngModelChange)="verificarCambios()">
+                  </div>
+                </div>
+              </div> -->
             </div>
-            <div class="mt-2 d-flex justify-content-end">
+            <div class="mb-2 mt-3 d-flex justify-content-end">
               <a class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</a>
               <button  class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
             </div>

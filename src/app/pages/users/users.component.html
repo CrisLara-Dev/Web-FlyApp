@@ -27,8 +27,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-search"></i></span>
                  </div>
-                 <input class="form-control" placeholder="Buscar" type="text" (focus)="focus = true"
-                 (blur)="focus = false">
+                 <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
                </div>
              </div>
            </form>
@@ -37,10 +36,10 @@
            <div class="mr-lg-4 ml-4 mb-3 d-flex align-items-center">
             <div><i class="fa-solid fa-filter"></i></div>
             <div class="ml-3">
-              <select class="form-select text-muted" aria-label="Default select example">
-                <option selected>Filtrar por</option>
-                <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
+              <select class="form-select text-muted" aria-label="Default select example" [(ngModel)]="filtroEstado" >
+                <option value="todos">Todos</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
               </select>
             </div>
             <div class="text-center ml-3">
@@ -53,172 +52,84 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Administrador</th>
-                <th scope="col">Trabajador</th>
+                <th scope="col">#</th>
+                <th scope="col">Nombres y Apellidos</th>
                 <th scope="col">Correo Electrónico</th>
                 <th scope="col">Rol</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm"> Lesly Paredes</span>
+            <tbody *ngIf="!cargandoDatos">
+              <ng-container *ngFor="let usuario of obtenerUsuariosPaginaActual(); let i = index">
+                <tr>
+                  <td>{{ i + 1 + (paginaActual * usuariosPorPagina) }}</td>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        <span class="mb-0 text-sm">{{ usuario.persona.nombre }} {{ usuario.persona.apellido }}</span>
+                      </div>
                     </div>
-                  </div>
-                </th>
-                <td>
-                  Cristian Andres
-                </td>
-                <td>
-                  cristian@gmail.com
-                </td>
-                <td>
-                  Agente
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users']"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                  </th>
+                  <td>
+                    {{ usuario.email }}
+                  </td>
+                  <td>
+                    {{ usuario.rol }}
+                  </td>
+                  <td>
+                    <span class="badge badge-dot {{ usuario.estadoClase }}">
+                      <i class=" {{ usuario.estadoIcono }}"></i> {{ usuario.estadoTexto }}
+                    </span>
+                  </td>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                        <i class="fas fa-ellipsis-v"></i>
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users', usuario.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
+                        <a (click)="eliminarUsuarios(usuario.id)"  class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Lesly Paredes</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 Valeria Paredes
-                </td>
-                <td>
-                 valeria@gmail.com
-                </td>
-                <td>
-                  Administrador
-                </td>
-                <td>
-                  <span class="badge badge-dot text-success">
-                    <i class="bg-success"></i> Activo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+              <tr *ngIf="sinResultados">
+                <td colspan="6">
+                  <div class="alert text-center" role="alert">
+                    No se encontraron resultados
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Lesly Paredes </span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Luis Sivera 
-                </td>
-                <td>
-                  marcos@gmail.com
-                </td>
-                <td>
-                  Piloto
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-danger">
-                    <i class="bg-danger"></i> Inactivo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Lesly Paredes </span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Marcos Sivera 
-                </td>
-                <td>
-                  marcos@gmail.com
-                </td>
-                <td>
-                  Super Administrador
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 text-danger">
-                    <i class="bg-danger"></i> Inactivo
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown  placement="top-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                      <a class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
-                    </div>
+              <tr *ngIf="sinUsuariosConEstado && !cargandoDatos">
+                <td colspan="6">
+                  <div class="alert text-center" role="alert">
+                    No hay trabajadores con el estado seleccionado
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div *ngIf="cargandoDatos" class="text-center mt-5">
+            <div class="lds-ripple"><div></div><div></div></div>            
+            <div class="alert mt-2">Cargando datos...</div>
+          </div>  
         </div>
         <div class="card-footer py-4">
           <nav aria-label="...">
             <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+              <li class="page-item" (click)="irPaginaAnterior()" [class.disabled]="paginaActual === 0">
+                <a class="page-link" tabindex="-1">
                   <i class="fas fa-angle-left"></i>
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
+              <li class="page-item" *ngFor="let pagina of paginasTotales" [class.active]="pagina === paginaActual">
+                <a class="page-link" (click)="irAPagina(pagina)">{{ pagina + 1 }}</a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
+              <li class="page-item" (click)="irPaginaSiguiente()" [class.disabled]="paginaActual === calcularTotalPaginas() - 1">
+                <a class="page-link">
                   <i class="fas fa-angle-right"></i>
                   <span class="sr-only">Next</span>
                 </a>

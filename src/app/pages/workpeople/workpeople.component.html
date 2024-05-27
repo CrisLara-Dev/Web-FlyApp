@@ -78,7 +78,6 @@
                 <th scope="col">Nombres y Apellidos</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Correo Electrónico</th>
-                <th scope="col">Usuario</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
               </tr>
@@ -108,11 +107,6 @@
                       <i class=" {{ persona.estadoIcono }}"></i> {{ persona.estadoTexto }}
                     </span>
                   </td>
-                  <td>
-                    <span class="badge badge-dot {{ persona.estadoClase }}">
-                      <i class=" {{ persona.estadoIcono }}"></i> {{ persona.estadoTexto }}
-                    </span>
-                  </td>
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">
                       <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
@@ -120,7 +114,7 @@
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                         <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-workpeople', persona.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                        <a (click)="eliminarPersonas(persona.id)" class="dropdown-item d-flex align-items-center text-danger" href="javascript:void(0)"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                        <a (click)="eliminarPersonas(persona.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                       </div>
                     </div>
                   </td>

@@ -95,16 +95,19 @@ export class EditUserProfileComponent implements OnInit {
     if (files && files.length > 0) {
       const file = files[0];
       const reader = new FileReader();
-  
+
       reader.onload = (event: any) => {
-        // Asignar la URL del archivo cargado a personaEditado.foto_url
-        this.personaEditado.foto_url = event.target.result;
+        this.personaEditado.foto_url = event.target.result; // Asigna la URL de la imagen al objeto personaEditado
+        this.imagePath = event.target.result; // Actualiza la vista previa de la imagen si es necesario
+        console.log("URL de la imagen:", this.personaEditado.foto_url); // Muestra la URL de la imagen en la consola
+        this.verificarCambios();
       };
-  
+
       reader.readAsDataURL(file);
     }
   }
-  
+
+
 
   limitarLongitud(event: any, max_length: number) {
     const input = event.target;

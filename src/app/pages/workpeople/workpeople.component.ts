@@ -48,7 +48,7 @@ export class WorkpeopleComponent implements OnInit {
           persona.estadoIcono = persona.estado ? 'bg-success' : 'bg-danger';
           return persona;
         });
-        this.personas = data.filter(persona => persona.trabajador);
+        this.personas = data.filter(persona => persona.estado);
         this.totalPersonas = this.personas.length; // Actualizar el número total de personas
         this.paginasTotales = this.generarPaginas(); // Generar números de página disponibles
         this.cargandoDatos = false; // Finalizar animación de carga
