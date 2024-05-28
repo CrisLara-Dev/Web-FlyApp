@@ -78,6 +78,7 @@
                 <th scope="col">Nombres y Apellidos</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Correo Electrónico</th>
+                <th scope="col">Usuario</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
               </tr>
@@ -103,6 +104,14 @@
                     {{ persona.email }}
                   </td>
                   <td>
+                    <div class="d-flex justify-content-center">
+                      <label class="switch">
+                       <input type="checkbox" [checked]="persona.trabajador" disabled>
+                       <span class="slider round"></span>
+                      </label>       
+                    </div>           
+                  </td>
+                  <td>
                     <span class="badge badge-dot {{ persona.estadoClase }}">
                       <i class=" {{ persona.estadoIcono }}"></i> {{ persona.estadoTexto }}
                     </span>
@@ -114,7 +123,7 @@
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                         <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-workpeople', persona.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                        <a (click)="eliminarPersonas(persona.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                        <a (click)="eliminarTrabajador(persona.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                       </div>
                     </div>
                   </td>

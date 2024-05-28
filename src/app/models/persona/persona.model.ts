@@ -7,10 +7,10 @@ export interface Persona {
     email?: string;
     direccion?: string;
     documento_identidad: string;
-    trabajador: boolean;
+    trabajador?: boolean;
     estado: boolean;
     dni_nino?: string;
     nombre_nino?: string;
-    tipo_documento: number;
+    tipo_documento?: number;
     numeroFila?: number; // Agregar la propiedad numeroFila
 }
