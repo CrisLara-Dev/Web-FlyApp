@@ -10,8 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit-t-vuelo.component.scss']
 })
 export class EditTVueloComponent implements OnInit {
+  
   id: number; 
-
   vueloOriginal: Tipovuelos;
   vueloEditado: Tipovuelos;
 

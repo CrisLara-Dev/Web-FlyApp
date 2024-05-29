@@ -85,13 +85,13 @@ export class WorkpeopleComponent implements OnInit {
       if (this.filtroEstado === 'todos') {
         return true; // Mostrar todos los trabajadores si no hay filtro aplicado
       } else {
-        return persona.estado === (this.filtroEstado === 'activo'); // Filtrar los vuelos por estado
+        return persona.trabajador === (this.filtroEstado === 'activo'); // Filtrar los vuelos por estado
       }
     });
   
     // Filtrar los vuelos por término de búsqueda si hay un término definido
     const personasFiltradosPorBusqueda = this.terminoBusqueda ?
-      personasFiltrados.filter(persona => persona.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) :
+      personasFiltrados.filter(persona => persona.documento_identidad.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) :
       personasFiltrados;
   
     // Verificar si no se encontraron resultados

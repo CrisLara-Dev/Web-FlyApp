@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Persona } from 'src/app/models';
+import { PersonaService } from 'src/app/services/persona/persona.service';
 
 @Component({
   selector: 'app-edit-workpeople',
@@ -6,17 +10,69 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-workpeople.component.scss']
 })
 export class EditWorkpeopleComponent implements OnInit {
+
   imagePath: string = 'assets/img/theme/team-4-800x800.jpg';
   modalOpen: boolean = false;
-  constructor() { }
 
-  ngOnInit() {
+  id: number; 
+  personaOriginal: Persona;
+  personaEditado: Persona;
+
+  edicionActiva: boolean = false;
+
+
+  constructor(
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private personasService: PersonaService,
+    private toastr: ToastrService
+  ) { }
+
+  ngOnInit(): void {
+    // Obtener el ID del persona de los parámetros de la ruta
+    this.route.paramMap.subscribe(params => {
+      this.id = +params.get('id'); // Convertir a number
+      // Llamar al servicio para obtener los datos del persona
+      this.personasService.obtenerPersona(this.id).subscribe(data => {
+        // Almacenar los datos originales
+        this.personaOriginal = data;
+        // Clonar el persona original para editar
+        this.personaEditado = { ...this.personaOriginal };
+        // Verificar si la edición está activa
+        this.verificarCambios();
+      });
+    });
   }
 
-  stopPropagation(event: Event) {
-    event.stopPropagation();
+  verificarCambios(): void {
+    // Verificar si hay cambios en los campos
+    const cambiosNombre = this.personaEditado.nombre !== this.personaOriginal.nombre;
+    const cambiosApellido = this.personaEditado.apellido !== this.personaOriginal.apellido;
+    const cambiosDNI = this.personaEditado.documento_identidad !== this.personaOriginal.documento_identidad;
+    const cambiosDireccion = this.personaEditado.direccion !== this.personaOriginal.direccion;
+    const cambiosTelefono = this.personaEditado.telefono !== this.personaOriginal.telefono;
+    const cambiosCorreo = this.personaEditado.email !== this.personaOriginal.email;
+
+
+    // Activar la edición si hay algún cambio y todos los campos están llenos
+    this.edicionActiva = (cambiosNombre || cambiosApellido || cambiosDNI || cambiosDireccion || cambiosTelefono || cambiosCorreo) && 
+                         !!(this.personaEditado.nombre && this.personaEditado.apellido && this.personaEditado.documento_identidad 
+                          && this.personaEditado.direccion && this.personaEditado.telefono && this.personaEditado.email);
   }
-  
+
+  editarPersona(): void {
+    // Verificar si el tipo de vuelo editado ya existe
+    this.personasService.listarPersonas().subscribe((personas: Persona[]) => {
+      const personaExistente = personas.find(personaEditado => personaEditado.nombre === this.personaEditado.nombre  && personaEditado.apellido === this.personaEditado.apellido && personaEditado.documento_identidad === this.personaEditado.documento_identidad && personaEditado.id !== this.id);
+      if (personaExistente) {
+        this.toastr.error(`La persona '${personaExistente.nombre} ${personaExistente.apellido}' con DNI ${personaExistente.documento_identidad} ya está registrada.`, '¡Error!', { positionClass: 'toast-bottom-right' });
+      } else {
+        this.personasService.editarPersona(this.id, this.personaEditado).subscribe(response => {
+          this.router.navigate(['/workpeople']);
+        });
+      }
+    });
+  }
 
   handleFileInput(files: FileList): void {
     if (files && files.length > 0) {
@@ -24,12 +80,14 @@ export class EditWorkpeopleComponent implements OnInit {
       const reader = new FileReader();
 
       reader.onload = (event: any) => {
-        this.imagePath = event.target.result;
+        this.personaEditado.foto_url = event.target.result; // Asigna la URL de la imagen al objeto personaEditado
+        this.imagePath = event.target.result; // Actualiza la vista previa de la imagen si es necesario
+        console.log("URL de la imagen:", this.personaEditado.foto_url); // Muestra la URL de la imagen en la consola
+        this.verificarCambios();
       };
 
       reader.readAsDataURL(file);
     }
   }
-
 
 }

@@ -85,16 +85,9 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Teléfono</label>
-                    <input type="text" id="input-text" class="border form-control form-control-alternative" value="987456324"  placeholder="Ingrese su teléfono" name="telefono" (keypress)="limitarLongitud($event, 9)" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
+                    <input type="text" id="input-text" class="border form-control form-control-alternative"  placeholder="Ingrese su teléfono" name="telefono" (keypress)="limitarLongitud($event, 9)" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
-                
-                <!-- <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-country">Rol</label>
-                    <input type="text" id="input-postal-code" class="border form-control form-control-alternative" value="Super Administrador"  disabled>
-                  </div>
-                </div> -->
               </div>
               <div class="row">
                 <div class="col-lg-4">

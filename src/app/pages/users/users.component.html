@@ -67,12 +67,12 @@
                   <th scope="row">
                     <div class="media align-items-center">
                       <div class="media-body">
-                        <span class="mb-0 text-sm">{{ usuario.persona.nombre }} {{ usuario.persona.apellido }}</span>
+                        <span class="mb-0 text-sm"> {{ usuario.email }}</span>
                       </div>
                     </div>
                   </th>
                   <td>
-                    {{ usuario.email }}
+                    {{ usuario.persona.nombre }} {{ usuario.persona.apellido }}
                   </td>
                   <td>
                     {{ usuario.rol.nombre }}

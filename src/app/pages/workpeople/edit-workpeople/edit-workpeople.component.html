@@ -40,13 +40,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Nombres</label>
-                    <input type="text" id="input-text" class="form-control form-control-alternative border" value="Jessica Nares"  placeholder="Ingrese sus nombres" >
+                    <input type="text" id="input-text" class="form-control form-control-alternative border"  placeholder="Ingrese sus nombres" name="nombre" [(ngModel)]="personaEditado.nombre" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Apellidos</label>
-                    <input type="text" id="input-text" class="form-control form-control-alternative border" value="Jones Balvin"  placeholder="Ingrese sus apellidos">
+                    <input type="text" id="input-text" class="form-control form-control-alternative border"  placeholder="Ingrese sus apellidos" name="apellido" [(ngModel)]="personaEditado.apellido" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Dirección</label>
-                    <input id="input-address" class="form-control form-control-alternative border"  type="text"  value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"  placeholder="Ingrese su dirección">
+                    <input id="input-address" class="form-control form-control-alternative border"  type="text"  placeholder="Ingrese su dirección" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
@@ -62,21 +62,27 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-city">DNI</label>
-                    <input type="number" id="input-city" class="form-control form-control-alternative border" value="78965412"  placeholder="Ingrese su DNI" >
+                    <input type="number" id="input-city" class="form-control form-control-alternative border" value="78965412"  placeholder="Ingrese su DNI" name="documento_identidad" [(ngModel)]="personaEditado.documento_identidad" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Teléfono</label>
-                    <input type="number" id="input-country" class="form-control form-control-alternative border" value="987456324"  placeholder="Ingrese su teléfono">
+                    <input type="number" id="input-country" class="form-control form-control-alternative border" value="987456324"  placeholder="Ingrese su teléfono"name="telefono" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative border" value="987456324"  placeholder="Ingrese su correo electrónico"name="email" [(ngModel)]="personaEditado.email" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
             </div>
             <div class="">
               <div class="d-flex justify-content-end">
-                <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/workpeople']">Cancelar</a>
-                <a class="btn btn-primary mt-3 m-2" routerLinkActive="active" [routerLink]="['/edit-workpeople']">Editar trabajador</a>
+                <button class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/workpeople']">Cancelar</button>
+                <button class="btn btn-primary mt-3 m-2"  [disabled]="!edicionActiva" (click)="editarPersona()">Editar trabajador</button>
               </div>
             </div>
             <!-- <hr class="my-4" /> -->
