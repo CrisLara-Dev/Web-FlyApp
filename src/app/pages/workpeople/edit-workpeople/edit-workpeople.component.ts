@@ -61,9 +61,23 @@ export class EditWorkpeopleComponent implements OnInit {
   }
 
   editarPersona(): void {
+     // Validación del correo electrónico
+     if (!this.personaEditado.email.match('^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com)$')) {
+      this.toastr.error('Por favor, ingrese un correo electrónico válido de Gmail o Outlook.', 'Error', { positionClass: 'toast-bottom-right' });
+      return;
+    }
+
+    // Verificar si el correo electrónico ya existe en la base de datos
+    this.personasService.listarPersonas().subscribe((personas: Persona[]) => {
+      const emailExistente = personas.find(personaEditado => personaEditado.email === this.personaEditado.email);
+      if (emailExistente) {
+        this.toastr.error(`El correo '${emailExistente.email}' ya ha sido registrado.`, 'Error', { positionClass: 'toast-bottom-right' });
+        return; // Evitar que la función continúe si se encuentra un email existente
+      }
+
     // Verificar si el tipo de vuelo editado ya existe
     this.personasService.listarPersonas().subscribe((personas: Persona[]) => {
-      const personaExistente = personas.find(personaEditado => personaEditado.nombre === this.personaEditado.nombre  && personaEditado.apellido === this.personaEditado.apellido && personaEditado.documento_identidad === this.personaEditado.documento_identidad && personaEditado.id !== this.id);
+      const personaExistente = personas.find(personaEditado => personaEditado.nombre === this.personaEditado.nombre  && personaEditado.apellido === this.personaEditado.apellido && personaEditado.documento_identidad === this.personaEditado.documento_identidad  && personaEditado.id !== this.id);
       if (personaExistente) {
         this.toastr.error(`La persona '${personaExistente.nombre} ${personaExistente.apellido}' con DNI ${personaExistente.documento_identidad} ya está registrada.`, '¡Error!', { positionClass: 'toast-bottom-right' });
       } else {
@@ -72,8 +86,17 @@ export class EditWorkpeopleComponent implements OnInit {
         });
       }
     });
-  }
+    }
+  )}
 
+
+  limitarLongitud(event: KeyboardEvent, maxLength: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value.length >= maxLength && event.key !== 'Backspace') {
+      event.preventDefault();
+    }
+  }
+  
   handleFileInput(files: FileList): void {
     if (files && files.length > 0) {
       const file = files[0];
