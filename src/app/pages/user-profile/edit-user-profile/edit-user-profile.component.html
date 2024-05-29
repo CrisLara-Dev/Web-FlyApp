@@ -45,36 +45,7 @@
         </div>
         <div class="card-body bg-secondary">
           <form>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Nombres</label>
-                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres" name="nombre" [(ngModel)]="personaEditado.nombre" (ngModelChange)="verificarCambios()" disabled>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Apellidos</label>
-                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" name="apellido" [(ngModel)]="personaEditado.apellido" (ngModelChange)="verificarCambios()" disabled>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" placeholder="Ingrese su correo electrónico" name="email" [(ngModel)]="personaEditado.email" (ngModelChange)="verificarCambios()" disabled>
-                  </div>
-                </div>
-                <div class="col-md-7">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Dirección</label>
-                    <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()"></textarea> -->
-                    <input id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()">
-                  </div>
-                </div>
-              </div>
+            <div class="p-4">
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
@@ -84,23 +55,50 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
+                    <label class="form-control-label" for="input-text">Nombres</label>
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus nombres" name="nombre" [(ngModel)]="personaEditado.nombre" (ngModelChange)="verificarCambios()" disabled>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Apellidos</label>
+                    <input type="text" id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese sus apellidos" name="apellido" [(ngModel)]="personaEditado.apellido" (ngModelChange)="verificarCambios()" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Dirección</label>
+                    <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()"></textarea> -->
+                    <input id="input-text" class="form-control border form-control-alternative"  placeholder="Ingrese su dirección" type="text" name="direccion" [(ngModel)]="personaEditado.direccion" (ngModelChange)="verificarCambios()">
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-text">Teléfono</label>
                     <input type="text" id="input-text" class="border form-control form-control-alternative"  placeholder="Ingrese su teléfono" name="telefono" (keypress)="limitarLongitud($event, 9)" [(ngModel)]="personaEditado.telefono" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" placeholder="Ingrese su correo electrónico" name="email" [(ngModel)]="personaEditado.email" (ngModelChange)="verificarCambios()" disabled>
+                  </div>
+                </div>
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Foto</label>
                     <input type="text" id="input-text" class="border form-control form-control-alternative"  placeholder="Ingrese su DNI" name="foto_url"  [(ngModel)]="personaEditado.foto_url" (ngModelChange)="verificarCambios()">
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="mb-2 mt-3 d-flex justify-content-end">
-              <a class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</a>
-              <button  class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
+              <div class="mb-2 mt-3 d-flex justify-content-end">
+                <button class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</button>
+                <button  class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
+              </div>
             </div>
           </form>
         </div>

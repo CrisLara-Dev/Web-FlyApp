@@ -51,35 +51,7 @@
         </div>
         <div class="card-body bg-secondary">
           <form>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Nombres</label>
-                    <input type="text" id="input-text" class="form-control form-control-alternative" [value]="persona.nombre" disabled>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Apellidos</label>
-                    <input type="text" id="input-text" class="form-control form-control-alternative" [value]="persona.apellido" disabled>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-5">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" [value]="persona.email" disabled>
-                  </div>
-                </div>
-                <div class="col-md-7">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-text">Dirección</label>
-                    <input id="input-text" class="form-control form-control-alternative" type="text" [value]="persona.direccion" disabled>
-                  </div>
-                </div>
-              </div>
+            <div class="p-4">
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
@@ -89,11 +61,39 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
+                    <label class="form-control-label" for="input-text">Nombres</label>
+                    <input type="text" id="input-text" class="form-control form-control-alternative" [value]="persona.nombre" disabled>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Apellidos</label>
+                    <input type="text" id="input-text" class="form-control form-control-alternative" [value]="persona.apellido" disabled>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-text">Dirección</label>
+                    <input id="input-text" class="form-control form-control-alternative" type="text" [value]="persona.direccion" disabled>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-text">Teléfono</label>
                     <input type="text" id="input-text" class="form-control form-control-alternative" [value]="persona.telefono" disabled>
                   </div>
                 </div>
-                <div class="col-lg-4">
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Correo Electrónico</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" [value]="persona.email" disabled>
+                  </div>
+                </div>
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-text">Rol</label>
                     <input type="text" id="input-text" class="form-control form-control-alternative" [value]="userDetails.rol.nombre" disabled>
