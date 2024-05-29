@@ -29,7 +29,12 @@ export class LoginComponent {
       .login(this.email, this.password)
       .subscribe(
         (response) => {
-          this.router.navigate(["/dashboard"]);
+          const userRole = this.authService.getUserRole();
+          if (userRole === 'Administrador') {
+            this.router.navigate(["/dashboard"]);
+          } else if (userRole === 'Community Manager') {
+            this.router.navigate(["/reservation"]);
+          }
         },
         (error) => {
           this.errorMessage = "Por favor, verifica tu correo electrónico y contraseña."; 

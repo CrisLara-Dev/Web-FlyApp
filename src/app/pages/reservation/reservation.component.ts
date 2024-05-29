@@ -10,9 +10,12 @@ export class ReservationComponent implements OnInit {
   public focus;
   public isAdmin: boolean = false; // Variable para verificar si el usuario es administrador
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     // Obtener información del usuario al inicializar el componente
+    this.isAdmin = this.authService.isUserAdmin(); // Método para verificar si el usuario es administrador
   }
 }

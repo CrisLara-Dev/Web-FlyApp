@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { ReservationComponent } from 'src/app/pages/reservation/reservation.component';
@@ -25,31 +24,32 @@ import { CrearRedComponent } from 'src/app/pages/configuracion/redes/crear-red/c
 import { EditRedComponent } from 'src/app/pages/configuracion/redes/edit-red/edit-red.component';
 import { EditReservationComponent } from 'src/app/pages/reservation/edit-reservation/edit-reservation.component';
 import { AsistenciasComponent } from 'src/app/pages/users/asistencias/asistencias.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'reservation',    component: ReservationComponent },
-    { path: 'vuelos',         component: VuelosComponent },
-    { path: 'workpeople',     component: WorkpeopleComponent },
-    { path: 'users',          component: UsersComponent },
-    { path: 'edit-user-profile/:id',     component: EditUserProfileComponent },
-    { path: 'crear-t-vuelo',     component: CrearTVueloComponent },
-    { path: 'edit-t-vuelo/:id',     component: EditTVueloComponent },
-    { path: 'crear-promociones',     component: CrearPromocionesComponent },
-    { path: 'edit-promociones/:id',     component: EditPromocionesComponent },
-    { path: 'crear-workpeople',     component: CrearWorkpeopleComponent },
-    { path: 'edit-workpeople/:id',     component: EditWorkpeopleComponent },
-    { path: 'edit-user-users',     component: EditUsersComponent },
-    { path: 'crear-users',     component: CrearUsersComponent },
-    { path: 'crear-reservation',     component: CrearReservationComponent },
-    { path: 'crear-persona',     component: CrearPersonaComponent },
-    { path: 'edit-persona',     component: EditPersonaComponent },
-    { path: 'crear-canal',     component: CrearCanalComponent },
-    { path: 'edit-canal/:id',     component: EditCanalComponent },
-    { path: 'config',     component: ConfiguracionComponent },
-    { path: 'crear-red',     component: CrearRedComponent },
-    { path: 'edit-red',     component: EditRedComponent },
-    { path: 'edit-reservation',     component: EditReservationComponent },
-    { path: 'asistencias',     component: AsistenciasComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'vuelos', component: VuelosComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'workpeople', component: WorkpeopleComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-user-profile/:id', component: EditUserProfileComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'crear-t-vuelo', component: CrearTVueloComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-t-vuelo/:id', component: EditTVueloComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'crear-promociones', component: CrearPromocionesComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-promociones/:id', component: EditPromocionesComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'crear-workpeople', component: CrearWorkpeopleComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-workpeople/:id', component: EditWorkpeopleComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-user-users', component: EditUsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'crear-users', component: CrearUsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'crear-reservation', component: CrearReservationComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'crear-persona', component: CrearPersonaComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'edit-persona', component: EditPersonaComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'crear-canal', component: CrearCanalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-canal/:id', component: EditCanalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'config', component: ConfiguracionComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'crear-red', component: CrearRedComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-red', component: EditRedComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-reservation', component: EditReservationComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
+  { path: 'asistencias', component: AsistenciasComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
 ];
