@@ -23,7 +23,6 @@
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                 <input class="form-control" placeholder="Correo Electrónico" type="email" name="email" [(ngModel)]="email" required #emailField="ngModel">
-
               </div>
             </div>
             <div class="input-group input-group-alternative border">
@@ -35,7 +34,7 @@
             <div class="mt-2 custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input border" id="customCheckLogin" type="checkbox" (change)="togglePasswordVisibility()">
               <label class="custom-control-label" for="customCheckLogin">
-                <span class="text-muted">Mostrar contraseña</span>
+                <span class="tefxt-muted">Mostrar contraseña</span>
               </label>
             </div>
             <p *ngIf="errorMessage" class="h5 text-center text-danger mt-3">{{ errorMessage }}</p>

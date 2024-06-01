@@ -37,7 +37,7 @@ export class LoginComponent {
           }
         },
         (error) => {
-          this.errorMessage = "Por favor, verifica tu correo electrónico y contraseña."; 
+          this.errorMessage = "Por favor, verifica tu correo electrónico y contraseña"; 
         }
       );
   }

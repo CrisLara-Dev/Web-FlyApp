@@ -82,36 +82,38 @@ export class UsersComponent implements OnInit {
   obtenerUsuariosPaginaActual() {
     const startIndex = this.paginaActual * this.usuariosPorPagina;
     const endIndex = startIndex + this.usuariosPorPagina;
-  
-    // Aplicar el filtro por estado
+
+    // Aplicar el filtro por rol
     const usuariosFiltrados = this.usuarios.filter(usuario => {
-      if (this.filtroEstado === 'todos') {
-        return true; // Mostrar todos los trabajadores si no hay filtro aplicado
-      } else {
-        return usuario.is_active === (this.filtroEstado === 'activo'); // Filtrar los vuelos por estado
-      }
+        if (this.filtroEstado === 'todos') {
+            return true; // Mostrar todos los usuarios si no hay filtro aplicado
+        } else {
+            // Verificar si usuario.rol existe antes de acceder a su propiedad nombre
+            return usuario.rol && usuario.rol.nombre === this.filtroEstado; // Filtrar los usuarios por rol
+        }
     });
-  
-    // Filtrar los vuelos por término de búsqueda si hay un término definido
+
+    // Filtrar los usuarios por término de búsqueda si hay un término definido
     const usuariosFiltradosPorBusqueda = this.terminoBusqueda ?
-      usuariosFiltrados.filter(usuario => usuario.email.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) :
-      usuariosFiltrados;
-  
+        usuariosFiltrados.filter(usuario => usuario.email.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) :
+        usuariosFiltrados;
+
     // Verificar si no se encontraron resultados
     this.sinResultados = usuariosFiltrados.length > 0 && usuariosFiltradosPorBusqueda.length === 0;
-  
-    // Verificar si no hay vuelos con el estado seleccionado
+
+    // Verificar si no hay usuarios con el rol seleccionado
     this.sinUsuariosConEstado = usuariosFiltrados.length === 0;
-  
-    // Obtener los vuelos de la página actual desde el arreglo filtrado
+
+    // Obtener los usuarios de la página actual desde el arreglo filtrado
     const usuariosPagina = usuariosFiltradosPorBusqueda.slice(startIndex, endIndex);
-  
-    // Ajustar el número de fila en función de los vuelos mostrados en la página actual
-    usuariosPagina.forEach((persona, index) => {
-      persona.numeroFila = index + 1 + startIndex;
+
+    // Ajustar el número de fila en función de los usuarios mostrados en la página actual
+    usuariosPagina.forEach((usuario, index) => {
+        usuario.numeroFila = index + 1 + startIndex;
     });
     return usuariosPagina;
-  }
+}
+
   
   // Método para calcular el número total de páginas
   calcularTotalPaginas() {

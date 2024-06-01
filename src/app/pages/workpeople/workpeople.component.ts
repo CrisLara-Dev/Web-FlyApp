@@ -81,34 +81,39 @@ export class WorkpeopleComponent implements OnInit {
     const endIndex = startIndex + this.personasPorPagina;
   
     // Aplicar el filtro por estado
-    const personasFiltrados = this.personas.filter(persona => {
+    const personasFiltradas = this.personas.filter(persona => {
       if (this.filtroEstado === 'todos') {
         return true; // Mostrar todos los trabajadores si no hay filtro aplicado
       } else {
-        return persona.trabajador === (this.filtroEstado === 'activo'); // Filtrar los vuelos por estado
+        return persona.trabajador === (this.filtroEstado === 'activo'); // Filtrar los trabajadores por estado
       }
     });
   
-    // Filtrar los vuelos por término de búsqueda si hay un término definido
-    const personasFiltradosPorBusqueda = this.terminoBusqueda ?
-      personasFiltrados.filter(persona => persona.documento_identidad.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) :
-      personasFiltrados;
+    // Filtrar los trabajadores por término de búsqueda si hay un término definido
+    const personasFiltradasPorBusqueda = this.terminoBusqueda ?
+      personasFiltradas.filter(persona => {
+        const nombreCompleto = `${persona.nombre.toLowerCase()} ${persona.apellido.toLowerCase()}`;
+        return nombreCompleto.includes(this.terminoBusqueda.toLowerCase()) ||
+               persona.documento_identidad.toLowerCase().includes(this.terminoBusqueda.toLowerCase());
+      }) :
+      personasFiltradas;
   
     // Verificar si no se encontraron resultados
-    this.sinResultados = personasFiltrados.length > 0 && personasFiltradosPorBusqueda.length === 0;
+    this.sinResultados = personasFiltradas.length > 0 && personasFiltradasPorBusqueda.length === 0;
   
-    // Verificar si no hay vuelos con el estado seleccionado
-    this.sinPersonasConEstado = personasFiltrados.length === 0;
+    // Verificar si no hay trabajadores con el estado seleccionado
+    this.sinPersonasConEstado = personasFiltradas.length === 0;
   
-    // Obtener los vuelos de la página actual desde el arreglo filtrado
-    const personasPagina = personasFiltradosPorBusqueda.slice(startIndex, endIndex);
+    // Obtener los trabajadores de la página actual desde el arreglo filtrado
+    const personasPagina = personasFiltradasPorBusqueda.slice(startIndex, endIndex);
   
-    // Ajustar el número de fila en función de los vuelos mostrados en la página actual
+    // Ajustar el número de fila en función de los trabajadores mostrados en la página actual
     personasPagina.forEach((persona, index) => {
       persona.numeroFila = index + 1 + startIndex;
     });
     return personasPagina;
   }
+  
   
   // Método para calcular el número total de páginas
   calcularTotalPaginas() {

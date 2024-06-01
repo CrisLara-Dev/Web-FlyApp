@@ -70,9 +70,9 @@ export class EditWorkpeopleComponent implements OnInit {
     // Verificar si el correo electrónico ya existe en la base de datos
     this.personasService.listarPersonas().subscribe((personas: Persona[]) => {
       const emailExistente = personas.find(personaEditado => personaEditado.email === this.personaEditado.email);
-      if (emailExistente) {
+      if (emailExistente && emailExistente.email !== this.personaOriginal.email) {
         this.toastr.error(`El correo '${emailExistente.email}' ya ha sido registrado.`, 'Error', { positionClass: 'toast-bottom-right' });
-        return; // Evitar que la función continúe si se encuentra un email existente
+        return; // Evitar que la función continúe si se encuentra un email existente diferente al original
       }
 
     // Verificar si el tipo de vuelo editado ya existe

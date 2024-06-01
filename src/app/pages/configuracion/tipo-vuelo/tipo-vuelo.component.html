@@ -12,7 +12,7 @@
                <div class="input-group-prepend">
                  <span class="input-group-text"><i class="fas fa-search"></i></span>
                </div>
-               <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
+               <input name="hola" class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
              </div>
            </div>
          </form>
@@ -35,7 +35,7 @@
             </select>
           </div> -->
           <div class="text-center ml-3">
-            <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-t-vuelo']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+            <button type="button" class="btn btn-primary"routerLinkActive="active" [routerLink]="['/crear-t-vuelo']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
           </div> 
          </div>
        </div>
