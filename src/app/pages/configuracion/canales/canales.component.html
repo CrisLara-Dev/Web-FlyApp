@@ -12,7 +12,7 @@
                <div class="input-group-prepend">
                  <span class="input-group-text"><i class="fas fa-search"></i></span>
                </div>
-               <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusquedaCanal">
+               <input class="form-control" name="buscarca" placeholder="Buscar" type="text" [(ngModel)]="terminoBusquedaCanal">
              </div>
            </div>
          </form>
@@ -35,7 +35,7 @@
             </select>
           </div> -->
           <div class="text-center ml-3">
-            <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-canal']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+            <button name="acanal" type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-canal']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
           </div>
          </div>
        </div>

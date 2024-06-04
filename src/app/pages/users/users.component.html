@@ -38,11 +38,9 @@
             <div class="ml-3">
               <select class="form-select text-muted" aria-label="Default select example" [(ngModel)]="filtroEstado">
                 <option value="todos">Todos</option>
-                <option value="Root">Root</option>
-                <option value="Piloto">Piloto</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Comunity Manager">Comunity Manager</option>
-            </select>
+                <option *ngFor="let rol of roles" [value]="rol.nombre">{{ rol.nombre }}</option>
+
+              </select>
             </div>
             <div class="text-center ml-3">
               <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-users']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
@@ -91,7 +89,7 @@
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                         <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users', usuario.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                        <a (click)="eliminarUsuarios(usuario.id)"  class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                        <a (click)="eliminarUsuario(usuario.id)"  class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
                       </div>
                     </div>
                   </td>

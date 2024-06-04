@@ -17,7 +17,7 @@ export const API_CONFIG = {
   usuario: "Usuario/",
   rol: "Rol/",
 
-  registrar: "register/",
+  registrar: "signup/",
   iniciar: "login/",
   cerrar: "logout/",
   restablecerpass: "password-reset/",

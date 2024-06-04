@@ -40,7 +40,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'edit-promociones/:id', component: EditPromocionesComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
   { path: 'crear-workpeople', component: CrearWorkpeopleComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
   { path: 'edit-workpeople/:id', component: EditWorkpeopleComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
-  { path: 'edit-user-users', component: EditUsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'edit-user-users/:id', component: EditUsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
   { path: 'crear-users', component: CrearUsersComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
   { path: 'crear-reservation', component: CrearReservationComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
   { path: 'crear-persona', component: CrearPersonaComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },

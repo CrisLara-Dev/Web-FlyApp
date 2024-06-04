@@ -21,9 +21,11 @@ export class AuthService {
     private router: Router,
     private toastr: ToastrService 
   ) {}
+  
   setUserDetails(userDetails: any): void {
     this.userDetailsSubject.next(userDetails);
   }
+
   login(email: string, password: string): Observable<any> {
     const userData = {
       email,

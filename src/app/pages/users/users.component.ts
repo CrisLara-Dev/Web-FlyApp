@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona, Usuario } from 'src/app/models';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Persona, Roles, Usuario } from 'src/app/models';
+import { RolService } from 'src/app/services/configuracion/rol/rol.service';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -10,6 +13,8 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 })
 export class UsersComponent implements OnInit {
   public focus;
+
+  roles: Roles[] = [];
 
   usuarios: Usuario[] = [];
   totalUsuarios: number;
@@ -24,12 +29,16 @@ export class UsersComponent implements OnInit {
   cargandoDatos: boolean = true;
 
   constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private rolesService: RolService,
     private personasService: PersonaService,
     private usuariosService: UsuarioService,
   ) { }
 
   ngOnInit() {
     this.listarUsuario();
+    this.listarRol();
   }
   // Método para cambiar el número de filas de la tabla
   cambiarFilas(event: Event) {
@@ -39,6 +48,16 @@ export class UsersComponent implements OnInit {
     this.paginaActual = 0; // Reiniciar la página actual a la primera página
   }
   
+  listarRol() {
+    this.rolesService.listarVuelos().subscribe(
+      (data: Roles[]) => {
+        this.roles = data;
+      },
+      error => {
+        console.error('Error al obtener los roles:', error);
+      }
+    );
+  }
   
   listarUsuario() {
     this.cargandoDatos = true; // Iniciar animación de carga
@@ -111,8 +130,8 @@ export class UsersComponent implements OnInit {
     usuariosPagina.forEach((usuario, index) => {
         usuario.numeroFila = index + 1 + startIndex;
     });
-    return usuariosPagina;
-}
+    return usuariosPagina;  
+  }
 
   
   // Método para calcular el número total de páginas
@@ -144,7 +163,5 @@ export class UsersComponent implements OnInit {
   irAPagina(pagina: number) {
     this.paginaActual = pagina;
   }
-
-  
 }
 
