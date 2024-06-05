@@ -97,7 +97,7 @@
               </div>
               <div class="mb-2 mt-3 d-flex justify-content-end">
                 <button class="btn btn-secondary mr-2 " routerLinkActive="active" [routerLink]="['/user-profile']">Cancelar</button>
-                <button  class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
+                <button name="guardar" class="btn btn-primary" [disabled]="!edicionActiva" (click)="editarPersona()">Guardar cambios</button>
               </div>
             </div>
           </form>

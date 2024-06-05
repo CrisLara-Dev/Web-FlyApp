@@ -17,9 +17,7 @@ export class CrearUsersComponent implements OnInit {
   passwordType: string = 'password';
   roles: Roles[] = [];
   personas: Persona[] = [];
-  selectedTrabajador: Persona | null = null;
-  selectedEmail: string = '';
-
+  
   nuevoRegistrar: Registrarse = {
     email :  '',
     password : '',
@@ -44,16 +42,6 @@ export class CrearUsersComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.passwordType = (this.passwordType === 'password') ? 'text' : 'password';
-  }
-
-  updateEmail() {
-    if (this.selectedTrabajador) {
-      this.selectedEmail = this.selectedTrabajador.email;
-      // Llama a la función para verificar los campos llenos cuando se actualiza el trabajador seleccionado
-      this.verificarCamposLlenos();
-    } else {
-      this.selectedEmail = '';
-    }
   }
 
   listarRol() {

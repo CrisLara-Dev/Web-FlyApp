@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/config', title: 'Configuración',  icon:'fa-solid fa-gear text-black', class: '', allowedRoles: ['Administrador'] },
     { path: '/workpeople', title: 'Trabajadores',  icon:'fa-solid fa-users text-black', class: '', allowedRoles: ['Administrador'] },
     { path: '/users', title: 'Usuarios',  icon:'fa-solid fa-user-gear text-black', class: '', allowedRoles: ['Administrador'] },
-    { path: '/user-profile', title: 'Mi Perfil',  icon:'fa-solid fa-circle-user text-black', class: '' , allowedRoles: ['Administrador', 'Community Manager']},   
+    { path: '/user-profile', title: 'Cuenta',  icon:'fa-solid fa-circle-user text-black', class: '' , allowedRoles: ['Administrador', 'Community Manager']},   
 ];
 
 @Component({

@@ -86,14 +86,14 @@
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">¡Bienvenido!</h6>
           </div>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          <button routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>Mi Perfil</span>
-          </a>
-          <a class="dropdown-item"  routerLinkActive="active" (click)="logout()">
+          </button>
+          <button class="dropdown-item" name="cerrar" routerLinkActive="active" (click)="logout()">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Cerrar Sesión</span>
-          </a>
+          </button>
         </div>
       </li>
     </ul>

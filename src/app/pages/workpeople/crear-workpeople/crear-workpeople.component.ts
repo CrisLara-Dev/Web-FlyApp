@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Persona } from 'src/app/models';
+import { TiposdocumentoService } from 'src/app/services/configuracion/tiposdocumento/tiposdocumento.service';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { ApiReniecService } from 'src/app/services/reniec/api-reniec.service';
 
@@ -13,6 +14,7 @@ import { ApiReniecService } from 'src/app/services/reniec/api-reniec.service';
 export class CrearWorkpeopleComponent implements OnInit {
   imagePath: string = 'https://t3.ftcdn.net/jpg/05/17/79/88/360_F_517798849_WuXhHTpg2djTbfNf0FQAjzFEoluHpnct.jpg';
   isDniDisabled: boolean = false;
+  tiposDocumento: any[] = [];
 
   nuevaPersona: Persona = {
     nombre: '',
@@ -22,6 +24,7 @@ export class CrearWorkpeopleComponent implements OnInit {
     email: '',
     direccion: '',
     documento_identidad: '',
+    tipo_documento: 1,
     trabajador: false,
     estado: true,
   };
@@ -29,11 +32,13 @@ export class CrearWorkpeopleComponent implements OnInit {
   constructor(
     private router: Router,
     private personasService: PersonaService,
+    private tipodocService: TiposdocumentoService,
     private toastr: ToastrService,
     private apiReniecService: ApiReniecService
   ) { }
 
   ngOnInit() {
+    this.listarTipoDoc();
   }
 
   handleFileInput(files: FileList): void {
@@ -110,5 +115,16 @@ export class CrearWorkpeopleComponent implements OnInit {
         });
       }
     });
+  }
+
+  listarTipoDoc() {
+    this.tipodocService.listarTiposDocumento().subscribe(
+      (data: any[]) => {
+        this.tiposDocumento = data;
+      },
+      error => {
+        console.error('Error al obtener los tipos de documento:', error);
+      }
+    );
   }
 }

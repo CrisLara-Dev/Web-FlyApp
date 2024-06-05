@@ -13,7 +13,8 @@ export class UserProfileComponent implements OnInit {
   public userDetails: any;
   persona: Persona | null = null; // Cambiar el tipo de datos a Persona | null
   modalOpen: boolean = false;
-  
+  passwordType: string = 'password';
+
   constructor(
     private authService: AuthService,
     private personasService: PersonaService
@@ -21,6 +22,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getUserDetails();
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordType = (this.passwordType === 'password') ? 'text' : 'password';
   }
 
   getUserDetails() {

@@ -76,12 +76,12 @@
                     <i class="fas fa-ellipsis-v"></i>
                   </a>
                   <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                    <a class="dropdown-item d-flex align-items-center" [routerLink]="['/edit-t-vuelo', vuelo.id]">
+                    <button name="edivu" class="dropdown-item d-flex align-items-center" [routerLink]="['/edit-t-vuelo', vuelo.id]">
                       <i class="fa-regular fa-pen-to-square icon-option"></i> Editar
-                    </a>
-                    <a (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger">
+                    </button>
+                    <button name="elivu" (click)="eliminarVuelos(vuelo.id)" class="dropdown-item d-flex align-items-center text-danger">
                       <i class="fa-solid fa-trash-can icon-option"></i> Eliminar
-                    </a>
+                    </button>
                   </div>
                 </div>
               </td>

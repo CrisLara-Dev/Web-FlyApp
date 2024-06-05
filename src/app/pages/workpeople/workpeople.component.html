@@ -41,7 +41,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-search"></i></span>
                  </div>
-                 <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
+                 <input name="buscartra" class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
                </div>
              </div>
            </form>
@@ -64,7 +64,7 @@
           </div> -->
             </div>
             <div class="text-center ml-3">
-              <button type="button" class="btn btn-primary"  routerLinkActive="active" [routerLink]="['/crear-workpeople']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+              <button type="button" class="btn btn-primary" name="atraba" routerLinkActive="active" [routerLink]="['/crear-workpeople']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
             </div>
            </div>
          </div>
@@ -122,8 +122,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-workpeople', persona.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                        <a (click)="eliminarTrabajador(persona.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                        <button name="editra" class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-workpeople', persona.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</button>
+                        <button name="elitra" (click)="eliminarTrabajador(persona.id)" class="dropdown-item d-flex align-items-center text-danger" ><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</button>
                       </div>
                     </div>
                   </td>

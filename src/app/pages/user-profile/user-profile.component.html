@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="my-5 d-flex justify-content-center">
-            <a class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</a>
+            <button name="cambiarcontra" class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</button>
           </div>
           <div _ngcontent-c9="" class="row"><div _ngcontent-c9="" class="col">
             <div class="text-center mb-n4">
@@ -101,7 +101,7 @@
                 </div>
               </div>
               <div class="mb-2 mt-3 d-flex justify-content-end">
-                <a routerLinkActive="active" class="btn btn-primary" [routerLink]="['/edit-user-profile', persona.id]">Editar perfil</a>
+                <button name="editperfil" routerLinkActive="active" class="btn btn-primary" [routerLink]="['/edit-user-profile', persona.id]">Editar perfil</button>
               </div>
             </div>
             <!-- <hr class="my-4" /> -->
@@ -124,23 +124,23 @@
   <div *ngIf="modalOpen" class="modal-overlay">
     <div class="bg-secondary modal-content col-sm-8 col-xl-3 col-md-5 m-3" (click)="stopPropagation($event)">
       <div class="p-sm-4 p-2">
-        <div class="">
+        <div class=" text-center">
           <h2 class="mb-4 font-weight-700">Cambiar Contraseña</h2>
           <div class="">
             <div class="form-group">
               <label class="form-control-label d-flex justify-content-start" for="input-password">Contraseña actual</label>
-              <input type="password" id="input-password" class="border form-control form-control-alternative" placeholder="Ingrese su contraseña actual">
+              <input name="conactual" type="password" id="input-password" class="border form-control form-control-alternative" placeholder="Ingrese su contraseña actual">
             </div>
           </div>
           <div class="">
             <div class="form-group text-start">
               <label class="form-control-label d-flex justify-content-start" for="input-password">Nueva contraseña</label>
-              <input type="password" id="input-password" class="border form-control form-control-alternative" placeholder="Ingrese su nueva contraseña">
+              <input name="connueva" type="password" id="input-password" class="border form-control form-control-alternative" placeholder="Ingrese su nueva contraseña">
             </div>
           </div>
           <div>
-            <a (click)="closeModal()" class="btn btn-secondary mt-3 mr-0 m-2">Cancelar</a>
-            <a (click)="closeModal()" class="btn btn-primary mt-3 m-2">Aceptar</a>
+            <button (click)="closeModal()" class="btn btn-secondary mt-3 mr-0 m-2">Cancelar</button>
+            <button name="aceptar" (click)="closeModal()" class="btn btn-primary mt-3 m-2">Aceptar</button>
           </div>
         </div>
       </div>
