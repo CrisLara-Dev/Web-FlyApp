@@ -3,7 +3,7 @@ describe("Configuration", () => {
     cy.visit("http://localhost:4200");
   });
 
-  it("Añadir Trabajador", () => {
+  it("Añadir Usuario", () => {
     
     cy.wait(1000);
     cy.get('input[name="email"]').type("zetagdcl@gmail.com");
@@ -12,34 +12,31 @@ describe("Configuration", () => {
     cy.wait(4000);
 
     cy.url().should("include", "/dashboard");
-    cy.contains("Trabajadores").click();
-    cy.url().should("include", "/workpeople");
-
-    cy.contains('Trabajadores').scrollIntoView();
+    cy.contains("Usuarios").click();
+    cy.url().should("include", "/users");
+    cy.contains('Usuarios').scrollIntoView();
     cy.wait(1000);
 
-    cy.get('button[name="atraba"]').click();
-    cy.url().should("include", "/crear-workpeople");
+    cy.get('button[name="auser"]').click();
+    cy.url().should("include", "/crear-users");
 
-    cy.screenshot("Formulario Trabajador Srenellado");
+    cy.screenshot("Formulario Usuario Srenellado");
     cy.wait(2000);
 
-    cy.contains("Añadir Trabajador").should("be.visible");
-    cy.get('input[name="documento_identidad"]').type("10168715");
+    cy.contains("Añadir Usuario").should("be.visible");
+    cy.get('select[name="trabajador"]').select("usuarioprueba4 Lara Arcos");
+    cy.get('select[name="rol"]').select("Administrador");
+    cy.get('input[name="email"]').type("sovan96123@gmail.com");
+    cy.get('input[name="contra"]').type("uxyhsxss111");
     cy.get('button[name="buscardni"]').click();
     cy.wait(2000);
 
-    cy.get('input[name="direccion"]').type("Huaycan, Venezuela");
-    cy.get('input[name="telefono"]').type("987654321");
-    cy.get('input[name="email"]').type("jarogit137@gmail.com");
-    cy.get('button[name="añadirtraba"]').click();
-
-    cy.screenshot("Formulario Trabajador Rellenado");
+    cy.screenshot("Formulario Usuario Rellenado");
     cy.wait(3000);
 
-    cy.get('input[name="buscartra"]').type("JUDITH SILVIA TITO COSI"); 
+    cy.get('input[name="bususer"]').type("sovan96123@gmail.com"); 
 
-    cy.screenshot("Trabajador Añadido");
+    cy.screenshot("Usuario Añadido");
     cy.wait(1000);
 
   });

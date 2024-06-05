@@ -72,8 +72,8 @@ export class CrearUsersComponent implements OnInit {
   }
 
   crearUsuario() {
-    // Verifica si todos los campos requeridos están llenos antes de intentar crear un usuario
-    if (!this.camposLlenos) {
+    // Verifica si todos los campos requeridos están llenos
+    if (!this.nuevoRegistrar.email || !this.nuevoRegistrar.password || !this.nuevoRegistrar.persona || !this.nuevoRegistrar.rol) {
       console.error("Por favor, complete todos los campos obligatorios.");
       return; 
     }
@@ -83,6 +83,8 @@ export class CrearUsersComponent implements OnInit {
       response => {
         // Si se crea el usuario correctamente, navega a la página de usuarios
         this.router.navigate(['/users']);
+        // Muestra un mensaje de éxito
+        this.toastr.success("Usuario agregado correctamente.", "Éxito");
       },
       error => {
         console.error("Error al crear el usuario:", error);

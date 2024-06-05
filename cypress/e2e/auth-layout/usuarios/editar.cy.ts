@@ -12,36 +12,36 @@ describe("Configuration", () => {
     cy.wait(4000);
 
     cy.url().should("include", "/dashboard");
-    cy.contains("Trabajadores").click();
-    cy.url().should("include", "/workpeople");
-    cy.contains('Trabajadores').scrollIntoView();
+    cy.contains("Usuarios").click();
+    cy.url().should("include", "/users");
+    cy.contains('Usuarios').scrollIntoView();
     cy.wait(1000);
 
-    cy.get('input[name="buscartra"]').type("JUDITH SILVIA TITO COSI"); 
+    cy.get('input[name="bususer"]').type("sovan96123@gmail.com"); 
 
-    cy.screenshot("Buscar Trabajador Seditar");
+    cy.screenshot("Buscar Usuario Seditar");
     cy.wait(1000);
 
-    cy.contains("JUDITH SILVIA TITO COSI").parents("tr").within(() => {
+    cy.contains("sovan96123@gmail.com").parents("tr").within(() => {
         cy.get(".btn.btn-sm.btn-icon-only.text-light").click(); 
       });
     cy.wait(1000);
     
-    cy.get('button[name="editra"]').click();
+    cy.get('button[name="ediuser"]').click();
     cy.wait(3000);
     
-    cy.get('input[name="direccion"]').clear().type("Huancayo, Perú");
-    cy.get('input[name="telefono"]').clear().type("963258741");
-    cy.get('input[name="email"]').clear().type("jarogit137@gmail.com");
-    cy.get('button[name="editraba"]').click();
+    cy.get('select[name="rol"]').clear().type("Piloto");
+    cy.get('input[name="email"]').clear().type("xelo@gmail.com");
+    cy.get('select[name="estado"]').clear().type("Inactivo");
+    cy.get('button[name="editaruser"]').click();
 
-    cy.screenshot("Formulario Editar Trabajador");
+    cy.screenshot("Formulario Editar Usuario");
     cy.wait(3000);
 
-    cy.contains('Trabajadores').scrollIntoView();
+    cy.contains('Usuarios').scrollIntoView();
     cy.wait(1000);
 
-    cy.get('input[name="buscartra"]').clear().type("JUDITH SILVIA TITO COSI");
+    cy.get('input[name="bususer"]').clear().type("xelo@gmail.com");
    
     cy.screenshot("Buscar Trabajador Editado");
     cy.wait(1000);

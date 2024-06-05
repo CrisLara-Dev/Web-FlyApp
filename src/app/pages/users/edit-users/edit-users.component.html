@@ -17,37 +17,29 @@
        <div class="bg-secondary">
         <div class="p-4">
           <div class="row">
-            <div class="col-xl-3 col-lg-6">
-              <div class="form-group">
+            <div class="col-xl-3">
+              <div class="form-group text-start">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Trabajador</label>
-                <select class="form-select text-muted border" aria-label="Default select example">
-                  <option selected>Selecionar trabajador</option>
-                  <option value="1">Cristian Lara</option>
-                  <option value="2">Juan Carlos</option>
-                  <option value="3">Alarcón Llanos</option>
-                </select>
+                <input type="text" id="input-text" class="form-control form-control-alternative border" placeholder="Ingrese el correo" disabled name="nombre" [(ngModel)]="nombreCompleto" (ngModelChange)="verificarCambios()">
               </div>
             </div>
             
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3">
               <div class="form-group">
-                <label class="form-control-label d-flex justify-content-start" for="input-text">Rol</label>
-                <select class="form-select text-muted border" aria-label="Default select example">
-                  <option selected>Selecionar rol</option>
-                  <option value="1">Agente</option>
-                  <option value="2">Administrador</option>
-                  <option value="2">Super Administrador</option>
+                <label class="form-control-label d-flex justify-content-start" for="input-rol">Rol</label>
+                <select id="input-rol" class="form-select border text-muted" name="rol" [(ngModel)]="usuarioEditado.rol.id" (ngModelChange)="verificarCambios()">
+                  <option value="" selected disabled>Seleccionar</option>
+                  <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
                 </select>
               </div>
             </div>
-            
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3">
               <div class="form-group text-start">
                 <label class="form-control-label d-flex justify-content-start" for="input-email">Correo Electrónico</label>
-                <input type="email" id="input-email" class="form-control form-control-alternative border" placeholder="Ingrese el correo" value="email@gmail.com">
+                <input type="email" id="input-email" class="form-control form-control-alternative border" placeholder="Ingrese el correo" name="email" [(ngModel)]="usuarioEditado.email" (ngModelChange)="verificarCambios()">
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <!-- <div class="col-xl-3 col-lg-6">
               <div class="form-group text-start mos-c">
                 <label class="form-control-label d-flex justify-content-start" for="input-password">Contraseña</label>
                 <input type="password" id="input-password" class="form-control form-control-alternative border" placeholder="Ingrese la contraseña" value="holamundo01" disabled>
@@ -55,22 +47,21 @@
               <div class="d-flex justify-content-start text-right mt-2">
                 <a class="btn btn-sm btn-primary" (click)="openModal()">Cambiar contraseña</a>
               </div>
-            </div>
-            <div class="col-xl-3 col-lg-6">
+            </div> -->
+            <div class="col-xl-3">
               <div class="form-group">
                 <label class="form-control-label d-flex justify-content-start" for="input-text">Estado</label>
-                <select class="form-select text-muted border" aria-label="Default select example">
-                  <option selected>Selecionar estado</option>
-                  <option value="1">Activo</option>
-                  <option value="2">Inactivo</option>
+                <select class="form-select text-muted border" aria-label="Default select example" name="estado" [(ngModel)]="usuarioEditado.is_active" (ngModelChange)="verificarCambios()">
+                  <option [ngValue]="true">Activo</option>
+                  <option [ngValue]="false">Inactivo</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="">
             <div class="d-flex justify-content-end mt-4">
-              <a class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/users']">Cancelar</a>
-              <a class="btn btn-primary mt-3 m-2">Editar usuario</a>
+              <button class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/users']">Cancelar</button>
+              <button name="editaruser" class="btn btn-primary mt-3 m-2" (click)="editarUsuario()">Editar usuario</button>
             </div>
           </div>
         </div>

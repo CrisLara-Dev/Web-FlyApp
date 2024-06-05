@@ -12,7 +12,7 @@ describe("Configuration", () => {
       cy.wait(4000);
 
       cy.url().should("include", "/dashboard");
-            cy.contains("Trabajadores").click();
+      cy.contains("Trabajadores").click();
       cy.url().should("include", "/workpeople");
       cy.contains('Trabajadores').scrollIntoView();
       cy.wait(1000);

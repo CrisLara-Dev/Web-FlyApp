@@ -27,7 +27,7 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-search"></i></span>
                  </div>
-                 <input class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
+                 <input name="bususer" class="form-control" placeholder="Buscar" type="text" [(ngModel)]="terminoBusqueda">
                </div>
              </div>
            </form>
@@ -43,7 +43,7 @@
               </select>
             </div>
             <div class="text-center ml-3">
-              <button type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-users']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
+              <button name="auser" type="button" class="btn btn-primary" routerLinkActive="active" [routerLink]="['/crear-users']"><i class="fa-solid fa-plus mr-2"></i>Añadir</button>
             </div>
            </div>
          </div>
@@ -88,8 +88,8 @@
                         <i class="fas fa-ellipsis-v"></i>
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users', usuario.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</a>
-                        <a (click)="eliminarUsuario(usuario.id)"  class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</a>
+                        <button name="ediuser" class="dropdown-item d-flex align-items-center" routerLinkActive="active" [routerLink]="['/edit-user-users', usuario.id]"><i class="fa-regular fa-pen-to-square icon-option"></i> Editar</button>
+                        <button name="eliuser" (click)="eliminarUsuario(usuario.id)"  class="dropdown-item d-flex align-items-center text-danger"><i class="fa-solid fa-trash-can icon-option"></i> Eliminar</button>
                       </div>
                     </div>
                   </td>

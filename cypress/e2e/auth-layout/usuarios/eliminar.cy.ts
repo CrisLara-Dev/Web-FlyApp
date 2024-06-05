@@ -12,27 +12,27 @@ describe("Configuration", () => {
       cy.wait(4000);
 
       cy.url().should("include", "/dashboard");
-            cy.contains("Trabajadores").click();
-      cy.url().should("include", "/workpeople");
-      cy.contains('Trabajadores').scrollIntoView();
+      cy.contains("Usuarios").click();
+      cy.url().should("include", "/users");
+      cy.contains('Usuarios').scrollIntoView();
       cy.wait(1000);
 
-      cy.get('input[name="buscartra"]').type("JUDITH SILVIA TITO COSI"); 
+      cy.get('input[name="bususer"]').type("xelo@gmail.com"); 
       cy.wait(1000);
 
-      cy.contains("JUDITH SILVIA TITO COSI").parents('tr').within(() => {
+      cy.contains("xelo@gmail.com").parents('tr').within(() => {
           cy.get('.btn.btn-sm.btn-icon-only.text-light').click();
       });
       cy.wait(1000);
 
-      cy.get('button[name="elitra"]').click();
+      cy.get('button[name="eliuser"]').click();
 
-      cy.screenshot("Trabajador Eliminado");
+      cy.screenshot("Usuario Eliminado");
       cy.wait(2000);
 
       cy.contains('Sí, eliminar').click();
 
-      cy.screenshot("Trabajador Confirmar eliminación");
+      cy.screenshot("Usuario Confirmar eliminación");
       cy.wait(1000);
       });
   });
