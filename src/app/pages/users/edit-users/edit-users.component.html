@@ -61,7 +61,7 @@
           <div class="">
             <div class="d-flex justify-content-end mt-4">
               <button class="btn btn-secondary mt-3 mr-0 m-2" routerLinkActive="active" [routerLink]="['/users']">Cancelar</button>
-              <button name="editaruser" class="btn btn-primary mt-3 m-2" (click)="editarUsuario()">Editar usuario</button>
+              <button name="editaruser" class="btn btn-primary mt-3 m-2" [disabled]="!edicionActiva" (click)="editarUsuario()">Editar usuario</button>
             </div>
           </div>
         </div>
