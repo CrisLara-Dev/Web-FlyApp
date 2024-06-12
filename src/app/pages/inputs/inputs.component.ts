@@ -16,7 +16,7 @@ export class InputsComponent implements OnInit {
   ngOnInit() {
   }
 
-  onFechaReservaChange() {
+   onFechaReservaChange() {
     // Aquí puedes agregar la lógica que desees para manejar el cambio de fecha
     console.log('Nueva fecha de reserva:', this.fechaReserva);
   }
