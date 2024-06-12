@@ -1,0 +1,17 @@
+<p>
+  inputs works!
+</p>
+
+<div class="mt-5">
+  <input type="datetime-local" [(ngModel)]="fechaReserva" (change)="onFechaReservaChange()">
+  
+</div>
+
+
+<p>inputs works!</p>
+
+<div class="form-group mt-5">
+  <label for="fechaReserva">Fecha de Reserva</label>
+  <input id="fechaReserva" type="datetime-local" [(ngModel)]="fechaReserva" (change)="onFechaReservaChange()" class="form-control custom-date-time-input">
+</div>
+

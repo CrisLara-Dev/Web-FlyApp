@@ -25,6 +25,7 @@ import { EditRedComponent } from 'src/app/pages/configuracion/redes/edit-red/edi
 import { EditReservationComponent } from 'src/app/pages/reservation/edit-reservation/edit-reservation.component';
 import { AsistenciasComponent } from 'src/app/pages/users/asistencias/asistencias.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { InputsComponent } from 'src/app/pages/inputs/inputs.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
@@ -52,4 +53,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'edit-red', component: EditRedComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
   { path: 'edit-reservation', component: EditReservationComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador', 'Community Manager'] } },
   { path: 'asistencias', component: AsistenciasComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
+  { path: 'inputs', component: InputsComponent, canActivate: [AuthGuard], data: { allowedRoles: ['Administrador'] } },
 ];

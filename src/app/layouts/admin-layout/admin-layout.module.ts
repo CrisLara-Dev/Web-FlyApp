@@ -36,6 +36,7 @@ import { PromocionesComponent } from 'src/app/pages/configuracion/promociones/pr
 import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
 import { CanalesComponent } from 'src/app/pages/configuracion/canales/canales.component';
 import { TipoVueloComponent } from 'src/app/pages/configuracion/tipo-vuelo/tipo-vuelo.component';
+import { InputsComponent } from 'src/app/pages/inputs/inputs.component';
 
 @NgModule({
   imports: [
@@ -76,6 +77,7 @@ import { TipoVueloComponent } from 'src/app/pages/configuracion/tipo-vuelo/tipo-
     PromocionesComponent,
     CanalesComponent,
     TipoVueloComponent,
+    InputsComponent
   ]
 })
 
