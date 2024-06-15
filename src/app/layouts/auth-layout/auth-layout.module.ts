@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../pages/login/login.component';
 import { ResetPasswordComponent } from 'src/app/pages/reset-password/reset-password.component';
 import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
+import { FormSatisfactionComponent } from 'src/app/pages/form-satisfaction/form-satisfaction.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { JwtInterceptor } from 'src/app/interceptors/jwt.interceptor';
   ],
   declarations: [
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    FormSatisfactionComponent
   ]
 })
 export class AuthLayoutModule { }

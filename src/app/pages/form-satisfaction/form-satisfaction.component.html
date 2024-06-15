@@ -1,0 +1,182 @@
+<div style="display: flex; justify-content: center; align-items: center; " class="bg-primary">
+  <div class="container my-5">
+    <div class="d-flex justify-content-center">
+      <div class="col-9">
+        <div class="form-header">
+          <h2 class="mb-0 text-white p-sm-4 display-3 my-5">Formulario de Satisfacción de Vuelo</h2>
+        </div>
+        <div class="form-body p-sm-5 bg-white-transparent">
+          <form>
+            <div class="form-group">
+              <label class="form-control-label d-flex justify-content-start" for="input-text">Nombre</label>
+              <input type="text" id="nombre" class="form-control form-control-alternative border" placeholder="Ingrese el nombre">
+            </div>
+      
+            <div class="form-group">
+              <label class="form-control-label d-flex justify-content-start" for="input-text">Fecha del Vuelo</label>
+              <input type="date" id="fechaVuelo" class="form-control form-control-alternative border">
+            </div>
+      
+            <div class="form-group">
+              <label class="form-control-label d-flex justify-content-start" for="input-text">Número de Vuelo</label>
+              <input type="number" id="numeroVuelo" class="form-control form-control-alternative border" placeholder="Ingrese el número de vuelo">
+            </div>
+      
+            <div class="form-group">
+              <label class="form-control-label d-flex justify-content-start" for="input-text">Piloto</label>
+              <input type="text" id="piloto" class="form-control form-control-alternative border" placeholder="Ingrese el nombre del piloto">
+              
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">1. ¿Cómo describirías tu experiencia general con Fly Universal?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="excelente" class="custom-control-input" name="experiencia" value="Excelente">
+                  <label class="custom-control-label" for="excelente">Excelente</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="buena" class="custom-control-input" name="experiencia" value="Buena">
+                  <label class="custom-control-label" for="buena">Buena</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="regular" class="custom-control-input" name="experiencia" value="Regular">
+                  <label class="custom-control-label" for="regular">Regular</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="mala" class="custom-control-input" name="experiencia" value="Mala">
+                  <label class="custom-control-label" for="mala">Mala</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">2. ¿Te sentiste seguro/a durante el vuelo?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="seguroSi" class="custom-control-input" name="seguro" value="Sí, completamente seguro/a">
+                  <label class="custom-control-label" for="seguroSi">Sí, completamente seguro/a</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="seguroAlgo" class="custom-control-input" name="seguro" value="Algo seguro/a">
+                  <label class="custom-control-label" for="seguroAlgo">Algo seguro/a</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="seguroPoco" class="custom-control-input" name="seguro" value="Poco seguro/a">
+                  <label class="custom-control-label" for="seguroPoco">Poco seguro/a</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="seguroNo" class="custom-control-input" name="seguro" value="No, para nada seguro/a">
+                  <label class="custom-control-label" for="seguroNo">No, para nada seguro/a</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">3. ¿Cómo fue la atención de nuestro equipo?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="atencionExcelente" class="custom-control-input" name="atencion" value="Excelente">
+                  <label class="custom-control-label" for="atencionExcelente">Excelente</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="atencionBuena" class="custom-control-input" name="atencion" value="Buena">
+                  <label class="custom-control-label" for="atencionBuena">Buena</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="atencionRegular" class="custom-control-input" name="atencion" value="Regular">
+                  <label class="custom-control-label" for="atencionRegular">Regular</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="atencionMala" class="custom-control-input" name="atencion" value="Mala">
+                  <label class="custom-control-label" for="atencionMala">Mala</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">4. ¿El proceso de reserva fue fácil y claro?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="reservaFacilSi" class="custom-control-input" name="reservaFacil" value="Sí, muy fácil">
+                  <label class="custom-control-label" for="reservaFacilSi">Sí, muy fácil</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="reservaFacilAlgo" class="custom-control-input" name="reservaFacil" value="Algo fácil">
+                  <label class="custom-control-label" for="reservaFacilAlgo">Algo fácil</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="reservaFacilMejorar" class="custom-control-input" name="reservaFacil" value="Podría mejorar">
+                  <label class="custom-control-label" for="reservaFacilMejorar">Podría mejorar</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="reservaFacilComplicado" class="custom-control-input" name="reservaFacil" value="No, fue complicado">
+                  <label class="custom-control-label" for="reservaFacilComplicado">No, fue complicado</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">5. ¿Qué te pareció la calidad de los equipos de vuelo?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="equiposExcelente" class="custom-control-input" name="equipos" value="Excelente">
+                  <label class="custom-control-label" for="equiposExcelente">Excelente</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="equiposBuena" class="custom-control-input" name="equipos" value="Buena">
+                  <label class="custom-control-label" for="equiposBuena">Buena</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="equiposRegular" class="custom-control-input" name="equipos" value="Regular">
+                  <label class="custom-control-label" for="equiposRegular">Regular</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="equiposMala" class="custom-control-input" name="equipos" value="Mala">
+                  <label class="custom-control-label" for="equiposMala">Mala</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">6. ¿Recibiste tus videos a tiempo y en buena calidad?</label><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="videosSi" class="custom-control-input" name="videos" value="Sí, a tiempo y de buena calidad">
+                  <label class="custom-control-label" for="videosSi">Sí, a tiempo y de buena calidad</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="videosA tiempo" class="custom-control-input" name="videos" value="A tiempo pero de calidad regular">
+                  <label class="custom-control-label" for="videosA tiempo">A tiempo pero de calidad regular</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="videosDemoraron" class="custom-control-input" name="videos" value="No, se demoraron pero buena calidad">
+                  <label class="custom-control-label" for="videosDemoraron">No, se demoraron pero buena calidad</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="videosDemoraronRegular" class="custom-control-input" name="videos" value="No, se demoraron y de calidad regular">
+                  <label class="custom-control-label" for="videosDemoraronRegular">No, se demoraron y de calidad regular</label>
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-card">
+              <div class="form-group">
+                <label class="form-control-label d-flex justify-content-start" for="input-text">7. ¿Hay algo que te gustaría mejorar o sugerencias para nosotros?</label>
+                <textarea id="sugerencias" class="form-control" name="sugerencias"></textarea>
+              </div>
+            </div>
+      
+            <div class="d-flex justify-content-center my-5">
+              <button type="submit" class="btn btn-primary submit-btn">Enviar Encuesta</button>
+            </div>
+          </form>
+      
+          <div class="form-group text-center my-5">
+            <p><em class="form-control-label" for="input-text">¡Gracias por volar con nosotros y compartir tu experiencia!</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
