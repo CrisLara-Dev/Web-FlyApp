@@ -31,6 +31,6 @@ Este proyecto fue desarrollado utilizando las siguientes tecnologías:
 
 Para ver más imágenes de _FlyApp_, haz clic en el siguiente botón:
 
-[![Ver en Behance](https://img.shields.io/badge/Ver%20en%20Behance-00A0FF?style=for-the-badge&logo=behance&logoColor=white)](https://www.behance.net/gallery/208539235/Web-AloJuntas-App)
+[![Ver en Behance](https://img.shields.io/badge/Ver%20en%20Behance-00A0FF?style=for-the-badge&logo=behance&logoColor=white)](https://www.behance.net/gallery/208899371/Web-FlyApp)
 
 </div>
